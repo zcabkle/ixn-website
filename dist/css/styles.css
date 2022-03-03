@@ -11267,6 +11267,9 @@ div#interview{
   margin-top: 50px;
   
 }
+h2#persona{
+  margin-top: 50px;
+}
 .carousel-indicators li {
   filter: invert(100%);
 }
