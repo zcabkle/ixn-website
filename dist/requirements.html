@@ -14,6 +14,11 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
         <style>
             h2 {text-align: center;}
         </style>
@@ -56,110 +61,174 @@
         </header>
         <!-- Main Content-->
         <main class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 d-flex ">
-                        <h2>Project Background</h2>
-                        <p>Moorfields eye Hospital is a prestigious NHS eye hospital located in London. More than 25(not sure) specialised ocularist and admins work in this hospital.
-                            Alongside their busy daily schedule , ocularists have to put in a huge amount of time in the process of booking appointments. 
-                            This is because the current booking system used by moorfields eye hosiptal is not quite efficient.<br>
-                            Data about patients and appointments are fragmented and stored in seperate excel spread sheets.
-                            For example: There is a rota spread sheet storing appointment timetable for a ocularist. 
-                            The details of appointments on the timetable are stored in a different spreadsheets while patients'information and waitlists are kept in another spreadsheet.
-                            Therefore, in order for ocularists to book in appointments, they have to navigate across many spreadsheets and make changes a lot of times.<br>
-                            Another major drawback of the current system is that a huge amount of informations are presented to ocularist at once which makes it difficult to read needed and can be overwhelming.
-                            This process costs extra precious time for ocularists and admins which they could use on work.
-                            Moorfields eye hospital came to us looking for a streamline and easy-to-operate booking system to save time for their employeers.
-                        </p>
-                        <p></p>
-                        <p></p>
-                        <h3>This is a Rota spreadsheet used in previous booking system. No real data used </h3>
-                        <img class="img-fluid" src="assets/img/timetable_previous.png" alt="alternative">
-                        <p></p>
-                        <p></p>
-                        <h3>This is a waitlist spreadsheet used in previous booking system. No real data used </h3>
-                        <img class="img-fluid" src="assets/img/waitlist_previous.png" alt="alternative">
-                        <p></p>
-                        <p></p>
-                        <h2>Client Requirements</h2>
-                        <p>
+            <!-- background section -->
+            <section class ="background-section">
+                <div class="container px-4 px-lg-5">
+                    <div class="row justify-content-center ">
+                        <div class="col-lg-10 text-center" id = 'background-text'>
+                            <h2>Project Background</h2>
+                            <p>Moorfields eye Hospital is a prestigious NHS eye hospital located in London. More than 25(not sure) specialised ocularist and admins work in this hospital.
+                                Alongside their busy daily schedule , ocularists have to put in a huge amount of time in the process of booking appointments. 
+                                This is because the current booking system used by moorfields eye hosiptal is not quite efficient.<br>
+                                Data about patients and appointments are fragmented and stored in seperate excel spread sheets.
+                                For example: There is a rota spread sheet storing appointment timetable for a ocularist. 
+                                The details of appointments on the timetable are stored in a different spreadsheets while patients'information and waitlists are kept in another spreadsheet.
+                                Therefore, in order for ocularists to book in appointments, they have to navigate across many spreadsheets and make changes a lot of times.<br>
+                                Another major drawback of the current system is that a huge amount of informations are presented to ocularist at once which makes it difficult to read needed and can be overwhelming.
+                                This process costs extra precious time for ocularists and admins which they could use on work.
+                                Moorfields eye hospital came to us looking for a streamline and easy-to-operate booking system to save time for their employeers.
+                            </p>
+                       
+                            <h3 class = 'title'id='previous-example-title'>Previous System</h3>
+                            <div id="previous-example" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#previous-example" data-slide-to="0" class="active"></li>
+                                    <li data-target="#previous-example" data-slide-to="1"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="assets/img/timetable_previous.png" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/img/waitlist_previous.png" alt="Second slide">
+                                </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#previous-example" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#previous-example" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end background section -->
+            <!-- requiment section -->
+            <section class = 'client requirement'>
+                <div class="container px-4 px-lg-5">
+                    <div class="row justify-content-center ">
+                        <div class="col-lg-10 " id = 'requirement-text'>
+                            <h2 class = section-title>Client Requirements</h2>
+                            <p>
                             We set up weekly virtual meetings with Moorfield eye hospital representatives to communicate about their requirements and our progresses.
                             During the meeting we had, moorfield talked us through the details of scheduling from receiving a patient's referral to putting an appointment to a slot.
                             This helps us to design the system and user interface in a way that our clients are familiar with.
                             They also told us types of information needed to be stored in system which helps with database design.
-                        </p>
-                        <p>
                             After the first few meetings, we refined these main requirements from our client:<br>
                             1. An easy way to book in and reschedule appointments.<br>
                             2. An esay way to view patients' information and relative data.<br>
                             3. Allow multiple people to edit data at once.<br>
                             4. Multi-platforms, allow ocularists to check their timetable through phone.
-                        </p>
-                        <div class="col-lg-4 mb-5 mb-lg-0">
-                            <div class="card text-white bg-dark mb-3 " >
-                                <div class="card-header">Pain points</div>
-                                <div class="card-body">
-                                  <p class="card-text">
-                                      1. Unreadable data presentation<br>
-                                      2. Too repetitive work to book appointments<br>
-                                      3. Ocularists can’t edit spreadsheets at once without overwriting each others changes.
-                                  </p>
+                            </p>
+                        </div>
+                    
+                        <div class="col-lg-10 mb-5 mb-lg-10" id ='painpoint'>
+                            <div id="accordion">
+                                <div class="card">
+                                  <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link" data-toggle="collapse" data-target="#One" aria-expanded="true" aria-controls="One">
+                                        Unreadable data presentation
+                                      </button>
+                                    </h5>
+                                  </div>
+                              
+                                  <div id="One" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        We implement filter, search and expanding 
+                                        window functionality so ocularists can see the only information that they want to see.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#Two" aria-expanded="false" aria-controls="Two">
+                                        Repetitive work to acess appointments booking
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="Two" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        System will manage database rather than the ocularist, 
+                                        this means triaging patients will no longer be a tedious process.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#Three" aria-expanded="false" aria-controls="Three">
+                                        Can’t edit spreadsheets at once without overwriting each others changes.
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="Three" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Implementing synchronisation between the ocularists will lead to less frustration when 
+                                        trying to edit the patients information  
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 mb-5 mb-lg-0">
-                            <div class="card text-white bg-dark mb-3">
-                                <div class="card-header">Solutions</div>
-                                <div class="card-body">
-                                  <p class="card-text">
-                                      1. We implement filter, search and expanding 
-                                      window functionality so ocularists can only see the information that they want to see<br>
-                                      2.System will manage database rather than the ocularist, 
-                                      this means triaging patients will no longer be a tedious process<br>
-                                      3. Implementing synchronisation between the ocularists will lead to less frustration when 
-                                      trying to edit the patients information                  
-                                  </p>
+                    </div>   
+                </div>
+            </section>
+            <!-- end requirement section -->
+                <div class ='project-goal' id = 'project-goal'>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row justify-content-center ">
+                            <div class="col-lg-10 " id = 'project goal'>
+                                <h2 class = 'section-title'>Project Goal</h2>
+                                <p>Our goal is to develop a workflow management webapp for Moorfields Eye Hospital.
+                                    It can be deployed and embedded into NHS standard websites as well as receive data from NHS PAS(The PatientSource Patient Administration System ) system.
+                                    It provides ocularists and admins simple ways to modify andd read about their daily schedules.
+                                </p>
+                            </div>
+                        </div>
+                </div>
+                <div class ='Interviews'id ='interview'>
+                    <div class="container px-4 px-lg-5">
+                        <div class="row justify-content-center ">
+                            <div class="col-lg-10 " id = 'Interviews'>
+                                <h2 class ='section-title'>Interviews/Surveys</h2>
+                                <p>To gather the user requirements, we conducted a semi-structured interview and a likert scale survey. Upon evaluation, this was the best way to gather the user requirements.Here are a few notable responses from a member of each user group.</p>
+                                <div id="previous-example" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#previous-example" data-slide-to="0" class="active"></li>
+                                        <li data-target="#previous-example" data-slide-to="1"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="assets/img/survey.png" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="assets/img/interview.png" alt="Second slide">
+                                    </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#previous-example" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#previous-example" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <p></p>
-                        <p></p>
-                        <h2>Project Goal</h2>
-                        <p>Our goal is to develop a workflow management webapp for Moorfields Eye Hospital.
-                            It can be deployed and embedded into NHS standard websites as well as receive data from NHS PAS(The PatientSource Patient Administration System ) system.
-                            It provides ocularists and admins simple ways to modify andd read about their daily schedules.
-                        </p>
-                        <p></p>
-                        <p></p>
-                        <h2>Interviews/Surveys</h2>
-                        <p>To gather the user requirements, we conducted a semi-structured interview and a likert scale survey. Upon evaluation, this was the best way to gather the user requirements.Here are a few notable responses from a member of each user group.</p>
-                        <div class="col-md-5 col-lg-5 col-xl-5 mx-auto ">
-                            <h5>
-                               Q: What features of the current system do you like?</h5>
-                            <p>
-                               A:“Data is organised and on different spreadsheets, so you know where to look for a specific piece of information, e.g to check if a patient is on the waiting list, I “search for them in the waiting list spreadsheet”
-                            </p>
-                        </div>
-                        <div class="col-md-5 col-lg-5 col-xl-5 mx-auto ">
-                            <h5>
-                                Q: What features of the current system do you dislike?</h5>
-                            <p> A:“Data is on different spreadsheets is also a downside, for example  to book a patient in, you must remove/process this on  multiple spreadsheets, this process is time consuming and a waste of a specialists time”<br>
-                                A:“It also isn't possible to view all information we have about a patient and their bookings all at once, as it is fragmented across multiple spreadsheets.”<br>
-                                A:“On a spreadsheet it is hard to be able to view only the information that I want, this can make me feel overwhelmed by the amount of information shown to me.<br>
-                                A:“Not very user friendly, nor consistent. Some boxes have a dropdown list, some don't, have to manually maintain all spreadsheets”
-                                
-                            </p>
-                        </div>
-                        <div class="col-md-5 col-lg-5 col-xl-5 mx-auto ">
-                            <h5>
-                                Q: Is there anything in particular that should be added/changed?</h5>
-                            <p> A: “Some sort of process to automate/speed up the rescheduling of appointments would be incredibly helpful. As a lot of my time is spend rescheduling, by speeding up this process, I will be able to do my job better, faster and more accurately.”
-                            </p>
-                               
-                        </div>
-                        <img class="img-fluid img-thumbnail" src="assets/img/survey.png" alt="alternative">
-                        <img class="img-fluid img-thumbnail" src="assets/img/survey2.png" alt="alternative">
-                        <p></p>
-                        <p></p>
+                    </div>
+                </div>
+                        
+                        
+                             
+                       
+                       
                         <h2>Personas</h2>
                         <p></p>
                         <h3>Admins</h3>
