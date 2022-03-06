@@ -11273,3 +11273,23 @@ h2#persona{
 .carousel-indicators li {
   filter: invert(100%);
 }
+h3#principle-title{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  
+}
+h2#section-title{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+div#sketch-prototype{
+  margin-top: 75px;
+}
+h2#prototype{
+  margin-top: 75px;
+}
+h2#sketch{
+  margin-top: 75px;
+}
