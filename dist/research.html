@@ -55,21 +55,119 @@
         <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-11">
                         <h2>Project Research</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
-
+                    </div>
+                    <div class="col-11">
                         <h2>Technology Research</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+                        <h4>Framework</h4>
+                        <p></p>
+                        <h5>Django or Flask?</h5>
+                        <p>Our goal is to develop a database driven website so we researched best-fit web development framework including
+                            <a href="https://www.djangoproject.com/">Django</a>  and
+                            <a href="https://flask.palletsprojects.com/en/2.0.x/">Flask</a>.<br>
+                            We considered thoroughly and compared between these 2 frameworks and decided to choose Django.
+                            Overall Django is heavy weight with many pre-build features while Flask can be more flexible and more suitable for smaller projects.
+                            For our project specifically, Django' pre build functionalities such as admin interface are right fit and convenient as well as providing higher security.
+                            Django are also very scalable for further development and has a community for maintaince.
+                        </p>
+                            <table class ='table'>
+                                <thead>
+                                    <tr>
+                                      <th scope="col">Frameworks</th>
+                                      <th scope="col">Security</th>
+                                      <th scope='col'>Admin site</th>
+                                      <th scope="col">Flexibility</th>
+                                      
+                                      <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Django</th>
+                                        <td>
+                                            Django is highly secure.
+                                            It has its own authentication system.
+                                            It also has build in fuctions to prevent malicious attacks.(e.g XSS protection,SQL injection protection,Clickjacking protection)
+                                        </td>
+                                        <td>
+                                            Django has build in Automatic Admin interface which can be used as internal website management tool.
+                                            It gives specified types of users access to certain functionalities.
+                                            This can save us alot of time since we need similar features for our website to manage ocularists type and admin type users.
+                                        </td>
+                                        <td>User has to write code in 'Django way' due to the many pre build features</td>
+                                        </tr>
+       
+                                    <tr>
+                                        <th scope="row">Flask</th>
+                                        <td>Flask provides extensible library tool for you to set up your own security setting, It can potentially introduce more security vulnerability</td>
+                                        <td>
+                                            It does not have build in admin site but has extensible library as tools
+                                        </td>
+                                        <td>Flask gives developer full control over the content</td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <h4>front-end Framework</h4>
+                        <h5><a href="https://getbootstrap.com/">Bootstrap</a></h5>
+                        <p>Bootstrap is a CSS framework for responsive front-end web development.
+                            It provides templates for variaty interface components such as navigation bars and tables.
+                            It also has unique grid systems allowing easier layout design for both mobile and desktop websites.
+                            This is can speed up our implementation.Our project need to consider user interface for both mobile and webpages since ocularists and admins might use our website from mobile phones.
+                        </p>
+                        <h4>Language</h4>
+                        <h5>Python or Java?</h5>
+                        <p>Python is a excellent language for web development. 
+                            It provide tons of frameworks such as Django, flask and FastAPI.
+                            It is expressive and has great simplicity.
+                            Python is dynamically typed and has a easier syntax than java which allows faster implementation.
+                            This is a major advantage considering time constraints for our project.
+                            All of our team members are familiar with Python so that it makes collaboration smoother.
+                        </p>
+                        <p></p>
+                        <p>Java is also a popular language for web-development.
+                            It is generally faster and has better performance than python.
+                            It has relativly complex syntax rules.
+                            After comparing both languages we decide to choose Python.
+                        </p>
 
-                        <h2>Technical Decisions</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
-
+                        <h4>virtual Enviroment</h4> 
+                        <h5>Docker or linode?</h5>
+                        <p>Linode provides virtual private servers</p>
+                        
+                            <h2>Technical Decisions</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Tech</th>
+                                        <th scope="col">Decisions</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="'rol">Web Development Framework</th>
+                                        <td>Django</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="'rol">Language</th>
+                                        <td>Python</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="'rol">Virtual Enviroment</th>
+                                        <td>Docker</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="'rol">front-end Development Framework</th>
+                                        <td>Bootstrap</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
                         <h2>References</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>

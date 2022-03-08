@@ -27,7 +27,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html">ucl-ixn-team19</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -266,10 +266,9 @@
                         <div class="row justify-content-center ">
                             <div class="col-lg-10 ">
                                 <h2>Use Cases</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
-                            </div>
+                                <p>After understanding our client's requirement,
+                                    We drew a use case diagram showing possible interactions that users can have with our webapp</p>
+                                <img class="d-block w-100" src="assets/img/usercase.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -290,11 +289,18 @@
                                   
                                       <div id="moscowOne" class="collapse show" aria-labelledby="headingOne" data-parent="moscow">
                                         <div class="card-body">
-                                            <p>1.webapp allows multiple viewers to edit appointments at same time with automaticly update after editing and refresh of the data on screen <br>
-                                            2.webapp shows appointments for today only at timetable as a default main page and be able to show appointments for selected date<br>
-                                            3.webapp should allow viewers to view specific patients' detail by click patients'name<br>
-                                            3.Viewers should be able to see and hide team rota<br>
-                                            5.Canceled appointments should be automatically removed from rota to reduce repetitive work<br>
+                                            <p>
+                                            1.webapp allows multiple viewers to edit appointments at same time with automaticly update after editing and refresh of the data on screen <br>
+                                            2.changes should able to record and check changes history of the appointments
+                                            3.webapp shows appointments for today only at timetable as a default main page and be able to show appointments for selected date<br>
+                                            4.webapp should allow viewers to view specific patients' detail by click patients'name<br>
+                                            5.webapp should allow viewers to view and search appointment as well as patients by types and dates<br>
+                                            6.Viewers should be able to see and hide team rota<br>
+                                            7.Canceled appointments should be automatically removed from rota to reduce repetitive work<br>
+                                            8.There should be options to show all free slots<br>
+                                            9.webapp should schedule appointment to multiple slots if it duration is longer than 1 regular slot<br>
+                                            10.There should be  constraints in regards to booking children into slots<br>
+                                            11.There should be User authentication for the Ocularists and Admin staff.
                                             </p>
                                         </div>
                                       </div>
@@ -311,9 +317,11 @@
                                         <div class="card-body">
                                             <p>
                                                 1.Use distinct and intuitive colours to indicate different appointment type in my rota.<br>
-                                                2.Options to filter information about a patient at waitlist Page<br>                                       
-                                                4.Automatically fill in patient details when booking new appointments<br>                                            
-                                                5.Schedule appointment to multiple slots if it duration is longer than 1 regular slot<br>
+                                                2.Options to filter information about a patient at waitlist Page<br>
+                                                3.Hide patient already seen from time table.<br>                                       
+                                                4.Automatically fill in patient details when booking new appointments<br>    
+                                                5.Arrange free slots between each appointments in a day.<br>
+                                                6.Send notifications if appointments due  within 2 days are canceled.                                                                              
                                             </p>
                                         </div>
                                       </div>
@@ -328,9 +336,9 @@
                                       </div>
                                       <div id="moscowThree" class="collapse" aria-labelledby="headingThree" data-parent="moscow">
                                         <div class="card-body">
-                                            1.Hide patients already seen from time table<br>
-                                            2.Be able to show appointments for a week as a option <br> 
-                                            3.Send notifications if appointments within 2 days canceled<br>
+                                            1.Suggest patients from waitlists according to their waiting time and urgency.
+                                            2.Automatic time slot suggestion when scheduling a patient <br> 
+                                            
                                         </div>
                                       </div>
                                     </div>
