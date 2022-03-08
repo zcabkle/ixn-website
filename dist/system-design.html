@@ -62,18 +62,39 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-11">
                             <h2 id="section-title">System Architecture</h2>
-                            <p> Our website has classic model-view-controller pattern.
-
+                            <p> Our website has classic model-view-controller pattern.<br>
+                                Models include Patient model, Appointment model ,AdminTask models etc.
+                                They contains grouped data from SQLite database.<br>
+                                Each html page has a corresponding view class updating data needed for display.
+                                View class is used to handle user's request of displaying certain informations. 
+                                We use django forms Post methods to implement input features.
+                                Inputs from forms are send to view class and datas are sorted in views correspondingly.
+                                Other inputs including modifing database are sent to data models classes.
+                                <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
                             </p>
-                            <h2 id="section-title">Design Principles and Patterns</h2>
-                            
                             <h2 id="section-title">UML Object Diagram</h2>
+                            <p>This diagram is created to represent a specific website structure and responding mechanisms</p>
                             <img class="d-block w-100" src="assets/img/object.png" alt="">
 
+                            <h2 id="section-title">Design priciples</h2>
+                            <h4>MVC</h4>
+                            <p>One of the biggest advantage of model-view-controller design pattern is that it seperate concerns.
+                                By dividing project to parts, we reducde risks:modifications to certain parts would not affect whole project.
+                                It also allows developers to make progresses parallely at different sections,leading to faster development.
+
+                            </p>
+
                             <h2 id="section-title">Entity Relationship Diagram</h2>
+                            <p>Database design is vital for our project since our core functionalities are to store,display and allow users to modify datas.<br>
+                                Below is a ER diagram showing Relationships between each data types.
+                                
+                            </p>
                             <img class="d-block w-100 " src="assets/img/er.png" alt="">
 
                             <h2 id="section-title">Sequence Diagram</h2>
+                            <p>Our website is embedded with multiple functionalities. 
+                                We aim to allow users to access features smoothly and intuitively so that they have good user experience.
+                                We designed this sequence diagram to represent typical users with different needs and how they would intereact with our website.</p>
                             <div id="sequence" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#sequence" data-slide-to="0" class="active"></li>
@@ -100,7 +121,8 @@
                                 <span class="sr-only">Next</span>
                                 </a>
                             </div>
-                            <h2>Application Map</h2>
+                            
+                            <h2 id="section-title">Application Map</h2>
                             <img class="d-block w-100" src="assets/img/sitemap.jpg" alt="">
                     </div>
                 </div>
