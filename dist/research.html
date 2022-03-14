@@ -135,9 +135,23 @@
                             After comparing both languages we decide to choose Python.
                         </p>
 
-                        <h4>virtual Enviroment</h4> 
-                        <h5>Docker or linode?</h5>
-                        <p>Linode provides virtual private servers</p>
+                        <h4>virtual Enviroment and Deployment</h4> 
+                        <h5>Docker and linode</h5>
+                        <p>
+                            <a href="https://www.docker.com/">Docker</a> is a software platform allowing you to package your application 
+                            in a isolated predictable enviroment called container. <br>
+                            The container contains configurations and everything needed to run the application so that you can run application in different host easily.<br>
+                            Docker might looks like a virtual machine but here are some key differences and advangtages:<br>
+                            1.Docker is free! Cost efficient haha<br>
+                            2.Docker is light weight and fast to boost.It takes deployment time to seconds whereas A VM can take a few minutes to be dev-ready.<br>
+                            3.Docker targets at Operating systems which makes docker images free of enviromental limitations and can be run everywhere.
+                        </p>
+                        <p>Linode provides cloud hosting services.
+                            Linode has good performance as other linux server but is more affordable.
+                            As our project is a small scale internal management system that will be used by 30 workers, 
+                            AWs and Azure can be too big with unnecessary features.
+                            Therefore we decided to use Linode to host our website.
+                        </p>
                         
                             <h2 id="section-title">Technical Decisions</h2>
                             <table class="table">
@@ -158,8 +172,8 @@
                                         <td>Python</td>
                                     </tr>
                                     <tr>
-                                        <th scope="'rol">Virtual Enviroment/Deployment</th>
-                                        <td>Docker</td>
+                                        <th scope="'rol">Virtual Enviroment and Deployment</th>
+                                        <td>Docker,Linode</td>
                                     </tr>
                                     <tr>
                                         <th scope="'rol">front-end Development Framework</th>
