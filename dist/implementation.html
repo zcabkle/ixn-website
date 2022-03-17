@@ -58,17 +58,45 @@
                     <div class="col-10">
                         <h2 class="section-title">User authentication</h2>
                         <p>We use Django build in Admin framework and authentication methods to implement our website.
-                            We add Users and User group to our wesite in admin website.
+                            We add Users and User group in admin website allowing access to our website.
                             <img class="d-block w-100 " src="assets/img/admin_1.png" alt="">
                             <img class="d-block w-100 " src="assets/img/admin_2.png" alt="">
-    
-
-
+                            <p>
+                                A UserView class is created as a base class of other Views.
+                                It is restricted to django LoginRequiredMixin which mean user has to login to gain access to this view.
+                            </p>
+                        <p class="section-title">At admin.py we register model datas that can be modified in admin site.</p>
+                            <img class="d-block w-100 " src="assets/img/admin_3.png" alt="">
                         </p>
+
                         <h2 class="section-title">Database and connection to front end</h2>
-                        <h2 class="section-title">Dynamic website</h2>
+                        <p>We use SQLite database and its connected to django frame work by setting Database configuration at mysite/setting.py<br>
+                            We set up data strucures at website/model.py using model build in method.<br>
+                            Below is a example , a patient data model has PAS_number,name and etc attributes.
+                            Models.ForeignKey serves as a link to a different data model.
+                            <img class="d-block w-100 " src="assets/img/model.png" alt="">
+                        <p class="'section-title">Data models are imported and used in Views</p>
+                        </p>
                         <h2 class="section-title">Functionality Implementation</h2>
-                        <h2 class="section-title">My Rota and Team</h2>
+                        <h3 class="section-title text-center">Display timetable</h3>
+                            <p>
+                                We automatically fetches username and firstname for logged in user by letting RotaView inherits UserView class.<br>
+                                We receive selected date for display at get()using Datetimepicker implemented as a django form. 
+                                If no date is selected, current date will be displayed.
+                                <img class="d-block w-100 " src="assets/img/get_function.png" alt="">
+                                
+                                We sort appointments that is booked in selected date and belongs to logged in ocularist as a list using django built in function Object.all.filter(desired-property).
+                                Appointments that has been canceled will be excluded in the list.
+                                If weekly rota is requested,generate_weekly_rota function is called otherwise generate_day_rota will be called.
+                                <img class="d-block w-100 " src="assets/img/generate_day_rota.png" alt="">
+                               The SLOTS dictonary stores appointment type and its corresponding appointment time duration(number of slots needed to complete appointments).
+                               Ocularists only need to fill in appointment start time when booking and the duration will be calculated here.
+                               The DAY_ROTA is a dictonary with fixed time slots in timetable as dictonary key. Value are set to None as default.
+                               Sorted appointments and its corresponding time slots will be stored in tmp_rota for use in htmls.
+
+                                
+                        </p>
+                        
                         
 
                         
