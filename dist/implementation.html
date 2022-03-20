@@ -99,10 +99,24 @@
                                The SLOTS dictonary stores appointment type and its corresponding appointment time duration(number of slots needed to complete appointments).
                                Ocularists only need to fill in appointment start time when booking and the duration will be calculated here.
                                The DAY_ROTA is a dictonary with fixed time slots in timetable as dictonary key. Value are set to None as default.
-                               Sorted appointments and its corresponding time slots will be stored in tmp_rota for use in htmls.
-
-                                
+                               Sorted appointments and its corresponding time slots will be stored in tmp_rota for use in htmls.<br>
+                               <p>
+                                   We used Bootstrap Tables to implement timetable for rota page.
+                                   <img class="d-block w-100 " src="assets/img/myrota_html.png" alt="">
+                                   We nested timeslot and appointment conditions. 
+                               </p>
+                               <p>The display of teamrota and weeklyrota follows similar procedure</p>                           
+                        
+                            </p>
+                        <h3 class="section-title text-center">Display and filter appointments</h3>
+                        <p>At Appointment view we display all appointment objects except canceld appointments</p>
+                        <p>The filter functionality is implemented using django forms.
+                            <img class="d-block w-100 " src="assets/img/search_appo_form.png" alt="">
+                            We made sure user entered correct form of value and give notice if its wrong.
+                            This form value is sent back to AppointmentView.py. We use processQuery function to get data from form and filter appointments responsively.
+                    
                         </p>
+                        <h3 class="section-title text-center">Update and Add appointments</h3>
                         
                         
 

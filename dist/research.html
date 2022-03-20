@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-10">
                         <h2 id="section-title">Technology Research</h2>
-                        <h4>Framework</h4>
+                        <h4 id="section-title">Framework</h4>
                         <p></p>
                         <h5>Django or Flask?</h5>
                         <p>Our goal is to develop a database driven website so we researched best-fit web development framework including
@@ -95,7 +95,7 @@
                                         <th scope="row">Django</th>
                                         <td>
                                             Django is highly secure.
-                                            It has its own authentication system.
+                                            It has its own authentication system.[1]
                                             It also has build in fuctions to prevent malicious attacks.(e.g XSS protection,SQL injection protection,Clickjacking protection)
                                         </td>
                                         <td>
@@ -118,7 +118,7 @@
                                 </tbody>
                             </table>
                         <p></p>
-                        <h4 id=>Front-end Framework</h4>
+                        <h4 class="section-title">Front-end Framework</h4>
                         <p></p>
                         <h5><a href="https://getbootstrap.com/">Bootstrap</a></h5>
                         <p>Bootstrap is a CSS framework for responsive front-end web development.
@@ -142,8 +142,8 @@
                             After comparing both languages we decide to choose Python.
                         </p>
 
-                        <h4>virtual Enviroment and Deployment</h4> 
-                        <h5>Docker and linode</h5>
+                        <h4 id="section-title">virtual Enviroment and Deployment</h4> 
+                        <h5>Docker and Cloud servers</h5>
                         <p>
                             <a href="https://www.docker.com/">Docker</a> is a software platform allowing you to package your application 
                             in a isolated predictable enviroment called container. <br>
@@ -153,11 +153,13 @@
                             2.Docker is light weight and fast to boost.It takes deployment time to seconds whereas A VM can take a few minutes to be dev-ready.<br>
                             3.Docker targets at Operating systems which makes docker images free of enviromental limitations and can be run everywhere.
                         </p>
-                        <p>Linode provides cloud hosting services.
-                            Linode has good performance as other linux server but is more affordable.
-                            As our project is a small scale internal management system that will be used by 30 workers, 
-                            AWs and Azure can be too big with unnecessary features.
-                            Therefore we decided to use Linode to host our website.
+                        <p>Linode and Azure provides cloud hosting services.
+                            Both Linode and Azure has good performance but Linode is more economically efficient.
+                            Azure has better security than linode. Azure's security system has multiple layers, 
+                            including key features such as Web Application vulnerability scanning, automated encryption in transit,encryption at rest and most importantly network security[2]
+                            As our application deals with sensitive patient data ,privacy is important.
+                            Therefore we choose Azure to host our application.
+                            
                         </p>
                         
                             <h2 id="section-title">Technical Decisions</h2>
@@ -180,7 +182,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="'rol">Deployment Tools</th>
-                                        <td>Docker,Linode</td>
+                                        <td>Docker,Azure</td>
                                     </tr>
                                     <tr>
                                         <th scope="'rol">front-end Development Framework</th>
@@ -191,6 +193,11 @@
                     </div>
                     <div class="col-10">
                         <h2 id="section-title">References</h2>
+                        <p>
+                            [1]Django ,'Documentation:User authentication in Django'[online]
+                            Available:<a href ='https://docs.djangoproject.com/en/4.0/topics/auth/'>https://docs.djangoproject.com/en/4.0/topics/auth/</a><br>
+                            [2]Microsoft,"Azure Product documentation: Azure security Fundamentals"
+                            01.July.2022[online] Available:<a href='https://docs.microsoft.com/en-us/azure/security/fundamentals/end-to-end'>https://docs.microsoft.com/en-us/azure/security/fundamentals/end-to-end</a></p>
                     </div>
 
                 </div>
