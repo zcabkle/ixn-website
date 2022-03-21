@@ -111,7 +111,10 @@
 
                             Template: The template consists of a collection of HTML pages with intructions on how to display any dynamic content that may be given to it.</br></br>
 
-                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM v </strong>
+                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM v </strong><br>
+                            As we can see in the following diagram when a user make a request django acts as a controller and maps URLs and requested resources.
+                            A corresponding view is then called to perform a query on Model and receive results from Model. The view will then render a template with received data.
+
 
                         </p>
                         <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
@@ -223,15 +226,19 @@
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Design Patterns</h1> <br>
                         <h4 class="section-title text-gradient">MVT</h4>
-                        <p>One of the biggest advantage of model-view-controller design pattern is that it seperate
+                        <p>
+                            The Model-View-Template design pattern are similar to MVC with slight changes.
+                            With MVT design pattern ,controller is managed by django framework. 
+                            Views are not coupled with model which makes modifications easier.
+
+                            Same as MVC,One of the biggest advantage of MVT design pattern is that it seperate
                             concerns.
                             By dividing project to parts, we reducde risks:modifications to certain parts would not
                             affect whole project.
                             It also allows developers to make progresses parallely at different sections,leading to
                             faster development.</br></br>
-
-                            <strong>WHAT IS MVT AND SOURCE FOR IT AND WHY WE USED IT AND PROS AND CONS</strong>
-
+                            <strong>WHAT IS MVT AND SOURCE FOR IT AND WHY WE USED IT AND PROS AND CONS</strong><br>
+                           
                         </p>
 
                     </div>
