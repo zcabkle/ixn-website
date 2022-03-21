@@ -11296,3 +11296,12 @@ h2#sketch{
 h4#section-title{
   margin-top: 50px;
 }
+.text-gradient {
+    background: linear-gradient(to right, #0467ff 0%, #45c7ff 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+}
+
+.header-underline {border-bottom: 1px solid black}
