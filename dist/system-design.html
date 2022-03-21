@@ -1,168 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>System Design</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <style>
-            h2 {text-align: center;}
-        </style>
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">IXN Team 19</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="requirements.html">Requirements</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System Design</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="implementation.html">Implementation</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
-                    </ul>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>System Design</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        h2 {
+            text-align: center;
+        }
+    </style>
+    <link rel="shortcut icon" type="image/ico" href="/UCLfavicon.ico"/>
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">IXN Team 19</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="requirements.html">Requirements</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System
+                            Design</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="implementation.html">Implementation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/gradient.png')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>System Design</h1>
+                    </div>
                 </div>
             </div>
-        </nav>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/gradient.png')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>System Design</h1>
+        </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+        <!-- Start of System Architecture section -->
+        <section class="System Architecture">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">System Architecture</h1> <br>
+                        <!-- <p> Our website has classic model-view-controller pattern.
+                            Models include Patient model, Appointment model ,AdminTask models etc.<br>
+                            They contains grouped data from SQLite database.
+                            Each html page has a corresponding view class updating data needed for display.
+                            View class is used to handle user's request of displaying certain informations.<br>
+                            We use django forms Post methods to implement input features.
+                            Inputs from forms are send to view class and datas are sorted in views correspondingly.
+                            Other inputs including modifing database are sent to data models classes.
+                        </p> -->
+                        <p> This section introduces the design of our workflow management tool. This architecture adopts
+                            the Model-View-Template (MVT) pattern, which is very similar to the Model-View-Controller
+                            (MVC) pattern.</br></br>
+
+                            Server: The source code of the project is deployed to an Azure Cloud server.</br></br>
+
+
+                            Model: The model is the interface between the data on the database and the user. Some examples of
+                            models used include <code>Patient</code>, <code>Appointment</code> and <code>User</code>. A
+                            visual representation of the models can be found on the UML diagram in the Class Diagram section. Each model is implemented with a single python class. </br></br>
+
+                            View: The view takes web requests, retrieves appropriate data from the database by using the models and returns a response by rendering the correct template.</br></br>
+
+                            Template: The template consists of a collection of HTML pages with intructions on how to display any dynamic content that may be given to it.</br></br>
+
+                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM v </strong>
+
+                        </p>
+                        <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of System Architecture section -->
+
+        <!-- Start of Site Map section -->
+        <section class="Site Map">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">Site Map</h1> <br>
+                        <img class="d-block w-100" src="assets/img/sitemap.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of Site Map section -->
+
+        <!-- Start of Sequence Diagrams section -->
+        <section class="Sequence Diagrams">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">Process Flow Diagram</h1> <br>
+                        <p> Our website performs various functions. In order to better understand how a typical user may interact with the system, we created a process flow diagram which can be seen below.</p>
+                        <div id="sequence" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#sequence" data-slide-to="0" class="active"></li>
+                                <li data-target="#sequence" data-slide-to="1"></li>
+                                <li data-target="#sequence" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="assets/img/process1.png" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/img/process2.png" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/img/process3.png" alt="Third slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#sequence" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#sequence" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- Main Content-->
-        <main class="mb-4">
+        </section>
+        <!-- End of Sequence Diagrams section -->
+
+        <!-- Start of Class Diagrams section -->
+        <section class="Class diagrams">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-11">
-                            <h2 id="section-title">System Architecture</h2>
-                            <p> Our website has classic model-view-controller pattern.
-                                Models include Patient model, Appointment model ,AdminTask models etc.<br>
-                                They contains grouped data from SQLite database.
-                                Each html page has a corresponding view class updating data needed for display.
-                                View class is used to handle user's request of displaying certain informations.<br> 
-                                We use django forms Post methods to implement input features.
-                                Inputs from forms are send to view class and datas are sorted in views correspondingly.
-                                Other inputs including modifing database are sent to data models classes.
-                                <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
-                            </p>
-                            <h2 id="section-title">UML Object Diagram</h2>
-                            <p>This diagram is created to represent a specific website structure and responding mechanisms</p>
-                            <img class="d-block w-100" src="assets/img/object.png" alt="">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">Class Diagrams</h1> <br>
+                        <p>The first diagram outlines the interactions between different parts of the webapp.</p>
+                        <p>The second and third diagrams outline the classes used to implement the model. The third diagram groups the classes based on where they exist.</p>
 
-                            <h2 id="section-title">Design priciples</h2>
-                            <h4>MVC</h4>
-                            <p>One of the biggest advantage of model-view-controller design pattern is that it seperate concerns.
-                                By dividing project to parts, we reducde risks:modifications to certain parts would not affect whole project.
-                                It also allows developers to make progresses parallely at different sections,leading to faster development.
-
-                            </p>
-
-                            <h2 id="section-title">Entity Relationship Diagram</h2>
-                            <p>Database design is vital for our project since our core functionalities are to store,display and allow users to modify datas.<br>
-                                Below is a ER diagram showing Relationships between each data types.
-                                
-                            </p>
-                            <img class="d-block w-100 " src="assets/img/er.jpeg" alt="">
-
-                            <h2 id="section-title">Sequence Diagram</h2>
-                            <p>Our website is embedded with multiple functionalities. 
-                                We aim to allow users to access features smoothly and intuitively so that they have good user experience.
-                                We designed this sequence diagram to represent typical users with different needs and how they would intereact with our website.</p>
-                            <div id="sequence" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#sequence" data-slide-to="0" class="active"></li>
-                                    <li data-target="#sequence" data-slide-to="1"></li>
-                                    <li data-target="#sequence" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100" src="assets/img/process1.png" alt="First slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="assets/img/process2.png" alt="Second slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="assets/img/process3.png" alt="Third slide">
-                                    </div>
+                        <div id="uml" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#uml" data-slide-to="0" class="active"></li>
+                                <li data-target="#uml" data-slide-to="1"></li>
+                                <li data-target="#uml" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="assets/img/object.png" alt="First slide">
                                 </div>
-                                <a class="carousel-control-prev" href="#sequence" role="button" data-slide="prev">
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/img/uml_ungrouped.png" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/img/uml_grouped.png" alt="Third slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#uml" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#sequence" role="button" data-slide="next">
+                            </a>
+                            <a class="carousel-control-next" href="#uml" role="button" data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                            
-                            <h2 id="section-title">Application Map</h2>
-                            <img class="d-block w-100" src="assets/img/sitemap.jpg" alt="">
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </main>
-        <!-- Footer-->
-        <footer class="border-top">
+        </section>
+        <!-- End of Class Diagrams section -->
+
+        <!-- Start of CDesign Patterns section -->
+        <section class="Design Patterns">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <ul class="list-inline text-center">
-                            <li class="list-inline-item">
-                                <a href="https://twitter.com/uclcs?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://www.facebook.com/UCLCS.Home/">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://github.com/ArslanAftab/ucl-ixn-team19">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="small text-center text-muted fst-italic">
-                            <p>Copyright © 2021 - 2022 
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">Design Patterns</h1> <br>
+                        <h4 class="section-title text-gradient">MVT</h4>
+                        <p>One of the biggest advantage of model-view-controller design pattern is that it seperate
+                            concerns.
+                            By dividing project to parts, we reducde risks:modifications to certain parts would not
+                            affect whole project.
+                            It also allows developers to make progresses parallely at different sections,leading to
+                            faster development.</br></br>
+
+                            <strong>WHAT IS MVT AND SOURCE FOR IT AND WHY WE USED IT AND PROS AND CONS</strong>
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of Design Patterns section -->
+
+        <!-- Start of Data Storage section -->
+        <section class="Data storage">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">Data Storage</h1> </br>
+                        <h4 class="section-title text-gradient">Entity Relationship Diagram</h4>
+                        <p>
+                            Data storage is vital to this project as core functionality revolves around storing, displaying and modifying data.
+                            In this project the data is stored on a SQLite database, which can be found in the <code>db.sqlite3</code> file in the source code.<br>
+                            The entity-relationship diagram (ERD), below shows how the data is stored in our SQLite database.
+                        </p>
+                        <img class="d-block w-100 " src="assets/img/er.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of Data Storage section -->
+    </main>
+    <!-- Footer-->
+    <footer class="border-top">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/uclcs?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/UCLCS.Home/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://github.com/ArslanAftab/ucl-ixn-team19">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="small text-center text-muted fst-italic">
+                        <p>Copyright © 2021 - 2022
                             <a href="!#">Moorfields Hospital</a>
                             ,
                             <a href="!#">Arslan Aftab</a>
@@ -170,20 +299,22 @@
                             <a href="!#">Yue He</a>
                             ,
                             <a href="https://www.linkedin.com/in/kamil-ebanks/">Kamil Ebanks</a>
-                            - All rights reserved. 
-                        </p> </div>
+                            - All rights reserved.
+                        </p>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
 </html>
