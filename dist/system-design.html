@@ -86,7 +86,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">System Architecture</h1> <br>
-                        <p> Our website has classic model-view-controller pattern.
+                        <!-- <p> Our website has classic model-view-controller pattern.
                             Models include Patient model, Appointment model ,AdminTask models etc.<br>
                             They contains grouped data from SQLite database.
                             Each html page has a corresponding view class updating data needed for display.
@@ -94,11 +94,10 @@
                             We use django forms Post methods to implement input features.
                             Inputs from forms are send to view class and datas are sorted in views correspondingly.
                             Other inputs including modifing database are sent to data models classes.
-                            <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
-                        </p>
+                        </p> -->
                         <p> This section introduces the design of our workflow management tool. This architecture adopts
                             the Model-View-Template (MVT) pattern, which is very similar to the Model-View-Controller
-                            (MVC) pattern.</br>
+                            (MVC) pattern.</br></br>
 
                             Server: The source code of the project is deployed to an Azure Cloud server.</br></br>
 
@@ -111,9 +110,11 @@
 
                             Template: The template consists of a collection of HTML pages with intructions on how to display any dynamic content that may be given to it.</br></br>
 
-                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM ^ </strong>
+                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM v </strong>
 
                         </p>
+                        <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
+                        
                     </div>
                 </div>
             </div>
@@ -237,15 +238,16 @@
         <!-- End of Design Patterns section -->
 
         <!-- Start of Data Storage section -->
-        <section class="Design Patterns">
+        <section class="Data storage">
             <div class="container px-4 px-lg-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
-                        <h1 class="section-title text-gradient header-underline">Data Storage</h1> <br>
+                        <h1 class="section-title text-gradient header-underline">Data Storage</h1> </br>
                         <h4 class="section-title text-gradient">Entity Relationship Diagram</h4>
                         <p>
-                            Database design is vital for our project since our core functionality includes storing, displaying and modifying data.<br>
-                            The Entity-Relationship diagram below shows how the data is stored in out SQLite database.
+                            Data storage is vital to this project as core functionality revolves around storing, displaying and modifying data.
+                            In this project the data is stored on a SQLite database, which can be found in the <code>db.sqlite3</code> file in the source code.<br>
+                            The entity-relationship diagram (ERD), below shows how the data is stored in our SQLite database.
                         </p>
                         <img class="d-block w-100 " src="assets/img/er.jpeg" alt="">
                     </div>
