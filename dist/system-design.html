@@ -96,6 +96,24 @@
                             Other inputs including modifing database are sent to data models classes.
                             <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
                         </p>
+                        <p> This section introduces the design of our workflow management tool. This architecture adopts
+                            the Model-View-Template (MVT) pattern, which is very similar to the Model-View-Controller
+                            (MVC) pattern.</br>
+
+                            Server: The source code of the project is deployed to an Azure Cloud server.</br></br>
+
+
+                            Model: The model is the interface between the data on the database and the user. Some examples of
+                            models used include <code>Patient</code>, <code>Appointment</code> and <code>User</code>. A
+                            visual representation of the models can be found on the UML diagram in the Class Diagram section. Each model is implemented with a single python class. </br></br>
+
+                            View: The view takes web requests, retrieves appropriate data from the database by using the models and returns a response by rendering the correct template.</br></br>
+
+                            Template: The template consists of a collection of HTML pages with intructions on how to display any dynamic content that may be given to it.</br></br>
+
+                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM ^ </strong>
+
+                        </p>
                     </div>
                 </div>
             </div>
@@ -120,12 +138,8 @@
             <div class="container px-4 px-lg-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
-                        <h1 class="section-title text-gradient header-underline">Sequence Diagram</h1> <br>
-                        <p>Our website is embedded with multiple functionalities.
-                            We aim to allow users to access features smoothly and intuitively so that they have good
-                            user experience.
-                            We designed this sequence diagram to represent typical users with different needs and how
-                            they would intereact with our website.</p>
+                        <h1 class="section-title text-gradient header-underline">Process Flow Diagram</h1> <br>
+                        <p> Our website performs various functions. In order to better understand how a typical user may interact with the system, we created a process flow diagram which can be seen below.</p>
                         <div id="sequence" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#sequence" data-slide-to="0" class="active"></li>
@@ -164,7 +178,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Class Diagrams</h1> <br>
-                        <p>This diagram is created to represent a specific website structure and responding mechanisms</p>
+                        <p>The first diagram outlines the interactions between different parts of the webapp.</p>
+                        <p>The second and third diagrams outline the classes used to implement the model. The third diagram groups the classes based on where they exist.</p>
 
                         <div id="uml" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -229,9 +244,8 @@
                         <h1 class="section-title text-gradient header-underline">Data Storage</h1> <br>
                         <h4 class="section-title text-gradient">Entity Relationship Diagram</h4>
                         <p>
-                            Database design is vital for our project since our core functionalities are to store,display
-                            and allow users to modify datas.<br>
-                            Below is a ER diagram showing Relationships between each data types.
+                            Database design is vital for our project since our core functionality includes storing, displaying and modifying data.<br>
+                            The Entity-Relationship diagram below shows how the data is stored in out SQLite database.
                         </p>
                         <img class="d-block w-100 " src="assets/img/er.jpeg" alt="">
                     </div>
