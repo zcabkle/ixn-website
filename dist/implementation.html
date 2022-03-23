@@ -62,79 +62,82 @@
         <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-10">
-                        <h2 class="section-title">Tools and Dependencies</h2>
+                    <div class="col text-center">
+                        <h1 class="section-title text-gradient header-underline">Main Tools</h1>
                         <div class="card-deck">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="assets/img/pythonlogo.png" alt="Card image cap">
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top " src="assets/img/pythonlogo.png" alt="Card image cap">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text">Python is our main programming language.Python is a high level programming language with excellent readability</p>
                                 </div>
                             </div>
  
-                            <div class="card" style="width: 18rem;">
+                            <div class="card border-light mb-3">
                                 <img class="card-img-top" src="assets/img/djangologo.png" alt="Card image cap">
                                 <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Django framework and its build in functions are used for developing our website.
+                                    It follows model-views-templates design pattern
+                                </p>
+                                </div>
+                            </div>
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top" src="assets/img/bootstrap.png" alt="Card image cap">
+                                <div class="card-body">
+                                <p class="card-text">Bootstrap is a CSS framework containing HTML and CSS base design templates.
+                                    It is used for front-end development.
+                                </p>
+                                </div>
+                            </div>
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top" src="assets/img/SQlite.png" alt="Card image cap">
+                                <div class="card-body">
+                                <p class="card-text">SQLite is used as our embedded database.</p>
                                 </div>
                             </div>
                         </div>
-                    
-                        <h2 class="section-title">User authentication</h2>
-                        <p>We use Django build in Admin framework and authentication methods to implement our website.
-                            We add Users and User group in admin website allowing access to our website.
-                            <img class="d-block w-100 " src="assets/img/admin_1.png" alt="">
-                            <img class="d-block w-100 " src="assets/img/admin_2.png" alt="">
-                            <p>
-                                A UserView class is created as a base class of other Views.
-                                It is restricted to django LoginRequiredMixin which mean user has to login to gain access to this view.
-                            </p>
-                        <p class="section-title">At admin.py we register model datas that can be modified in admin site.</p>
-                            <img class="d-block w-100 " src="assets/img/admin_3.png" alt="">
-                        </p>
+                        <h1 class="section-title text-gradient header-underline">Implementation overview</h1><br>
+                    </div>
+                    <div class="col-10">
+                        <h4 class="section-title text-gradient header-underline">Authentication</h4>
+                            <p>Django </p>
+                        <h4 class="section-title text-gradient header-underline">Database connection</h4>
+                            <p>Django ORM</p>
 
-                        <h2 class="section-title">Database and connection to front end</h2>
-                        <p>We use SQLite database and its connected to django frame work by setting Database configuration at mysite/setting.py<br>
-                            We set up data strucures at website/model.py using model build in method.<br>
-                            Below is a example , a patient data model has PAS_number,name and etc attributes.
-                            Models.ForeignKey serves as a link to a different data model.
-                            <img class="d-block w-100 " src="assets/img/model.png" alt="">
-                        <p class="'section-title">Data models are imported and used in Views</p>
+                        <h4 class="section-title text-gradient header-underline">Display timetable</h4><br>
+                        <strong>1.Identify logged in user</strong><br>
+                        <p>
+                            We wrote a UserView class which is a base class for other View class to extend and utilise.
+                            The UserView class has fetch_details(self,request) function which automatically fetches username and firstname for logged in users.
                         </p>
-                        <h2 class="section-title">Functionality Implementation</h2>
-                        <h3 class="section-title text-center">Display timetable</h3>
-                            <p>
-                                We automatically fetches username and firstname for logged in user by letting RotaView inherits UserView class.<br>
-                                We receive selected date for display at get()using Datetimepicker implemented as a django form. 
-                                If no date is selected, current date will be displayed.
-                                <img class="d-block w-100 " src="assets/img/get_function.png" alt="">
-                                
-                                We sort appointments that is booked in selected date and belongs to logged in ocularist as a list using django built in function Object.all.filter(desired-property).
-                                Appointments that has been canceled will be excluded in the list.
-                                If weekly rota is requested,generate_weekly_rota function is called otherwise generate_day_rota will be called.
-                                <img class="d-block w-100 " src="assets/img/generate_day_rota.png" alt="">
-                               The SLOTS dictonary stores appointment type and its corresponding appointment time duration(number of slots needed to complete appointments).
-                               Ocularists only need to fill in appointment start time when booking and the duration will be calculated here.
-                               The DAY_ROTA is a dictonary with fixed time slots in timetable as dictonary key. Value are set to None as default.
-                               Sorted appointments and its corresponding time slots will be stored in tmp_rota for use in htmls.<br>
-                               <p>
-                                   We used Bootstrap Tables to implement timetable for rota page.
-                                   <img class="d-block w-100 " src="assets/img/myrota_html.png" alt="">
-                                   We nested timeslot and appointment conditions. 
-                               </p>
-                               <p>The display of teamrota and weeklyrota follows similar procedure</p>                           
+                         <strong>2.Identify required Date </strong><br>
+                         <img class="img" style="height:200px" alight="right" src="assets/img/datetime.png" alt="Card image cap">
+                         <p>The timetable display current day by default.
+                             We used python standard library datetime module date.today()to get current date.
+                             We implementated a datetime picker using django widget library-django-bootstrap-datepicker-plus 4.0.0, jquery and django forms.
+                             User can select a particular date or select weekly view to get timetable for whole week.
+                             User input date are stored in form and recieved at View class.<br>
+
+                         </p>
+                         <strong>3.Fetch data at View Class  </strong>
+                         <p> At the View class we call get() function.
+                             we recieve data from user input form and set selected_date variable to user input.
+                             user object is identified by comparing username and logged in username.
+                             We then call <strong>generate_rota_appointments_ordered(selected_date,user) </strong>function.
+                             This function fetches all appointment objects and use django build in object.all().filter() method to get a list of 
+                             all appointments belonging to logged in users and booked at selected date. Appointments that has been canceled are excluded.
+                             Now we have a list of appointment objects. Each appointment type has different time duration,
+                             the <strong>generate_day_rota()</strong> function matches appointment types and assign each appointment different amount of slots.
+                             It then generate dictionary with static time slot as key and its corresponding appointment object as value.
+                             The dictionary(rota) is then rendered and sent to templates.
+                         </p>
+                         <strong>4.Display using templates </strong>
+                        <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4>
+                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointment or patient</h4>
+                        <h4 class="section-title text-gradient header-underline">Filters</h4>
                         
-                            </p>
-                        <h3 class="section-title text-center">Display and filter appointments</h3>
-                        <p>At Appointment view we display all appointment objects except canceld appointments</p>
-                        <p>The filter functionality is implemented using django forms.
-                            <img class="d-block w-100 " src="assets/img/search_appo_form.png" alt="">
-                            We made sure user entered correct form of value and give notice if its wrong.
-                            This form value is sent back to AppointmentView.py. We use processQuery function to get data from form and filter appointments responsively.
+                        
                     
-                        </p>
-                        <h3 class="section-title text-center">Update and Add appointments</h3>
-                        <p></p>
+                        
                     </div>
                 </div>
             </div>
