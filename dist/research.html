@@ -33,6 +33,7 @@
         h2 {
             text-align: center;
         }
+
         p {
             text-align: left;
         }
@@ -107,32 +108,38 @@
 
                         <h2 class="section-title text-gradient">Python vs. Java</h2>
                         <p> First of all we decided on the language that we would use to implement this webapp. We
-                            narrowed the choice down to the 2 most suitable languages. After analysis of their
+                            narrowed the choice down to the 2 most suitable languages based on their support for
+                            creating webapps[]. Also, both are high level and highly expressive[] which further
+                            increases
+                            their suitability for this task. After analysis of their
                             advantages and disadvantages, we decided to choose Python. <br><br> The most notable
                             advantages of
                             Python over Java are as follows:<br><br>
 
-                            ☑ All of the team are more comfortable coding in python, this is an advantage considering
-                            the time constraints for the project. The same functionality can be written in less lines in
-                            python compared to java.
-                            This will make collaboration and implementation smoother.<br><br>
+                            ☑ All of the team are more comfortable coding in Python, this is an advantage considering
+                            the time constraints for the project. Also, the same functionality can be written in less
+                            lines in
+                            Python compared to Java[].
+                            Both of these factors will make collaboration and implementation smoother in Python compared
+                            to Java.<br><br>
 
-                            ☑ Moorfields mentioned that, in the future, they would like to be able to do statistical
+                            ☑ Moorfields mentioned that in the future, they would like to be able to do statistical
                             analysis on the
-                            data. Python is widely used among the data science community. After considering this, it
-                            seemed that in the long term python was a better choice.<br><br>
+                            data. Python is widely used among the data science community[]. After considering this, it
+                            seemed that in the long term Python was a better choice.<br><br>
 
                         <h2 class="section-title text-gradient">Django vs. Flask</h2>
-                        <p> After deciding on a language, we began by researching web frameworks best suited for
+                        <p> After deciding on a language, we started researching web frameworks best suited for
                             our use case.
-                            We narrowed it down to two of the most popular Python frameworks, Django [1] and Flask [2].
-                            <br>
+                            We narrowed it down to two of the most popular Python frameworks[], Django [1] and Flask
+                            [2].
+                            <br><br>
 
                             After analysis of their advantages and disadvantages, we decided to choose Django as our web
                             development framework. Overall, the main reasons for doing so are because Django is more of
                             a heavy-weight framework, there are more features included in the framework that are
                             directly relevant to us. Think of Flask as a hammer and Django as a toolbox which happens
-                            to give us everything that we need<br><br>
+                            to give us everything that we need to develop our proof of concept.<br><br>
                             The most notable advantages of Django over Flask are as follows:<br><br>
 
                             ☑ Django comes with user authentication and access levels[], which is something we would
@@ -142,22 +149,23 @@
 
                             ☑ Django comes with an admin framework[], this is important for the longevity of the
                             project.
-                            Users and groups can easily be edited from the admin page. This makes it easy to do things
-                            like editing passwords.<br><br>
+                            Users and groups can easily be edited from the admin page. This makes future admin tasks
+                            such as editing passwords very easy to do and neither us, nor future developers, will need
+                            to spend time developing this functionality.<br><br>
 
                             ☑ Django has a built-in ORM system[] which means two things. Firstly, we don't have to write
                             long SQL queries as database tables get directly mapped to python classes
-                            instead we can 'query' the database with readable python code. Secondly, we have freedom to
-                            choose which database to use, this gives us and future developers extra flexibility.<br><br>
+                            instead we can 'query' the database with readable python code[]. Secondly, we have freedom to
+                            choose which database to use[], this gives us and future developers extra flexibility.<br><br>
 
                             ☑ For us Django is more secure, it is an open-source project that comes with security
-                            features [] that protect against XSS, CSRF SQL injection and clickjacking [] to name a few.
+                            features [] that protect against XSS, CSRF SQL injection and clickjacking [] and an authentication system.
                             Flask does not
-                            come with this functionality. If we were to use Flask there are 2 main problems. Firstly, we
+                            come with this functionality. If we were to use Flask there are two main problems. Firstly, we
                             would have to create our own
                             security features. We are not security professionals so there is a very high chance
                             that they would be insecure and vulnerable to attack. Secondly, if we were to develop a
-                            secure security system, it would take too long and we would have no time for the webapp.
+                            secure security system, it would take too long and we would not have sufficient time for the webapp.
                         </p>
 
                         <h2 class="section-title text-gradient">Bootstrap vs. React
@@ -173,12 +181,12 @@
 
                             ☑ Bootstrap has more flexibility regarding screen sizes. Bootstrap utilises a grid system
                             meaning that anything you create with Bootstrap will be compatible across different device
-                            types with different screen sizes.
+                            types with different screen sizes[].
                             This is an advantage for us because at the start of the project Moorfields expressed a
                             desire to eventually use the web app on a tablet or smartphone. Using Bootstrap means that
                             it will be easier to implement this functionality in the future.<br><br>
 
-                            ☑ Bootstrap works through CSS style sheets in contrast with React which uses JavaScript. All
+                            ☑ Bootstrap works through CSS style sheets[] in contrast with React which uses JavaScript[]. All
                             of the team is familiar with CSS and HTML and not so confident in JavaScript. This is an
                             advantage considering
                             the time constraints for the project. All of the team know HTML and CSS syntax so using
@@ -186,47 +194,39 @@
 
                             ☑ Bootstrap provides components that can be incredibly useful us and for future developers.
                             Components such as
-                            carousels, accordians, buttons and custom search bars can help give the ocularist power
+                            carousels, accordians, buttons and custom search bars[] can help give the ocularist power
                             regarding the information they are accesesing. <br><br>
                         </p>
 
                         <h2 class="section-title text-gradient">Deployment Tools</h2>
-                        <p>
-                            <a href="https://www.docker.com/">Docker</a> is a software platform allowing
-                            you to package your
-                            application
-                            in a isolated predictable enviroment called container. <br>
-                            The container contains configurations and everything needed to run the
-                            application so that you
-                            can run application in different host easily.<br>
-                            Docker might looks like a virtual machine but here are some key differences
-                            and advangtages:<br>
-                            1.Docker is free! Cost efficient haha<br>
-                            2.Docker is light weight and fast to boost.It takes deployment time to
-                            seconds whereas A VM can
-                            take a few minutes to be dev-ready.<br>
-                            3.Docker targets at Operating systems which makes docker images free of
-                            enviromental limitations
-                            and can be run everywhere.
-                        </p>
-                        <p> Linode and Azure provides cloud hosting services.
-                            Both Linode and Azure has good performance but Linode is more economically
-                            efficient.
-                            Azure has better security than linode. Azure's security system has multiple
-                            layers,
-                            including key features such as Web Application vulnerability scanning,
-                            automated encryption in
-                            transit,encryption at rest and most importantly network security[4]
-                            As our application deals with sensitive patient data ,privacy is important.
-                            Therefore we choose Azure to host our application.
+                        <p> For deployment we decided to use a Docker container and host it on Azure.<br><br>
 
-                        </p>
+                            Docker containers and virtual machines have similar uses though we decided to use Docker as
+                            it is more suited to our use case.<br><br>
 
-                        <h2 class="section-title text-gradient">Database</h2>
-                        <p>
-                            why did we choose sqlite?
-                        </p>
+                            Docker allows us to package the application
+                            in an isolated predictable enviroment called a container[], a virtual machine on the other
+                            hand boots up a whole guest operating system to run the application on[]. This is more
+                            resource heavy[]. The more lightweight option of Docker containers is more suitable for us
+                            developing at this stage as we are only developing one application. In further iterations of
+                            this project it may be nessecary to
+                            switch to hosting on a virtual machine. An example would be if multiple systems were to be
+                            integrated such as synchronising our workflow management app with PAS, this would be a
+                            relatively large
+                            project with multiple applications involved so a virtual machine may be more suitable in this
+                            use case. <br><br>
 
+
+                            For options of cloud services, our main choices were Azure and AWS. They both have
+                            integration with Docker[]. However, Docker specifically states that
+                            Azure offers 'tight integration between Docker Desktop and Microsoft Azure'[]. This fact is useful
+                            to us and to future developers. Both offer a near identical service to eachother. If real
+                            data were to be used on the application we would have thoroughly looked at the security implications of using
+                            these services.
+                            This meant that the main consideration for us was the price and it was cheaper to go with Azure since UCL
+                            provided us with credits. Docker provides great support for AWS and other cloud services[] so future developers will
+                            have an easy time switching service if they deem nessecary.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -248,25 +248,23 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="'rol">Web Development Framework</th>
-                                    <td>Django</td>
-                                </tr>
-                                <tr>
                                     <th scope="'rol">Language</th>
                                     <td>Python</td>
                                 </tr>
                                 <tr>
-                                    <th scope="'rol">Deployment Tools</th>
-                                    <td>Docker and Azure</td>
+                                    <th scope="'rol">Web Development Framework</th>
+                                    <td>Django</td>
                                 </tr>
+
                                 <tr>
                                     <th scope="'rol">Front-End Development Framework</th>
                                     <td>Bootstrap</td>
                                 </tr>
                                 <tr>
-                                    <th scope="'rol">Database</th>
-                                    <td>SQLite</td>
+                                    <th scope="'rol">Deployment Tools</th>
+                                    <td>Docker and Azure</td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -279,18 +277,18 @@
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">References</h1>
                         <p>
-                            [1]https://www.djangoproject.com
-                            [2]https://flask.palletsprojects.com/en/2.0.x/
+                            [1]https://www.djangoproject.com<br>
 
-                            https://docs.djangoproject.com/en/4.0/topics/security/
+                            [2]https://flask.palletsprojects.com/en/2.0.x/<br>
 
-                            [3]Django ,'Documentation:User authentication in Django'[online]
-                            Available:<a
+                            [3]Django ,'Documentation:User authentication in Django'[online] Available:<a
                                 href='https://docs.djangoproject.com/en/4.0/topics/auth/'>https://docs.djangoproject.com/en/4.0/topics/auth/</a><br>
+
                             [4]Microsoft,"Azure Product documentation: Azure security Fundamentals"
                             01.July.2022[online] Available:<a
-                                href='https://docs.microsoft.com/en-us/azure/security/fundamentals/end-to-end'>https://docs.microsoft.com/en-us/azure/security/fundamentals/end-to-end</a>
+                                href='https://docs.microsoft.com/en-us/azure/security/fundamentals/end-to-end'>https://docs.microsoft.com/en-us/azure/security/fundamentals/end-to-end</a><br>
 
+                            https://docs.djangoproject.com/en/4.0/topics/security/
 
 
                         </p>
