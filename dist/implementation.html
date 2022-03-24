@@ -20,6 +20,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <style>
             h2 {text-align: center;}
+            p {
+            text-align: left;
+        }
         </style>
     </head>
     <body>
@@ -62,62 +65,124 @@
         <main class="mb-4">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col text-center">
+                        <h1 class="section-title text-gradient header-underline">Main Tools</h1>
+                        <div class="card-deck">
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top " src="assets/img/pythonlogo.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text">Python is our main programming language.Python is a high level programming language with excellent readability</p>
+                                </div>
+                            </div>
+ 
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top" src="assets/img/djangologo.png" alt="Card image cap">
+                                <div class="card-body">
+                                <p class="card-text">Django framework and its build in functions are used for developing our website.
+                                    It follows model-views-templates design pattern
+                                </p>
+                                </div>
+                            </div>
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top" src="assets/img/bootstrap.png" alt="Card image cap">
+                                <div class="card-body">
+                                <p class="card-text">Bootstrap is a CSS framework containing HTML and CSS base design templates.
+                                    It is used for front-end development.
+                                </p>
+                                </div>
+                            </div>
+                            <div class="card border-light mb-3">
+                                <img class="card-img-top" src="assets/img/SQlite.png" alt="Card image cap">
+                                <div class="card-body">
+                                <p class="card-text">SQLite is used as our embedded database.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 class="section-title text-gradient header-underline">Implementation overview</h1><br>
+                    </div>
                     <div class="col-10">
-                        <h2 class="section-title">User authentication</h2>
-                        <p>We use Django build in Admin framework and authentication methods to implement our website.
-                            We add Users and User group in admin website allowing access to our website.
-                            <img class="d-block w-100 " src="assets/img/admin_1.png" alt="">
-                            <img class="d-block w-100 " src="assets/img/admin_2.png" alt="">
-                            <p>
-                                A UserView class is created as a base class of other Views.
-                                It is restricted to django LoginRequiredMixin which mean user has to login to gain access to this view.
-                            </p>
-                        <p class="section-title">At admin.py we register model datas that can be modified in admin site.</p>
-                            <img class="d-block w-100 " src="assets/img/admin_3.png" alt="">
+                        <h4 class="section-title text-gradient header-underline">Authentication</h4>
+                            <p>Django </p>
+                        <h4 class="section-title text-gradient header-underline">Database connection</h4>
+                            <p>Django ORM</p>
+
+                        <h4 class="section-title text-gradient header-underline">Display timetable</h4><br>
+                        <strong>1.Identify logged in user</strong><br>
+                        <p>
+                            We wrote a <code>UserView class</code>,it has<code>fetch_details(self,request)</code> function which automatically fetches username and firstname for logged in users.
+                            Userview class is a base class and is extended by other view classess.
+                            At Rota View and Team Rota view,user object for logged in users can be identified by comparing fetched usernames.
+                        </p>
+                         <strong>2.Identify required Date </strong><br>
+                        
+                         <p>
+                             A datetime picker is implemented using django widget library-django-bootstrap-datepicker-plus 4.0.0, jquery and django forms
+                             for users to select a particular date or weekly view to display.
+                             We use <code>selected_date </code>and <code>weekly_view </code>variables to store user inputs.
+                             The timetable display current day by default therefore selected_date is set to current date.
+                             weekly_view variable is set to false.
+
+                         </p>
+                         <strong>3.Generating Dynamic Data  </strong>
+                         <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
+                             When requested,firstly the <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all appointment objects and use django build in object.all().filter() method to get a list of 
+                             all appointments belonging to logged in users and booked at selected date. Appointments that has been canceled are excluded.
+                             Then the <code>generate_day_rota(rota_appointments_ordered, timeslots)</code> function is called to  matche appointment types and assign each appointment different amount of slots.
+                             It then generate a dictionary with static time slot as keys and its corresponding appointment object as values.
+                             The view class then renders templates and return responses.
+                             <!-- <img class="img" style="height:400px" alight="right" src="assets/img/rotaviewcode.png" alt="Card image cap"> -->
+                         </p>
+                         <strong>4.Display</strong>
+                         <p>
+                             Boostrap table is used to build html templates.
+                             The template recieves static time slots and rota data from a view class ,it then uses nested if statements and for loops to fill in informations for timetable.
+                             The timetable presents different colours for empty slots and booked slots by using bootstrap contextual classes to color table rows.
+                             Add new appointment function is implementated using a button with link to add new appointment forms.
+                             The patient name and ID are stored in timetable as a link to another templates showing more details. 
+                             <img class="img" style="height:500px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
+                         </p>
+
+
+                        <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4><br>
+                        <strong>1.Categorize data</strong>
+                        <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting Patients using <code>Patient.objects.all().filter() </code>function<br>
+                            In AppointmentView class, appointment objects are categorized to Upcoming appointments, Cancelled appointments and Past appointments using similar methods.
+                            Both classes use HTTP GET request to perform above functions.
+                            Templates are rendered after this.
+                        </p>
+                        <strong>2.Display </strong>
+                        <p>Bootstrap Cards are used as content containers in html templates.
+                            We For loops to dynamically fill in patient's and appointment's data to corresponding cards
                         </p>
 
-                        <h2 class="section-title">Database and connection to front end</h2>
-                        <p>We use SQLite database and its connected to django frame work by setting Database configuration at mysite/setting.py<br>
-                            We set up data strucures at website/model.py using model build in method.<br>
-                            Below is a example , a patient data model has PAS_number,name and etc attributes.
-                            Models.ForeignKey serves as a link to a different data model.
-                            <img class="d-block w-100 " src="assets/img/model.png" alt="">
-                        <p class="'section-title">Data models are imported and used in Views</p>
-                        </p>
-                        <h2 class="section-title">Functionality Implementation</h2>
-                        <h3 class="section-title text-center">Display timetable</h3>
-                            <p>
-                                We automatically fetches username and firstname for logged in user by letting RotaView inherits UserView class.<br>
-                                We receive selected date for display at get()using Datetimepicker implemented as a django form. 
-                                If no date is selected, current date will be displayed.
-                                <img class="d-block w-100 " src="assets/img/get_function.png" alt="">
-                                
-                                We sort appointments that is booked in selected date and belongs to logged in ocularist as a list using django built in function Object.all.filter(desired-property).
-                                Appointments that has been canceled will be excluded in the list.
-                                If weekly rota is requested,generate_weekly_rota function is called otherwise generate_day_rota will be called.
-                                <img class="d-block w-100 " src="assets/img/generate_day_rota.png" alt="">
-                               The SLOTS dictonary stores appointment type and its corresponding appointment time duration(number of slots needed to complete appointments).
-                               Ocularists only need to fill in appointment start time when booking and the duration will be calculated here.
-                               The DAY_ROTA is a dictonary with fixed time slots in timetable as dictonary key. Value are set to None as default.
-                               Sorted appointments and its corresponding time slots will be stored in tmp_rota for use in htmls.<br>
-                               <p>
-                                   We used Bootstrap Tables to implement timetable for rota page.
-                                   <img class="d-block w-100 " src="assets/img/myrota_html.png" alt="">
-                                   We nested timeslot and appointment conditions. 
-                               </p>
-                               <p>The display of teamrota and weeklyrota follows similar procedure</p>                           
+
+                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or patients</h4><br>
                         
-                            </p>
-                        <h3 class="section-title text-center">Display and filter appointments</h3>
-                        <p>At Appointment view we display all appointment objects except canceld appointments</p>
-                        <p>The filter functionality is implemented using django forms.
-                            <img class="d-block w-100 " src="assets/img/search_appo_form.png" alt="">
-                            We made sure user entered correct form of value and give notice if its wrong.
-                            This form value is sent back to AppointmentView.py. We use processQuery function to get data from form and filter appointments responsively.
-                    
+                        <strong>Forms</strong>
+                        <p>
+                            Users make changes to appointments or patients data through django model forms.
+                            All of the django forms are written in form.py. They are then imported by View classes and sent to be rendered in templates.
+                            User's input to the form will be stored in form attribute <code>clean()</code>.
+                            At view class Model Form <code>save()</code>method is call to creates and saves a database object or update a current data object from the data recieved in form.
                         </p>
-                        <h3 class="section-title text-center">Update and Add appointments</h3>
-                        <p></p>
+                        <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data format and raise validationError otherwise.
+                            It also calculate start time and end time for user input appointment and check if it clashes with existing appointment.
+                        </p>
+
+                        
+                        <strong>Modifying</strong>
+                        <p>To update a existing appointment or patients, the pk value from URLs are used to identify objects at view class.
+                            Below is a example of update patient view class.
+                            The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.
+                        </p>
+                        <strong>Cancelling</strong><br>
+                        <img class="img" style="height:500px" alight="right" src="assets/img/patientupdate.png" alt="Card image cap"><br>
+                        
+                        <h4 class="section-title text-gradient header-underline">Filters</h4>
+                        
+                        
+                    
+                        
                     </div>
                 </div>
             </div>

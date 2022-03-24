@@ -33,8 +33,12 @@
         h2 {
             text-align: center;
         }
+
+        p {
+            text-align: left;
+        }
     </style>
-    <link rel="shortcut icon" type="image/ico" href="/UCLfavicon.ico"/>
+    <link rel="shortcut icon" type="image/ico" href="/UCLfavicon.ico" />
 </head>
 
 <body>
@@ -87,15 +91,6 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">System Architecture</h1> <br>
-                        <!-- <p> Our website has classic model-view-controller pattern.
-                            Models include Patient model, Appointment model ,AdminTask models etc.<br>
-                            They contains grouped data from SQLite database.
-                            Each html page has a corresponding view class updating data needed for display.
-                            View class is used to handle user's request of displaying certain informations.<br>
-                            We use django forms Post methods to implement input features.
-                            Inputs from forms are send to view class and datas are sorted in views correspondingly.
-                            Other inputs including modifing database are sent to data models classes.
-                        </p> -->
                         <p> This section introduces the design of our workflow management tool. This architecture adopts
                             the Model-View-Template (MVT) pattern, which is very similar to the Model-View-Controller
                             (MVC) pattern.</br></br>
@@ -103,22 +98,27 @@
                             Server: The source code of the project is deployed to an Azure Cloud server.</br></br>
 
 
-                            Model: The model is the interface between the data on the database and the user. Some examples of
+                            Model: The model is the interface between the data on the database and the user. Some
+                            examples of
                             models used include <code>Patient</code>, <code>Appointment</code> and <code>User</code>. A
-                            visual representation of the models can be found on the UML diagram in the Class Diagram section. Each model is implemented with a single python class. </br></br>
+                            visual representation of the models can be found on the UML diagram in the Class Diagram
+                            section. Each model is implemented with a single python class. </br></br>
 
-                            View: The view takes web requests, retrieves appropriate data from the database by using the models and returns a response by rendering the correct template.</br></br>
+                            View: The view takes web requests, retrieves appropriate data from the database by using the
+                            models and returns a response by rendering the correct template.</br></br>
 
-                            Template: The template consists of a collection of HTML pages with intructions on how to display any dynamic content that may be given to it.</br></br>
+                            Template: The template consists of a collection of HTML pages with instructions on how to
+                            display any dynamic content that may be given to it.</br></br>
 
-                            <strong>DESCRIPTION OF FLOW OF DATA THROUGH THE DIAGRAM v </strong><br>
-                            As we can see in the following diagram when a user make a request django acts as a controller and maps URLs and requested resources.
-                            A corresponding view is then called to perform a query on Model and receive results from Model. The view will then render a template with received data.
+                            Under this system architecture the client makes a URL request which gets passed to the view.
+                            This view will make then make a query on the model if nessecary, then it will return a
+                            response to the client, this response includes the corresponding template and dynamic data
+                            from the model.
 
 
                         </p>
                         <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
-                        
+
                     </div>
                 </div>
             </div>
@@ -144,7 +144,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Process Flow Diagram</h1> <br>
-                        <p> Our website performs various functions. In order to better understand how a typical user may interact with the system, we created a process flow diagram which can be seen below.</p>
+                        <p> Our website performs various functions. In order to better understand how a typical user may
+                            interact with the system, we created a process flow diagram which can be seen below.</p>
                         <div id="sequence" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#sequence" data-slide-to="0" class="active"></li>
@@ -184,7 +185,8 @@
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Class Diagrams</h1> <br>
                         <p>The first diagram outlines the interactions between different parts of the webapp.</p>
-                        <p>The second and third diagrams outline the classes used to implement the model. The third diagram groups the classes based on where they exist.</p>
+                        <p>The second and third diagrams outline the classes used to implement the model. The third
+                            diagram groups the classes based on where they exist.</p>
 
                         <div id="uml" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -227,18 +229,23 @@
                         <h1 class="section-title text-gradient header-underline">Design Patterns</h1> <br>
                         <h4 class="section-title text-gradient">MVT</h4>
                         <p>
-                            The Model-View-Template design pattern are similar to MVC with slight changes.
-                            With MVT design pattern ,controller is managed by django framework. 
-                            Views are not coupled with model which makes modifications easier.
+                            In this project we used the Model-View-Template design pattern. We used this design pattern
+                            as we had a problem where we had lots of raw data in a database and we needed to display some
+                            of that data to the user and for this to be done at the users request. MVC and MVT both help to solve this problem through seperation of concerns by seperatng the business logic and display.
+                            However, we went with MVT as Django offers better compatability with it.<br><br>
 
-                            Same as MVC,One of the biggest advantage of MVT design pattern is that it seperate
-                            concerns.
-                            By dividing project to parts, we reducde risks:modifications to certain parts would not
-                            affect whole project.
-                            It also allows developers to make progresses parallely at different sections,leading to
-                            faster development.</br></br>
-                            <strong>WHAT IS MVT AND SOURCE FOR IT AND WHY WE USED IT AND PROS AND CONS</strong><br>
-                           
+                            The structure of MVT is as follows:<br>
+                            • The model is the interface between the data on the database and the user. We implemented
+                            each model with a
+                            single python class. This means we could 'query' the 'database' with Python code.</br></br>
+
+                            • The view takes web requests, retrieves appropriate data from the database by using the
+                            models and returns a response by rendering the correct template. It i responsible for
+                            displaying the correct information to the user.</br></br>
+
+                            • The template consists of a collection of HTML pages with instructions on how to
+                            display any dynamic content that may be given to it.</br></br>
+
                         </p>
 
                     </div>
@@ -255,9 +262,12 @@
                         <h1 class="section-title text-gradient header-underline">Data Storage</h1> </br>
                         <h4 class="section-title text-gradient">Entity Relationship Diagram</h4>
                         <p>
-                            Data storage is vital to this project as core functionality revolves around storing, displaying and modifying data.
-                            In this project the data is stored on a SQLite database, which can be found in the <code>db.sqlite3</code> file in the source code.<br>
-                            The entity-relationship diagram (ERD), below shows how the data is stored in our SQLite database.
+                            Data storage is vital to this project as core functionality revolves around storing,
+                            displaying and modifying data.
+                            In this project the data is stored on a SQLite database, which can be found in the
+                            <code>db.sqlite3</code> file in the source code.<br>
+                            The entity-relationship diagram (ERD), below shows how the data is stored in our SQLite
+                            database.
                         </p>
                         <img class="d-block w-100 " src="assets/img/er.jpeg" alt="">
                     </div>
