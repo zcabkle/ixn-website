@@ -127,9 +127,10 @@
                          <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
                              When requested,firstly the <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all appointment objects and use django build in object.all().filter() method to get a list of 
                              all appointments belonging to logged in users and booked at selected date. Appointments that has been canceled are excluded.
-                             Then the <code>generate_day_rota()</code> function is called to  matche appointment types and assign each appointment different amount of slots.
+                             Then the <code>generate_day_rota(rota_appointments_ordered, timeslots)</code> function is called to  matche appointment types and assign each appointment different amount of slots.
                              It then generate a dictionary with static time slot as keys and its corresponding appointment object as values.
                              The view class then renders templates and return responses.
+                             <!-- <img class="img" style="height:400px" alight="right" src="assets/img/rotaviewcode.png" alt="Card image cap"> -->
                          </p>
                          <strong>4.Display</strong>
                          <p>
@@ -140,6 +141,8 @@
                              The patient name and ID are stored in timetable as a link to another templates showing more details. 
                              <img class="img" style="height:500px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
                          </p>
+
+
                         <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4><br>
                         <strong>1.Categorize data</strong>
                         <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting Patients using <code>Patient.objects.all().filter() </code>function<br>
@@ -151,12 +154,30 @@
                         <p>Bootstrap Cards are used as content containers in html templates.
                             We For loops to dynamically fill in patient's and appointment's data to corresponding cards
                         </p>
-                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointment or patient</h4>
+
+
+                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or patients</h4><br>
+                        
                         <strong>Forms</strong>
                         <p>
-
+                            Users make changes to appointments or patients data through django model forms.
+                            All of the django forms are written in form.py. They are then imported by View classes and sent to be rendered in templates.
+                            User's input to the form will be stored in form attribute <code>clean()</code>.
+                            At view class Model Form <code>save()</code>method is call to creates and saves a database object or update a current data object from the data recieved in form.
                         </p>
-                        <strong></strong>
+                        <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data format and raise validationError otherwise.
+                            It also calculate start time and end time for user input appointment and check if it clashes with existing appointment.
+                        </p>
+
+                        
+                        <strong>Modifying</strong>
+                        <p>To update a existing appointment or patients, the pk value from URLs are used to identify objects at view class.
+                            Below is a example of update patient view class.
+                            The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.
+                        </p>
+                        <strong>Cancelling</strong><br>
+                        <img class="img" style="height:500px" alight="right" src="assets/img/patientupdate.png" alt="Card image cap"><br>
+                        
                         <h4 class="section-title text-gradient header-underline">Filters</h4>
                         
                         
