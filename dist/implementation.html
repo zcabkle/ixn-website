@@ -109,33 +109,54 @@
                         <h4 class="section-title text-gradient header-underline">Display timetable</h4><br>
                         <strong>1.Identify logged in user</strong><br>
                         <p>
-                            We wrote a UserView class which is a base class for other View class to extend and utilise.
-                            The UserView class has fetch_details(self,request) function which automatically fetches username and firstname for logged in users.
+                            We wrote a <code>UserView class</code>,it has<code>fetch_details(self,request)</code> function which automatically fetches username and firstname for logged in users.
+                            Userview class is a base class and is extended by other view classess.
+                            At Rota View and Team Rota view,user object for logged in users can be identified by comparing fetched usernames.
                         </p>
                          <strong>2.Identify required Date </strong><br>
-                         <img class="img" style="height:200px" alight="right" src="assets/img/datetime.png" alt="Card image cap">
-                         <p>The timetable display current day by default.
-                             We used python standard library datetime module date.today()to get current date.
-                             We implementated a datetime picker using django widget library-django-bootstrap-datepicker-plus 4.0.0, jquery and django forms.
-                             User can select a particular date or select weekly view to get timetable for whole week.
-                             User input date are stored in form and recieved at View class.<br>
+                        
+                         <p>
+                             A datetime picker is implemented using django widget library-django-bootstrap-datepicker-plus 4.0.0, jquery and django forms
+                             for users to select a particular date or weekly view to display.
+                             We use <code>selected_date </code>and <code>weekly_view </code>variables to store user inputs.
+                             The timetable display current day by default therefore selected_date is set to current date.
+                             weekly_view variable is set to false.
 
                          </p>
-                         <strong>3.Fetch data at View Class  </strong>
-                         <p> At the View class we call get() function.
-                             we recieve data from user input form and set selected_date variable to user input.
-                             user object is identified by comparing username and logged in username.
-                             We then call <strong>generate_rota_appointments_ordered(selected_date,user) </strong>function.
-                             This function fetches all appointment objects and use django build in object.all().filter() method to get a list of 
+                         <strong>3.Generating Dynamic Data  </strong>
+                         <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
+                             When requested,firstly the <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all appointment objects and use django build in object.all().filter() method to get a list of 
                              all appointments belonging to logged in users and booked at selected date. Appointments that has been canceled are excluded.
-                             Now we have a list of appointment objects. Each appointment type has different time duration,
-                             the <strong>generate_day_rota()</strong> function matches appointment types and assign each appointment different amount of slots.
-                             It then generate dictionary with static time slot as key and its corresponding appointment object as value.
-                             The dictionary(rota) is then rendered and sent to templates.
+                             Then the <code>generate_day_rota()</code> function is called to  matche appointment types and assign each appointment different amount of slots.
+                             It then generate a dictionary with static time slot as keys and its corresponding appointment object as values.
+                             The view class then renders templates and return responses.
                          </p>
-                         <strong>4.Display using templates </strong>
-                        <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4>
+                         <strong>4.Display</strong>
+                         <p>
+                             Boostrap table is used to build html templates.
+                             The template recieves static time slots and rota data from a view class ,it then uses nested if statements and for loops to fill in informations for timetable.
+                             The timetable presents different colours for empty slots and booked slots by using bootstrap contextual classes to color table rows.
+                             Add new appointment function is implementated using a button with link to add new appointment forms.
+                             The patient name and ID are stored in timetable as a link to another templates showing more details. 
+                             <img class="img" style="height:500px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
+                         </p>
+                        <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4><br>
+                        <strong>1.Categorize data</strong>
+                        <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting Patients using <code>Patient.objects.all().filter() </code>function<br>
+                            In AppointmentView class, appointment objects are categorized to Upcoming appointments, Cancelled appointments and Past appointments using similar methods.
+                            Both classes use HTTP GET request to perform above functions.
+                            Templates are rendered after this.
+                        </p>
+                        <strong>2.Display </strong>
+                        <p>Bootstrap Cards are used as content containers in html templates.
+                            We For loops to dynamically fill in patient's and appointment's data to corresponding cards
+                        </p>
                         <h4 class="section-title text-gradient header-underline">Update/ Add new appointment or patient</h4>
+                        <strong>Forms</strong>
+                        <p>
+
+                        </p>
+                        <strong></strong>
                         <h4 class="section-title text-gradient header-underline">Filters</h4>
                         
                         
