@@ -102,7 +102,9 @@
                     </div>
                     <div class="col-10">
                         <h4 class="section-title text-gradient header-underline">Authentication</h4>
-                            <p>Django </p>
+                            <p>
+                                Django 
+                            </p>
                         <h4 class="section-title text-gradient header-underline">Database connection</h4>
                             <p>Django ORM</p>
 
@@ -175,11 +177,18 @@
                             Below is a example of update patient view class.
                             The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.
                         </p>
-                        <strong>Cancelling</strong><br>
                         <img class="img" style="height:500px" alight="right" src="assets/img/patientupdate.png" alt="Card image cap"><br>
-                        
+                        <strong>Cancelling</strong><br>
+                        <p>When CancelAppointmentView is requested, appointment object is identified using pk(appointment_id)from URLs.
+                            The appointment status of this appointment object is then set to cancelled.
+                            Then the viewclass will redo the appointment categorize process and render the appointments.html with new data set.
+                            It will calculate if appointment is canceled within 2 days and send notitification if so.<br>
+                            Delete patient functionality is implementated in similar methods.
+                        </p>
                         <h4 class="section-title text-gradient header-underline">Filters</h4>
-                        
+                        <p>Filter functionality for Appointment page and Patient page are implementated using django form as well.
+                            User inputs to the forms are used to filter objects using<code>processQuery()</code> function and templates are rendered using updated data.
+                        </p>
                         
                     
                         
