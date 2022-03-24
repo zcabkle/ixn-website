@@ -19,5 +19,3 @@ jobs:
           cd /cs/student/www/2021/group19/ixn-website
           pwd
           git pull origin master
-          find . -type f -exec chmod 664 {} \;
-          find * -type d -exec chmod 775 {} \;
