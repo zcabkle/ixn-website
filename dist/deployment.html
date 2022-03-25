@@ -54,14 +54,20 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="requirements.html">Requirements</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="requirements.html">Requirements</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System Design</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="implementation.html">Implementation</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System
+                            Design</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="implementation.html">Implementation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
                 </ul>
             </div>
@@ -87,38 +93,41 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Deployment</h1> <br>
-                        <p> This section introduces the design of our workflow management tool. This architecture adopts
-                            the Model-View-Template (MVT) pattern, which is very similar to the Model-View-Controller
-                            (MVC) pattern.</br></br>
-
-                            Server: The source code of the project is deployed to an Azure Cloud server.</br></br>
-
-
-                            Model: The model is the interface between the data on the database and the user. Some
-                            examples of
-                            models used include <code>Patient</code>, <code>Appointment</code> and <code>User</code>. A
-                            visual representation of the models can be found on the UML diagram in the Class Diagram
-                            section. Each model is implemented with a single python class. </br></br>
-
-                            View: The view takes web requests, retrieves appropriate data from the database by using the
-                            models and returns a response by rendering the correct template.</br></br>
-
-                            Template: The template consists of a collection of HTML pages with instructions on how to
-                            display any dynamic content that may be given to it.</br></br>
-
-                            Under this Deployment the client makes a URL request which gets passed to the view.
-                            This view will make then make a query on the model if nessecary, then it will return a
-                            response to the client, this response includes the corresponding template and dynamic data
-                            from the model.
-
+                        <p> This section aims to describe the process of deploying this project to the Azure cloud as 
+                            a Docker container, as well as how to automate the process. The benefit of automating this
+                            procedure not only saves time but allows constant feedback from the client as soon as
+                            any changes are implemented. </br></br>
+                        </p>
+                        <h4 class="section-title text-gradient header-underline">Pre Requisites</h4><br>
+                        <p>
+                            <strong> 1. An existing project
+                            </strong><br>
+                            The Django files for the project must have existed prior to deployment, with the bare minimum 
+                            of being able to run <code>python manage.py runserver</code> without it erroring. Of course you 
+                            could <i>try</i> to dockerise and deploy a non functional codebase, but why would you?
+                        </p>
+                        <p>
+                            <strong> 2. Git (and access to the repository)
+                            </strong><br>
+                            You may install git <a href="https://git-scm.com/downloads">here</a>. You will need git installed 
+                            on the system for version control.
+                            <br><br>
+                            You also need a github account, you can create an account from 
+                            <a href="https://github.com/">github</a>.  
+                            You require access to the respository so that you have push/pull rights to the codebase
 
                         </p>
-                        <img class="d-block w-100" src="assets/img/systemarc.png" alt="">
-
+                        <p>
+                            <strong> 3. Azure CLI
+                            </strong><br>
+                            The Django files for the project must have existed prior to deployment, with the bare minimum 
+                            of being able to run <code>python manage.py runserver</code> without it erroring. Of course you 
+                            could <i>try</i> to dockerise and deploy a non functional codebase, but why would you?
+                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
+                </div>
+            </section>
         <!-- End of Deployment section -->
 
         <!-- Start of Site Map section -->
@@ -226,8 +235,11 @@
                         <h4 class="section-title text-gradient">MVT</h4>
                         <p>
                             In this project we used the Model-View-Template design pattern. We used this design pattern
-                            as we had a problem where we had lots of raw data in a database and we needed to display some
-                            of that data to the user and for this to be done at the users request. MVC and MVT both help to solve this problem through seperation of concerns by seperatng the business logic and display.
+                            as we had a problem where we had lots of raw data in a database and we needed to display
+                            some
+                            of that data to the user and for this to be done at the users request. MVC and MVT both help
+                            to solve this problem through seperation of concerns by seperatng the business logic and
+                            display.
                             However, we went with MVT as Django offers better compatability with it.<br><br>
 
                             The structure of MVT is as follows:<br>
