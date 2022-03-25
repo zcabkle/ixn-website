@@ -108,7 +108,8 @@
                             cases we didn't
                             consider them or we aimed to implement some slight variation of it.<br><br>
 
-                            Below are some examples of features in Outlook Calendar and Google Calendar that we took inspiration from.<br>
+                            Below are some examples of features in Outlook Calendar and Google Calendar that we took
+                            inspiration from.<br>
 
                             <img class="card-img-top " src="assets/img/project_research.png" alt="Card image cap">
                         </p>
@@ -125,31 +126,33 @@
 
                         <h2 class="section-title text-gradient">Python vs. Java</h2>
                         <p> First of all we decided on the language that we would use to implement this webapp. We
-                            narrowed the choice down to the 2 most suitable languages based on their support for
-                            creating webapps[]. Also, both are high level and highly expressive[] which further
-                            increases
-                            their suitability for this task. After analysis of their
+                            narrowed the choice down to two of the most suitable languages based on implementing
+                            webapps[5][6]. We all have experience in both languages. After analysis of their
                             advantages and disadvantages, we decided to choose Python. <br><br> The most notable
                             advantages of
                             Python over Java are as follows:<br><br>
 
                             ☑ All of the team are more comfortable coding in Python, this is an advantage considering
-                            the time constraints for the project. Also, the same functionality can be written in less
-                            lines in
-                            Python compared to Java[].
-                            Both of these factors will make collaboration and implementation smoother in Python compared
+                            the time constraints for the project.<br><br>
+
+                            ☑ Python programs are usually 3x-5x shorter than their Java counterparts[7].<br><br>
+                            
+                            ☑ Also Java tends towards 'wordiness' while Python tends towards 'expressiveness'[22] as shown in the diagram[22] below.<br><br>
+                            <img class="card-img-top " src="assets/img/wordiness.png" alt="Card image cap"><br>
+
+                            The three factors above will make debugging, collaboration and implementation smoother in Python
+                            compared
                             to Java.<br><br>
 
                             ☑ Moorfields mentioned that in the future, they would like to be able to do statistical
                             analysis on the
-                            data. Python is widely used among the data science community[]. After considering this, it
+                            data. Python is widely used among the data science community[8]. After considering this, it
                             seemed that in the long term Python was a better choice.<br><br>
 
                         <h2 class="section-title text-gradient">Django vs. Flask</h2>
                         <p> After deciding on a language, we started researching web frameworks best suited for
                             our use case.
-                            We narrowed it down to two of the most popular Python frameworks[], Django [1] and Flask
-                            [2].
+                            We narrowed it down to two of the most popular Python frameworks[9], Django[1] and Flask[2].
                             <br><br>
 
                             After analysis of their advantages and disadvantages, we decided to choose Django as our web
@@ -159,56 +162,53 @@
                             to give us everything that we need to develop our proof of concept.<br><br>
                             The most notable advantages of Django over Flask are as follows:<br><br>
 
-                            ☑ Django comes with user authentication and access levels[], which is something we would
+                            ☑ Django comes with user authentication[10] and permissions[10], which is something we would
                             like,
                             particularly for seperating the ocularists and admin staff at Moorfields.
                             Flask does not come with this functionality.<br><br>
 
-                            ☑ Django comes with an admin framework[], this is important for the longevity of the
+                            ☑ Django comes with an admin framework[11], this is important for the longevity of the
                             project.
                             Users and groups can easily be edited from the admin page. This makes future admin tasks
                             such as editing passwords very easy to do and neither us, nor future developers, will need
                             to spend time developing this functionality.<br><br>
 
-                            ☑ Django has a built-in ORM system[] which means two things. Firstly, we don't have to write
+                            ☑ Django has a built-in Object-Relational Mapper[14] which means two things. Firstly, we
+                            don't have to write
                             long SQL queries as database tables get directly mapped to python classes
-                            instead we can 'query' the database with readable python code[]. Secondly, we have freedom
+                            instead we can 'query' the database with readable python code[13]. Secondly, we have freedom
                             to
-                            choose which database to use[], this gives us and future developers extra
+                            choose which database to use[12], this gives us and future developers extra
                             flexibility.<br><br>
 
                             ☑ For us Django is more secure, it is an open-source project that comes with security
-                            features [] that protect against XSS, CSRF SQL injection and clickjacking [] and an
+                            features that protect against XSS, CSRF SQL injection and clickjacking[15] and an
                             authentication system.
-                            Flask does not
-                            come with this functionality. If we were to use Flask there are two main problems. Firstly,
-                            we
-                            would have to create our own
-                            security features. We are not security professionals so there is a very high chance
-                            that they would be insecure and vulnerable to attack. Secondly, if we were to develop a
-                            secure security system, it would take too long and we would not have sufficient time for the
-                            webapp.
+                            Flask by itself does not
+                            come with this functionality, a downside of this is extra dependencies are needed to
+                            implement a secure system.
                         </p>
 
                         <h2 class="section-title text-gradient">Bootstrap vs. React
                         </h2>
                         <p>
                             We had to decide what tool we would use to style the webapp. We
-                            narrowed the choice down to two if the most popular tools used for frontend design,
-                            Bootstrap
-                            and React which are both used to style web pages. After analysis of their
+                            narrowed the choice down to two popular tools used for frontend design,
+                            Bootstrap[16]
+                            and React[17] which are both used to style web pages. After analysis of their
                             pros and cons, we decided to choose Bootstrap. <br><br> The most important
                             advantages of
                             Bootstrap over React are as follows:<br><br>
 
                             ☑ Bootstrap has more flexibility regarding screen sizes. Bootstrap utilises a grid system
                             meaning that anything you create with Bootstrap will be compatible across different device
-                            types with different screen sizes[].
+                            types with different screen sizes[18].
                             This is an advantage for us because at the start of the project Moorfields expressed a
                             desire to eventually use the web app on a tablet or smartphone. Using Bootstrap means that
                             it will be easier to implement this functionality in the future.<br><br>
 
-                            ☑ Bootstrap works through CSS style sheets[] in contrast with React which uses JavaScript[].
+                            ☑ Bootstrap works through CSS style sheets[19] in contrast with React which uses
+                            JavaScript[].
                             All
                             of the team is familiar with CSS and HTML and not so confident in JavaScript. This is an
                             advantage considering
@@ -228,9 +228,9 @@
                             it is more suited to our use case.<br><br>
 
                             Docker allows us to package the application
-                            in an isolated predictable enviroment called a container[], a virtual machine on the other
-                            hand boots up a whole guest operating system to run the application on[]. This is more
-                            resource heavy[]. The more lightweight option of Docker containers is more suitable for us
+                            in an isolated predictable enviroment called a container[20], a virtual machine on the other
+                            hand boots up a whole guest operating system to run the application on[21]. This is more
+                            resource heavy[21]. The more lightweight option of Docker containers is more suitable for us
                             developing at this stage as we are only developing one application. In further iterations of
                             this project it may be nessecary to
                             switch to hosting on a virtual machine. An example would be if multiple systems were to be
@@ -242,8 +242,9 @@
 
 
                             For options of cloud services, our main choices were Azure and AWS. They both have
-                            integration with Docker[]. However, Docker specifically states that
-                            Azure offers 'tight integration between Docker Desktop and Microsoft Azure'[]. This fact is
+                            integration with Docker[22]. However, Docker specifically states that
+                            Azure offers 'tight integration between Docker Desktop and Microsoft Azure'[22]. This fact
+                            is
                             useful
                             to us and to future developers. Both offer a near identical service to eachother. If real
                             data were to be used on the application we would have thoroughly looked at the security
@@ -318,6 +319,48 @@
 
                             https://docs.djangoproject.com/en/4.0/topics/security/
 
+                            [5] “Top 7 Languages For Web App Development - FortySeven.”
+                            https://fortyseven47.com/blog/lang-web-app-development/.
+                            [6] “The Best Web Application Development Languages in 2022,” Inverita.
+                            https://inveritasoft.com/blog/the-best-web-application-development-languages (accessed Mar.
+                            25, 2022).
+                            ‌[7] “Comparing Python to Other Languages,” Python.org, 2019.
+                            https://www.python.org/doc/essays/comparisons/.
+                            [8] M. Taylor, “Ongoing Kaggle Survey Picks the Topmost Data Science Trends,” Analytics
+                            Vidhya, Feb. 12, 2021.
+                            https://medium.com/analytics-vidhya/ongoing-kaggle-survey-picks-the-topmost-data-science-trends-7c19ec7606a1
+                            (accessed Mar. 25, 2022).
+                            ‌[9]“Top 10 Python Frameworks Ranked on Github | HackerNoon,” hackernoon.com.
+                            https://hackernoon.com/top-10-python-frameworks-ranked-on-github-as3x341n.
+                            ‌[10]“User authentication in Django | Django documentation | Django,”
+                            docs.djangoproject.com. https://docs.djangoproject.com/en/4.0/topics/auth/.
+                            ‌[11]“The Django admin site | Django documentation | Django,” docs.djangoproject.com.
+                            https://docs.djangoproject.com/en/4.0/ref/contrib/admin/.
+                            ‌[12]“Migrations | Django documentation | Django,” docs.djangoproject.com.
+                            https://docs.djangoproject.com/en/4.0/topics/migrations/.
+                            ‌[13]“Making queries | Django documentation | Django,” docs.djangoproject.com.
+                            https://docs.djangoproject.com/en/4.0/topics/db/queries/.
+                            ‌[14]“An introduction to the Django ORM | Opensource.com,” opensource.com.
+                            https://opensource.com/article/17/11/django-orm.
+                            [15]“Security in Django | Django documentation | Django,” docs.djangoproject.com.
+                            https://docs.djangoproject.com/en/4.0/topics/security/.
+                            ‌ [16]M. Otto, “Bootstrap,” Getbootstrap.com, 2019. https://getbootstrap.com.
+                            ‌ [17]“React – A JavaScript library for building user interfaces,” Reactjs.org, 2019.
+                            https://reactjs.org.
+                            ‌ [18]M. O. contributors Jacob Thornton, and Bootstrap, “Browsers and devices,”
+                            getbootstrap.com. https://getbootstrap.com/docs/4.2/getting-started/browsers-devices/
+                            (accessed Mar. 25, 2022).
+                            ‌
+                            ‌[19]M. Otto, “Introduction,” Getbootstrap.com, 2019.
+                            https://getbootstrap.com/docs/4.3/getting-started/introduction/.
+                            ‌[20]Docker, “Docker overview,” Docker Documentation, Apr. 09, 2020.
+                            https://docs.docker.com/get-started/overview/.
+                            [21]“What’s the Diff: VMs vs Containers,” Backblaze Blog | Cloud Storage & Cloud Backup,
+                            Jun. 28, 2018. https://www.backblaze.com/blog/vm-vs-containers/.
+                            ‌‌ [22]“Deploy your app,” Docker Documentation, Mar. 24, 2022.
+                            https://docs.docker.com/language/java/deploy/ (accessed Mar. 25, 2022).
+                            ‌[22]dberkholz, “Programming languages ranked by expressiveness,” Donnie Berkholz’s Story of Data, Mar. 25, 2013. https://redmonk.com/dberkholz/2013/03/25/programming-languages-ranked-by-expressiveness/ (accessed Mar. 25, 2022).
+                            ‌
 
                         </p>
                     </div>
