@@ -37,6 +37,22 @@
         p {
             text-align: left;
         }
+
+        .orange {
+            color: #f59f2f;
+        }
+
+        .green {
+            color: #13a100;
+        }
+
+        .blue {
+            color: #0008ff;
+        }
+
+        .purple {
+            color: #6a00ff;
+        }
     </style>
 </head>
 
@@ -125,10 +141,6 @@
 
                             The Python "coverage" module was used to conduct analysis of the code coverage of these
                             tests. This helped us to conclude whether we had sufficiently tested the code.<br><br>
-
-                            <strong>Why did we do this test, which tool was used, how did i conduct the test, results
-                                that I
-                                got, analysis/conclusion of results</strong>
                         </p>
                         <h2 class="section-title text-gradient">Unit Testing</h2> <br>
                         <p> We used unit-testing to test functionality of individual functions and classes such as the
@@ -137,16 +149,16 @@
                             form validation operated as we expected.
                         </p>
                         <pre class="text-left"><code class="language-python">
-                            def test_clean_appointment_clash(self):
+                            <span class="orange">def</span> <span class="blue">test_clean_appointment_clash</span>(self):
                                 data = {
-                                    'PAS_number': 1234,
-                                    'appointment_status': self.AppointmentCancelled.pk,
-                                    'appointment_date': '2022-01-01',
-                                    'appointment_start_time': '10:00:00',
-                                    'appointment_code': self.N01.pk,
-                                    'team_member': self.user_1.pk,
-                                    'appointment_information': '',
-                                    'changes_to_be_confirmed_on_pas': ''
+                                    <span class="green">'PAS_number'</span>: 1234,
+                                    <span class="green">'appointment_status'</span>: self.AppointmentCancelled.pk,
+                                    <span class="green">'appointment_date'</span>: <span class="green">'2022-01-01'</span>,
+                                    <span class="green">'appointment_start_time'</span>: <span class="green">'10:00:00'</span>,
+                                    <span class="green">'appointment_code'</span>: self.N01.pk,
+                                    <span class="green">'team_member'</span>: self.user_1.pk,
+                                    <span class="green">'appointment_information'</span>: <span class="green">''</span>,
+                                    <span class="green">'changes_to_be_confirmed_on_pas'</span>: <span class="green">''</span>
                                 }
                                 form = AppointmentForm(data)
                                 self.assertFalse(form.is_valid())
@@ -168,6 +180,7 @@
                             • Where we redirect to.<br>
                             • What the status code is.<br>
                             • If we actually added/deleted from the database.<br>
+                            • What was passed to the template.<br>
                             • Which template was rendered.<br><br>
 
                             Integration tests were the main bulk of our automated testing.
@@ -175,22 +188,22 @@
                         </p>
 
                         <pre class="text-left"><code class="language-python">
-                            def test_post_add_patient_valid(self):
+                            <span class="orange">def</span> <span class="blue">test_post_add_patient_valid</span>(self):
                                 data = {
-                                    'PAS_number': 12345,
-                                    'first_name': 'ab',
-                                    'middle_name': 'abc',
-                                    'surname': 'abc',
-                                    'DOB': '2001-10-11',
-                                    'priority_code': self.Priority1.pk,
-                                    'patient_status': self.PatientCancelled.pk,
-                                    'patient_information': ''
+                                    <span class="green">'PAS_number'</span>: 12345,
+                                    <span class="green">'first_name'</span>: <span class="green">'ab'</span>,
+                                    <span class="green">'middle_name'</span>: <span class="green">'abc'</span>,
+                                    <span class="green">'surname'</span>: <span class="green">'abc'</span>,
+                                    <span class="green">'DOB'</span>: <span class="green">'2001-10-11'</span>,
+                                    <span class="green">'priority_code'</span>: self.Priority1.pk,
+                                    <span class="green">'patient_status'</span>: self.PatientCancelled.pk,
+                                    <span class="green">'patient_information'</span>: <span class="green">''</span>
                                     }
-                                response = self.client.post('/add_patient/', data=data, follow=True)
+                                response = self.client.post(<span class="green">'/add_patient/'</span>, data=data, follow=True)
                                 self.assertEqual(response.status_code, 200)
-                                self.assertTemplateUsed(response, 'website/wait_list.html')
+                                self.assertTemplateUsed(response, <span class="green">'website/wait_list.html'</span>)
                                 self.assertTrue(Patient.objects.filter(PAS_number=12345).exists())
-                                self.assertEqual(len(Patient.objects.all()), 2)
+                                self.assertEqual(<span class='purple'>len</span>(Patient.objects.all()), 2)
                         </code></pre>
 
                         <p>In the above code snippet we submit a valid form to add a patient. We test the status code,
@@ -200,7 +213,9 @@
                         <p> The unit-tests and integration tests all exist together in the tests folder. Through the use
                             of integration tests and unit-tests we measured a code coverage of
                             <strong>X%</strong>. After this analysis of our testing practices, we believe that we have
-                            covered a sufficient amount of our code and the code operates as we would expect.
+                            covered a sufficient amount of our code and the code operates as we would expect. We can
+                            also conclude that the functionality that we implemented has been implemented correctly. We
+                            know this because all of the automated tests which test this functionality generate passes.
                         </p>
                     </div>
                 </div>
@@ -214,20 +229,62 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">User Acceptance Testing</h1> <br>
+                        <p> We conducted user acceptance tests. We gave the user a task, these tasks are listed under
+                            the Test Cases below. After completing the task we asked the user to rate how difficult they
+                            found the task and to provide any feedback if they had any to give.</p>
                         <h2 class="section-title text-gradient">Simulated Testers</h2> <br>
-                        <p> Alice is a middle aged team manager at a logistics company who daily uses IT systems.<br>
-                            Bob  is a senior ocularist at Moorfields Eye Hospital.<br>
-                            Charlie is a UCL EEE student who is adept with technology.
-                        </p>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card" style="width: 16rem;">
+                                        <img class="card-img-top" src="assets/img/person.jpeg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>Alice</h3>
+                                        <p class="card-text">Alice is a middle-aged team manager at a logistics company who uses computers on a daily
+                                            basis.<br><br>
+                                            This user represents an average person who hasn't recieved much formal training with any software.</p>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="col">
+                                    <div class="card" style="width: 16rem;">
+                                        <img class="card-img-top" src="assets/img/person.jpeg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>Bob</h3>
+                                        <p class="card-text">Bob is a senior ocularist at Moorfields Eye Hospital.<br><br>
+                                            This user represents someone who is
+                                            highly specialised and knows what added features would be beneficial to other ocularists
+                                            using the system.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card" style="width: 16rem;">
+                                        <img class="card-img-top" src="assets/img/person.jpeg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3>Charlie</h3>
+                                        <p class="card-text">Charlie is an Electronic and Electrical Engineering student at UCL who is adept with using
+                                            technology.<br><br>
+                                            This user represents a person who is proficient with computers and quick to learn new
+                                            computer skills.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p> *Tester's real names have not been used to maintain confidentiaity.</p>
                         <h2 class="section-title text-gradient">Test Cases</h2> <br>
-                        <p> test case 1: go to the hosted server and login as an ocularist</p>
-                        <p> test case 2: Create an appointment for today and view it on myrota page</p>
-                        <p> test case 3: Go to weekly view for my rota</p>
-                        <p> test case 4: Update a patient of your choosing on the database</p>
-                        <p> test case 5: view only ocularist 2 and 3 rota for today</p>
-                        <p> test case 6: search appointment by id</p>
+                        <p> 1. Go to the hosted server and login as an ocularist.<br>
+                            2. Create an appointment for today and view it on 'My Rota' page.<br>
+                            3. View your weekly rota.<br>
+                            4. Update a patient of your choosing on the database.<br>
+                            5. View only ocularist 2's rota and ocularist 3's rota for today.<br>
+                            6. Search appointment by appointment ID, find appointment 2351.</p>
 
                         <h2 class="section-title text-gradient">Feedback</h2> <br>
+                        <img class="card-img-top " src="assets/img/ua_test.png" alt="Card image cap">
+
                     </div>
                 </div>
             </div>
