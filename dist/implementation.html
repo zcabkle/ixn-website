@@ -80,8 +80,9 @@
                             <div class="card border-light mb-3">
                                 <img class="card-img-top" src="assets/img/djangologo.png" alt="Card image cap">
                                 <div class="card-body">
-                                <p class="card-text">Django framework and its build in functions are used for developing our website.
-                                    It follows model-views-templates design pattern
+                                <p class="card-text">Django framework follows a model-views-templates design pattern.
+                                    We used its build in methods to implement our application including its authentication system and admin site
+  
                                 </p>
                                 </div>
                             </div>
@@ -102,8 +103,10 @@
                         </div>
                         <h1 class="section-title text-gradient header-underline">Implementation overview</h1><br>
                     </div>
+                    <br>
                     <div class="col-10">
-                        <h4 class="section-title text-gradient header-underline">Authentication and Admin site</h4>
+                        <br><br>
+                        <h4 class="section-title text-gradient header-underline">Authentication and Admin site</h4><br>
                             <p>
                                 Django <code>LoginRequiredMixin</code> is a inheritance class which only allows requests to View class from logged in users. Any unauthorised user will be redirected to log in page.
                                 We implemented a User view class which inherit <code>LoginRequiredMixin</code>. All other view classes extend User view so that all HTTP requests to our application requires login.<br>
@@ -112,19 +115,23 @@
                                 <img class="img" style="height:400px" alight="right" src="assets/img/admin_1.png" alt="Card image cap">
 
                             </p>
-                        <h4 class="section-title text-gradient header-underline">Database connection</h4>
+                            <br>
+                            <br>
+                        <h4 class="section-title text-gradient header-underline">Database connection</h4><br>
                             <p>We used SQLite as our database.
                                Django has a built-in ORM system which database tables are directly mapped to Data Model classes while a instance represents a particular record in the database.
                                
                             </p>
-
-                        <h4 class="section-title text-gradient header-underline">Display timetable</h4><br>
+                            <br>
+                            <br>
+                        <h4 class="section-title text-gradient header-underline">Display timetable</h4><br><br>
                         <strong>1.Identify logged in user</strong><br>
                         <p>
                             The <code>UserView class</code> has a <code>fetch_details(self,request)</code> function which automatically fetches username and firstname for logged in users.
                             It is a base class and is extended by Rota View and TeamRota View.
                             At Rota View and Team Rota view,user object for logged in users can be identified by comparing fetched usernames.
                         </p>
+                        <br>
                          <strong>2.Identify required Date </strong><br>
                         
                          <p>
@@ -132,18 +139,58 @@
                              for users to select a particular date or weekly view to display.
                              We use <code>selected_date </code>and <code>weekly_view </code>variables to store user inputs.
                              The timetable display current day by default therefore selected_date is set to current date.
-                             weekly_view variable is set to false.
-
+                             weekly_view variable is set to false. For team rota page,we display rota of a specific team member using similar methods.
                          </p>
+                         <br>
+                         <pre class="text-left"><code class="language-python">
+                            <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
+                                super().fetch_details(request)
+                                <span style='color:green'>form </span>= MyRotaDateForm(request.GET)
+                                if <span style='color:green'>form </span>.is_valid():
+                                    dic = <span style='color:green'>form </span>.cleaned_data
+                                    date_picked = dic.get('date')
+                                    <span style='color:green'>selected_date </span>= date_picked
+                                    <span style='color:green'>weekly_view </span>= dic.get("weekly_view")
+                                if not selected_date:
+                                    <span style='color:green'>selected_date </span>= date.today()
+                                user = User.objects.get(username=request.user.username)
+                                ...
+                         </code>
+                         </pre>
+                         <br>
                          <strong>3.Generating Dynamic Data  </strong>
                          <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
                              When requested,firstly the <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all appointment objects and use django build in object.all().filter() method to get a list of 
                              all appointments belonging to logged in users and booked at selected date. Appointments that has been canceled are excluded.
-                             Then the <code>generate_day_rota(rota_appointments_ordered, timeslots)</code> function is called to  matche appointment types and assign each appointment different amount of slots.
+                             Then the <code>generate_day_rota(rota_appointments_ordered, tmp_rota)</code> function is called to  matche appointment types and assign each appointment different amount of slots.
                              It then generate a dictionary with static time slot as keys and its corresponding appointment object as values.
                              The view class then renders templates and return responses.
-                             <!-- <img class="img" style="height:400px" alight="right" src="assets/img/rotaviewcode.png" alt="Card image cap"> -->
                          </p>
+                         <br>
+                         <pre class="text-left"><code class="language-python">
+                            <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
+                                ...
+                                tmp_rota = DAY_ROTA.copy()
+                                <span style='color:grey'>//DAY_ROTA is a dictionary storing static time slots</span>
+                                <span style='color:red'>if </span><span style='color:green'>weekly_view </span>:
+                                    dates = [str(<span style='color:green'>selected_date </span> + timedelta(days=x))
+                                            for x in range(0, 8)]
+                                    weekly_rota = <span style='color:red'>self.generate_weekly_rota([], dates, user)</span>
+                                    return render(request, 'website/my_rota.html',
+                                                {'weekly_rota': weekly_rota, 'date': <span style='color:green'>selected_date </span>,
+                                                'form': form, 'first_name': self.first_name,
+                                                'weekly': True})
+                                <span style='color:red'>else:</span>
+                                   rota_appointments_ordered = <span style='color:red'>self.generate_rota_appointments_ordered</span>(
+                                        <span style='color:green'>selected_date </span>, user)
+                                    rota = <span style='color:red'>self.generate_day_rota</span>(rota_appointments_ordered, tmp_rota)
+                                    return render(request, 'website/my_rota.html',
+                                                {'rota': rota, 'date': <span style='color:green'>selected_date </span>, 'form': form,
+                                                'first_name': self.first_name, 'weekly': False})
+
+                             </code>
+                         </pre>
+                         <br>
                          <strong>4.Display</strong>
                          <p>
                              Boostrap table is used to build html templates.
@@ -154,7 +201,7 @@
                              <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
                          </p>
 
-
+                         <br><br>
                         <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4><br>
                         <strong>1.Categorize data</strong>
                         <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting Patients using <code>Patient.objects.all().filter() </code>function<br>
@@ -162,14 +209,15 @@
                             Both classes use HTTP GET request to perform above functions.
                             Templates are rendered after this.
                         </p>
+                        <br>
                         <strong>2.Display </strong>
                         <p>Bootstrap Cards are used as content containers in html templates.
                             We For loops to dynamically fill in patient's and appointment's data to corresponding cards
                         </p>
 
-
+                        <br><br>
                         <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or patients</h4><br>
-                        
+                        <br>
                         <strong>Forms</strong>
                         <p>
                             Users make changes to appointments or patients data through django model forms.
@@ -180,14 +228,36 @@
                         <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data format and raise validationError otherwise.
                             It also calculate start time and end time for user input appointment and check if it clashes with existing appointment.
                         </p>
-
-                        
+                        <br>
                         <strong>Modifying</strong>
                         <p>To update a existing appointment or patients, the pk value from URLs are used to identify objects at view class.
                             Below is a example of update patient view class.
-                            The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.
+                            The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.<br>
                         </p>
-                        <img class="img" style="height:400px" alight="right" src="assets/img/patientupdate.png" alt="Card image cap"><br>
+                        <pre class="text-left"><code class="language-python">
+                        <span style="color:orange;">Class </span><span style="color:blue;">UpdatePatientView</span>(UserView):
+                            <span style="color:orange;">def</span> <span style="color:blue;">get</span>(self,request,patient_id):
+                                super().fetch_details(request)
+                                <span style="color:green;">patient</span> = Patient.objects.get(pk=patient_id)
+                                <span style="color:green;">form</span> = PatientForm(request.POST or None, 
+                                    instance=<span style='color:green;'>patient</span>)
+                                return render(request, 'website/update_patient.html',
+                                            {'patient': <span style='color:green;'>patient</span>, 'form': <span style='color:green;'>form</span>,
+                                            'first_name': self.first_name})
+                            
+                            <span style="color:orange;">def</span> <span style="color:blue;">post</span>(self,request,patient_id):
+                                super().fetch_details(request)
+                                <span style='color:green;'>patient</span> = Patient.objects.get(pk=patient_id)
+                                <span style='color:green;'>form</span> = PatientForm(request.POST or None, 
+                                    instance=<span style='color:green;'>patient</span>)
+                                
+                                if form.is_valid():
+                                    <span style='color:red'>form.save()</span>
+                                    return redirect('/wait_list')
+                                return render(request, 'website/update_patient.html',
+                                                {'patient': <span style='color:green;'>patient</span>, 'form': <span style='color:green;'>form</span>
+                                                'first_name': self.first_name})
+                        </code></pre>
                         <strong>Cancelling</strong><br>
                         <p>When CancelAppointmentView is requested, appointment object is identified using pk(appointment_id)from URLs.
                             The appointment status of this appointment object is then set to cancelled.
@@ -195,13 +265,30 @@
                             It will calculate if appointment is canceled within 2 days and send notitification if so.<br>
                             Delete patient functionality is implementated in similar methods.
                         </p>
+                        <br><br>
                         <h4 class="section-title text-gradient header-underline">Filters</h4>
                         <p>Filter functionality for Appointment page and Patient page are implementated using django form as well.
-                            User inputs to the forms are used to filter objects using<code>processQuery()</code> function and templates are rendered using updated data.
+                            User inputs to the forms are used to filter objects using<code>processQuery()</code> function.
+                            Below is a section of code for filtering appointments at appointment View.
+                            The parameter dic is defined by <code> dic = form.cleaned_data</code>, It stores userinputs.
+                            If userinput in the dic for a attribute is not none, appointment objects are filtered to find the particular appointments that match requirements.
+                            These appointment are then used to render templates.
                         </p>
-                        
-                    
-                        
+                        <pre class="text-left"><code class="language-python">
+                            <span style="color:orange;">def </span><span style="color:blue">processQuery</span>(self,dic,appointments):
+                                <span style="color:green;">appointment_ID</span>= dic['appointment_ID']
+                                <span style="color:green;">PAS_number</span>=dic['PAS_number']
+                                ...
+                                <span style="color:red;">if </span><span style="color:green;">appointment_ID</span>:
+                                    <span style="color:green;">appointments</span> = <span style="color:green;">appointments</span>.filter
+                                        (appointment_ID =<span style="color:green;">appointment_ID</span>)
+                                <span style="color:red;">if </span><span style="color:green;">PAS_number</span>:
+                                    <span style="color:green;">appointments</span> = <span style="color:green;">appointments</span>.filter
+                                        (PAS_number =<span style="color:green;">PAS_number</span>)
+                                ...
+                                return <span style="color:green">appointments</span>
+                        </code>
+                        </pre>                                         
                     </div>
                 </div>
             </div>
