@@ -107,10 +107,9 @@
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Testing Strategy</h1>
                         <p>
-                            As this proof-of-concept is a client side application, it was nessecary to perform thorough
-                            testing on it to ensure it acts as we would like and the functionality meets the
-                            requirements that were agreed upon in
-                            out MoSCoW list.<br><br>
+                            As this proof-of-concept is a client side application, it was nessecary to perform thorough automated
+                            testing on it to ensure it acts as we would like and the functionality meets the requirements that were agreed upon in
+                            out MoSCoW list. We extentensively covered our code, reaching a code coverage of <strong>97%</strong>.<br><br>
 
                             We also conducted user acceptance tests to find potential improvements and general feedback.
                         </p>
@@ -137,7 +136,7 @@
                             We created a class called "Builder" for automated tests. This class defines the setUp and
                             tearDown functions. In these functions a database is created and populated with data also a
                             user is created and logged in. This makes the test results predictable. Once the test has
-                            been done on the database, it's contents are deleted<br><br>
+                            been done on the database, it's contents are deleted.<br><br>
 
                             The Python "coverage" module was used to conduct analysis of the code coverage of these
                             tests. This helped us to conclude whether we had sufficiently tested the code.<br><br>
@@ -212,11 +211,13 @@
 
                         <p> The unit-tests and integration tests all exist together in the tests folder. Through the use
                             of integration tests and unit-tests we measured a code coverage of
-                            <strong>X%</strong>. After this analysis of our testing practices, we believe that we have
+                            <strong>97%</strong> which can be seen in the report below. After this analysis of our testing practices, we believe that we have
                             covered a sufficient amount of our code and the code operates as we would expect. We can
                             also conclude that the functionality that we implemented has been implemented correctly. We
                             know this because all of the automated tests which test this functionality generate passes.
                         </p>
+                        <img class="card-img-top " src="assets/img/coverage-report.png" alt="Card image cap">
+
                     </div>
                 </div>
             </div>
