@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="card border-light mb-3">
-                                <img class="card-img-top" src="assets/img/SQlite.png" alt="Card image cap">
+                                <img class="card-img-top" src="assets/img/SQLite.png" alt="Card image cap">
                                 <div class="card-body">
                                 <p class="card-text">SQLite is used as our embedded database.</p>
                                 </div>
@@ -101,16 +101,26 @@
                         <h1 class="section-title text-gradient header-underline">Implementation overview</h1><br>
                     </div>
                     <div class="col-10">
-                        <h4 class="section-title text-gradient header-underline">Authentication</h4>
-                            <p>Django </p>
+                        <h4 class="section-title text-gradient header-underline">Authentication and Admin site</h4>
+                            <p>
+                                Django <code>LoginRequiredMixin</code> is a inheritance class which only allows requests to View class from logged in users. Any unauthorised user will be redirected to log in page.
+                                We implemented a User view class which inherit <code>LoginRequiredMixin</code>. All other view classes extend User view so that all HTTP requests to our application requires login.<br>
+                                The django build in admin site allows managing users as well as user group.
+                                At admin.py, <code>admin.site.register(models)</code> functions are used to register data models to admin site so that data models can be easily modified in admin site.<br>
+                                <img class="img" style="height:400px" alight="right" src="assets/img/admin_1.png" alt="Card image cap">
+
+                            </p>
                         <h4 class="section-title text-gradient header-underline">Database connection</h4>
-                            <p>Django ORM</p>
+                            <p>We used SQLite as our database.
+                               Django has a built-in ORM system which database tables are directly mapped to Data Model classes while a instance represents a particular record in the database.
+                               
+                            </p>
 
                         <h4 class="section-title text-gradient header-underline">Display timetable</h4><br>
                         <strong>1.Identify logged in user</strong><br>
                         <p>
-                            We wrote a <code>UserView class</code>,it has<code>fetch_details(self,request)</code> function which automatically fetches username and firstname for logged in users.
-                            Userview class is a base class and is extended by other view classess.
+                            The <code>UserView class</code> has a <code>fetch_details(self,request)</code> function which automatically fetches username and firstname for logged in users.
+                            It is a base class and is extended by Rota View and TeamRota View.
                             At Rota View and Team Rota view,user object for logged in users can be identified by comparing fetched usernames.
                         </p>
                          <strong>2.Identify required Date </strong><br>
@@ -139,7 +149,7 @@
                              The timetable presents different colours for empty slots and booked slots by using bootstrap contextual classes to color table rows.
                              Add new appointment function is implementated using a button with link to add new appointment forms.
                              The patient name and ID are stored in timetable as a link to another templates showing more details. 
-                             <img class="img" style="height:500px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
+                             <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
                          </p>
 
 
@@ -175,11 +185,18 @@
                             Below is a example of update patient view class.
                             The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.
                         </p>
+                        <img class="img" style="height:400px" alight="right" src="assets/img/patientupdate.png" alt="Card image cap"><br>
                         <strong>Cancelling</strong><br>
-                        <img class="img" style="height:500px" alight="right" src="assets/img/patientupdate.png" alt="Card image cap"><br>
-                        
+                        <p>When CancelAppointmentView is requested, appointment object is identified using pk(appointment_id)from URLs.
+                            The appointment status of this appointment object is then set to cancelled.
+                            Then the viewclass will redo the appointment categorize process and render the appointments.html with new data set.
+                            It will calculate if appointment is canceled within 2 days and send notitification if so.<br>
+                            Delete patient functionality is implementated in similar methods.
+                        </p>
                         <h4 class="section-title text-gradient header-underline">Filters</h4>
-                        
+                        <p>Filter functionality for Appointment page and Patient page are implementated using django form as well.
+                            User inputs to the forms are used to filter objects using<code>processQuery()</code> function and templates are rendered using updated data.
+                        </p>
                         
                     
                         
