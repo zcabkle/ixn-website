@@ -100,7 +100,7 @@
                         </p>
                         <h4 class="section-title text-gradient header-underline">Pre Requisites</h4><br>
                         <p>
-                            <strong> 1. An existing project
+                            <strong> 1. An Existing Project
                             </strong><br>
                             The Django files for the project must have existed prior to deployment, with the bare minimum 
                             of being able to run <code>python manage.py runserver</code> without it erroring. Of course you 
@@ -112,19 +112,47 @@
                             You may install git <a href="https://git-scm.com/downloads">here</a>. You will need git installed 
                             on the system for version control.
                             <br><br>
-                            You also need a github account, you can create an account from 
-                            <a href="https://github.com/">github</a>.  
-                            You require access to the respository so that you have push/pull rights to the codebase
+                            You also need a GitHub account, you can create an account from 
+                            <a href="https://github.com/">GitHub</a>.  
+                            You require access to the respository so that you have push/pull rights to the codebase, 
+                            which is a GitHub repository.
 
                         </p>
                         <p>
                             <strong> 3. Azure CLI
                             </strong><br>
-                            The Django files for the project must have existed prior to deployment, with the bare minimum 
-                            of being able to run <code>python manage.py runserver</code> without it erroring. Of course you 
-                            could <i>try</i> to dockerise and deploy a non functional codebase, but why would you?
+                            You will need the Azure Cloud Shell or some installation of the Azure CLI to complete some of 
+                            the steps necessary for <i> automated deployment</i>. You can install Azure CLI 
+                            <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">from here</a>
+                        </p>
+                        <p>
+                            <strong> 4. Azure Container Registry
+                            </strong><br>
+                            You need this registry to contain your Docker image. It will hold your Docker image in the 
+                            Azure cloud, as well as all previous builds. It acts like a repository for Docker images!
+                            <br><br>
+                            You can create one using <a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal">
+                            this</a> guide. Remember what resource group is used for deployment as this is used when 
+                            you automate the deployment using GitHub workflows. 
+                        </p>
+                        <p>
+                            <strong> 5. Docker
+                            </strong><br>
+                            You need docker to build an image from your codebase, you can install it 
+                            <a href="https://docs.docker.com/get-docker/"> here</a>
+                        </p>
+                        <br>
+                        <h4 class="section-title text-gradient header-underline">Notice</h4><br>
+                        <p>
+                            <strong> Keep in mind
+                            </strong><br>
+                            You will need to ensure that 'Actions' is enabled for your repository.
+                            You can make sure this is the case by going to <strong>Settings</strong> 
+                            > <strong>Actions</strong> > <strong>Actions permissions</strong>, and select 
+                            <strong>'Allow all actions'</strong>
                         </p>
                     </div>
+
                 </div>
                 </div>
             </section>
