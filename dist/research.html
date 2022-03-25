@@ -88,12 +88,29 @@
             <div class="container px-4 px-lg-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
-                        <h1 class="section-title text-gradient header-underline">Project Research</h1>
+                        <h1 class="section-title text-gradient header-underline">Project Research</h1><br>
+                        <h2 class="section-title text-gradient">General Time Scheduling Webapps</h2>
                         <p>
-                            <strong>Review at least 1 existing similar project if applicable, For each of the similar
-                                projects, please list the project name, main features, and what you can learn
-                                from this existing application.</strong>
-                            caroline </br> some other online booking application
+                            While formulating the requirements for our proof-of-concept we looked as some time
+                            scheduling applications such as Google Calendar and Outlook Calendar. We did this to see
+                            what is feasible
+                            and to give us a greater idea of what our application could look like. Having a greater idea
+                            of what is feasible would help us to avoid agreeing on over-optimistic requirements with out
+                            client.
+                            We found that time scheduling apps broadly solve the same problem that we were trying to
+                            solve for Moorfields. Our problem, in essence, is to provide a way to block time out and
+                            then show this to
+                            the user on the interface.<br><br>
+
+                            We looked at features that Outlook Calendar and Google Calendar provide that could be
+                            beneficial to Moorfields in the proof-of-concept that we were developing.
+                            Most features were too complex to completely implement in the given timeframe. In these
+                            cases we didn't
+                            consider them or we aimed to implement some slight variation of it.<br><br>
+
+                            Below are some examples of features in Outlook Calendar and Google Calendar that we took inspiration from.<br>
+
+                            <img class="card-img-top " src="assets/img/project_research.png" alt="Card image cap">
                         </p>
                     </div>
                 </div>
@@ -155,17 +172,22 @@
 
                             ☑ Django has a built-in ORM system[] which means two things. Firstly, we don't have to write
                             long SQL queries as database tables get directly mapped to python classes
-                            instead we can 'query' the database with readable python code[]. Secondly, we have freedom to
-                            choose which database to use[], this gives us and future developers extra flexibility.<br><br>
+                            instead we can 'query' the database with readable python code[]. Secondly, we have freedom
+                            to
+                            choose which database to use[], this gives us and future developers extra
+                            flexibility.<br><br>
 
                             ☑ For us Django is more secure, it is an open-source project that comes with security
-                            features [] that protect against XSS, CSRF SQL injection and clickjacking [] and an authentication system.
+                            features [] that protect against XSS, CSRF SQL injection and clickjacking [] and an
+                            authentication system.
                             Flask does not
-                            come with this functionality. If we were to use Flask there are two main problems. Firstly, we
+                            come with this functionality. If we were to use Flask there are two main problems. Firstly,
+                            we
                             would have to create our own
                             security features. We are not security professionals so there is a very high chance
                             that they would be insecure and vulnerable to attack. Secondly, if we were to develop a
-                            secure security system, it would take too long and we would not have sufficient time for the webapp.
+                            secure security system, it would take too long and we would not have sufficient time for the
+                            webapp.
                         </p>
 
                         <h2 class="section-title text-gradient">Bootstrap vs. React
@@ -186,7 +208,8 @@
                             desire to eventually use the web app on a tablet or smartphone. Using Bootstrap means that
                             it will be easier to implement this functionality in the future.<br><br>
 
-                            ☑ Bootstrap works through CSS style sheets[] in contrast with React which uses JavaScript[]. All
+                            ☑ Bootstrap works through CSS style sheets[] in contrast with React which uses JavaScript[].
+                            All
                             of the team is familiar with CSS and HTML and not so confident in JavaScript. This is an
                             advantage considering
                             the time constraints for the project. All of the team know HTML and CSS syntax so using
@@ -213,18 +236,23 @@
                             switch to hosting on a virtual machine. An example would be if multiple systems were to be
                             integrated such as synchronising our workflow management app with PAS, this would be a
                             relatively large
-                            project with multiple applications involved so a virtual machine may be more suitable in this
+                            project with multiple applications involved so a virtual machine may be more suitable in
+                            this
                             use case. <br><br>
 
 
                             For options of cloud services, our main choices were Azure and AWS. They both have
                             integration with Docker[]. However, Docker specifically states that
-                            Azure offers 'tight integration between Docker Desktop and Microsoft Azure'[]. This fact is useful
+                            Azure offers 'tight integration between Docker Desktop and Microsoft Azure'[]. This fact is
+                            useful
                             to us and to future developers. Both offer a near identical service to eachother. If real
-                            data were to be used on the application we would have thoroughly looked at the security implications of using
+                            data were to be used on the application we would have thoroughly looked at the security
+                            implications of using
                             these services.
-                            This meant that the main consideration for us was the price and it was cheaper to go with Azure since UCL
-                            provided us with credits. Docker provides great support for AWS and other cloud services[] so future developers will
+                            This meant that the main consideration for us was the price and it was cheaper to go with
+                            Azure since UCL
+                            provided us with credits. Docker provides great support for AWS and other cloud services[]
+                            so future developers will
                             have an easy time switching service if they deem nessecary.
                         </p>
                     </div>
