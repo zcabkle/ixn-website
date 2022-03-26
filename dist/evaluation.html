@@ -492,10 +492,42 @@
                     <h2 class="section-title text-gradient">Known Bugs</h2><br>
                     <p>
                         We keep track of issues in our google docs.
-                        We had a problem with setting date format for the date time picker but we manages to solved it
-                        after reading documentations and posting on stackoverfow.<br>
-                        We still have improvements left on our list but the bug list is now empty!
-                    </p>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Bug Discription</th>
+                                <th scope="col">Priority</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Users can set a already canceled appointmemt back to booked status.
+                                    This should not be allowed and users should rebook a new appointmemt if they need to.
+                                </td>
+                                <td>Medium</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td>The datetime picker require input to be month-day-year format,
+                                    this is conflicting to the rest of the system where we set date format to be day-month-year.
+                                </td>
+                                <td>Medium</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td>At appointmemt form, the dropdown list for appointmemt code section 
+                                    shows'appointmemt code object N07' instead of 'N07'
+
+                                </td>
+                                <td>Low</td>
+                              </tr>
+                            
+                            </tbody>
+                          </table>
+                        </p>
+                    
                     <br>
 
                     <h1 class="section-title text-gradient header-underline">Critical Evaluation</h1><br>
