@@ -608,8 +608,8 @@
                         outlined in our functional MoSCoW list.<br><br>
 
 
-                        We rate our achievement in 'Functionality' as <span class="very-good"><strong>Very
-                                Good</strong></span>.
+                        We rate our achievement in 'Functionality' as <span
+                            class="excellent"><strong>Excellent</strong></span>.
 
                     </p>
                     <br>
@@ -624,47 +624,71 @@
                         template.<br><br>
 
                         One way that we could improve testing procedure to more rigorously measure the stability is to
-                        check what values are passed to each template rendered. Currently this check is not performed on
+                        check what values are passed to each template in the response. Currently this check is not
+                        performed on
                         every integration test. Implementing this check would only require adding one extra assert
-                        statement to the test.<br><br>
+                        statement to the test so there is not much extra work for future developers.<br><br>
 
                         Overall we have a high test coverage with all tests passing. Some tests could be extended to be
                         more rigorous.<br><br>
 
                         We rate our achievement in 'Stability' as <span class="very-good"><strong>Very
                                 Good</strong></span>.
-
-
                     </p>
                     <br>
 
                     <h3 class="section-title text-gradient">Efficiency</h3>
                     <p>
-                        Since our code base is very simple, it’s very efficient to run
+                        Since our code base is very simple, it’s very efficient to run.
                         Currently, our application responds to a request within a few seconds.
-                        It processes filters within few seconds.
-                        If this application is to be further developed, we can switch SQLite to a database suits for
-                        large volume such as azure cosmos database and switch docker to virtual machine
-                        We can say that we have very good stability and efficiency.
+                        It processes searches and logins within few seconds too.<br><br>
 
-                        
+                        This proof-of-concept will not be used with real patients data, it will be used to aid
+                        development for Moorfields. Because of this, it was a low priority for us to measure efficiency,
+                        particularly with a large database of patients as this was unlikely to happen under Moorfields
+                        normal usage of the system.<br><br>
 
+                        Currently, using a small database of patients we rate our achievement in 'Efficiency' as <span
+                            class="excellent"><strong>Excellent</strong></span>.<br>
+                        To further measure efficiency, beyond what we measured, future developers should perform
+                        functions on larger datasets.
                     </p>
                     <br>
 
-                    <h3 class="section-title text-gradient">Compatibility and Maintainability</h3>
+                    <h3 class="section-title text-gradient">Compatibility</h3>
+                    <p>
+                        We deployed our application by running it as a docker image and hosting it on Azure Cloud.
+                        This allows our application to be accessed by multiple browsers, across multiple devices from
+                        anywhere with an internet connection.<br><br>
+
+                        In addition to this, we programmed the front-end in Bootstrap, this improves the compatability
+                        because Bootstrap supports automatic formatting for different devices.
+                        To elaborate, the page and the navbar will automatically change based on screen size in order to
+                        display all of the contents in a clear and logical fashion.<br><br>
+
+                        If multiple systems were to be integrated such as synchronising our workflow management app with
+                        PAS,
+                        a virtual machine could be a better option than docker as docker is better suited to supporting
+                        one application.
+                        If this is the case, Moorfields can implement this as the source code for the project has been
+                        provided via git repository.<br><br>
+
+                        Overall our system has compatability across multiple devices. It has good potential for
+                        compatability with other systems that Moorfields use. If Moorfields would like to implement this
+                        compatability across systems we have suggested how they could do so.<br><br>
+
+                        We rate our achievement in 'Compatability' as <span class="excellent"><strong>Excellent</strong></span>.
+                    </p>
+                    <br>
+
+
+                    <h3 class="section-title text-gradient">Maintainability</h3>
                     <p>
                         and maintain. In addition, it is
                         well documented so anyone can use and modify the code without any trouble.
                         CI
                         flake8
                         small codebase
-                        We deployed our application by running it as a docker image and host it on Azure cloud.
-                        This allows our application to be accessed by multiple browsers.
-                        We application also runs perfectly on mobile phone and ipad.<br>
-                        If multiple systems were to be integrated such as synchronising our workflow management app with
-                        PAS,
-                        a virtue machine should be a better option than docker.
 
                         Our codebase has clear model-view-template structure.
                         All modules and classes are given sensible names so that our code is highly cohesive.<br>
