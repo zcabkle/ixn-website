@@ -37,6 +37,27 @@
         p {
             text-align: left;
         }
+
+        .bad {
+            color: #ff0022;
+
+        }
+
+        .not-good {
+            color: #ff7300;
+        }
+
+        .good {
+            color: #d9e000;
+        }
+
+        .very-good {
+            color: #99ff00;
+        }
+
+        .excellent {
+            color: #0dbd00;
+        }
     </style>
 </head>
 
@@ -484,7 +505,12 @@
                     <p>In order to perform critical evaluation on ourselves we will evaluaate our performance in a
                         certain criteria and give ourselves a ranking in the following scale:</p>
 
-                    Bad, Not Good, Good, Very Good, Excellent
+                    <span class="bad"><strong>Bad</strong></span>, <span class="not-good"><strong>Not
+                            Good</strong></span>,
+                    <span class="good"><strong>Good</strong></span>, <span class="very-good"><strong>Very
+                            Good</strong></span>,
+                    <span class="excellent"><strong>Excellent</strong></span>
+
                     <br><br>
                     <h3 class="section-title text-gradient">User Interface and Experience</h3>
                     <p>
@@ -510,7 +536,7 @@
                         A senior ocularists at Moorfields said they were particularly impressed by the design of the
                         rota page. Testers pointed out that found difficulty in selecting and viewing multiple
                         ocularists'
-                        rotas on the team rota page. To remedy this, we created a user manual which, gives new users
+                        rotas on the team rota page. To remedy this, we created a user manual which gives new users
                         instructions on how to use our system. Further feedback from our user acceptance tests can be
                         found on the 'Testing' tab on
                         the navigation bar.<br><br>
@@ -519,7 +545,8 @@
                         testers, our application provides a simple, easy to use and usable user interface. We believe
                         that this was
                         achieved by stringently following the HCI design principles.<br><br>
-                        We rate our achievement in 'User Interface and Experience' as <strong>Excellent</strong>.<br>
+                        We rate our achievement in 'User Interface and Experience' as <span
+                            class="excellent"><strong>Excellent</strong></span>.<br>
                     </p>
                     <br>
                     <h3 class="section-title text-gradient">Functionality</h3>
@@ -557,7 +584,8 @@
                     <br>
 
                     <p>
-                        We are very proud of accomplishing <strong>89%</strong> of the key functionality in the
+                        We are very proud of accomplishing <span class="excellent"><strong>89%</strong></span> of the
+                        key functionality in the
                         functional MOSCOW list.
                         It is also important to note that our client is very satisfied with the proof-of-concept that we
                         handed over to them.<br><br>
@@ -580,26 +608,57 @@
                         outlined in our functional MoSCoW list.<br><br>
 
 
-                        We rate our achievement in 'Functionality' as <strong>Very Good</strong>.
+                        We rate our achievement in 'Functionality' as <span class="very-good"><strong>Very
+                                Good</strong></span>.
 
                     </p>
                     <br>
-                    <h3 class="section-title text-gradient">Stability-Efficiency</h3>
+                    <h3 class="section-title text-gradient">Stability</h3>
                     <p>
-                        We conducted multiple testing procedures to ensure our application is stable.
-                        We managed to reach code coverage of 97%.<br>
-                        Passing all unit tests, we know all individual functions work as we intended.
-                        Passing all intergrated tests, we know individual fucntions are intergrated correctly and
-                        perform as we expected.<br>
-                        Our application respond to request with few second.
+                        We conducted two different types of automated testing to ensure our application is stable, we
+                        used unit tests and integration tests.
+                        We managed to reach a code coverage of <span class="excellent"><strong>97%</strong></span>.
+                        Passing all unit tests informs us that individual functions work as we intended. Passing all
+                        integration tests informs us that views integrate with templates to render or redirect to the
+                        correct
+                        template.<br><br>
+
+                        One way that we could improve testing procedure to more rigorously measure the stability is to
+                        check what values are passed to each template rendered. Currently this check is not performed on
+                        every integration test. Implementing this check would only require adding one extra assert
+                        statement to the test.<br><br>
+
+                        Overall we have a high test coverage with all tests passing. Some tests could be extended to be
+                        more rigorous.<br><br>
+
+                        We rate our achievement in 'Stability' as <span class="very-good"><strong>Very
+                                Good</strong></span>.
+
+
+                    </p>
+                    <br>
+
+                    <h3 class="section-title text-gradient">Efficiency</h3>
+                    <p>
+                        Since our code base is very simple, it’s very efficient to run
+                        Currently, our application responds to a request within a few seconds.
                         It processes filters within few seconds.
                         If this application is to be further developed, we can switch SQLite to a database suits for
                         large volume such as azure cosmos database and switch docker to virtual machine
                         We can say that we have very good stability and efficiency.
+
+                        
+
                     </p>
                     <br>
+
                     <h3 class="section-title text-gradient">Compatibility and Maintainability</h3>
                     <p>
+                        and maintain. In addition, it is
+                        well documented so anyone can use and modify the code without any trouble.
+                        CI
+                        flake8
+                        small codebase
                         We deployed our application by running it as a docker image and host it on Azure cloud.
                         This allows our application to be accessed by multiple browsers.
                         We application also runs perfectly on mobile phone and ipad.<br>
