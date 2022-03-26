@@ -37,6 +37,27 @@
         p {
             text-align: left;
         }
+
+        .bad {
+            color: #ff0022;
+
+        }
+
+        .not-good {
+            color: #ff7300;
+        }
+
+        .good {
+            color: #d9e000;
+        }
+
+        .very-good {
+            color: #99ff00;
+        }
+
+        .excellent {
+            color: #0dbd00;
+        }
     </style>
 </head>
 
@@ -484,7 +505,12 @@
                     <p>In order to perform critical evaluation on ourselves we will evaluaate our performance in a
                         certain criteria and give ourselves a ranking in the following scale:</p>
 
-                    Bad, Not Good, Good, Very Good, Excellent
+                    <span class="bad"><strong>Bad</strong></span>, <span class="not-good"><strong>Not
+                            Good</strong></span>,
+                    <span class="good"><strong>Good</strong></span>, <span class="very-good"><strong>Very
+                            Good</strong></span>,
+                    <span class="excellent"><strong>Excellent</strong></span>
+
                     <br><br>
                     <h3 class="section-title text-gradient">User Interface and Experience</h3>
                     <p>
@@ -510,7 +536,7 @@
                         A senior ocularists at Moorfields said they were particularly impressed by the design of the
                         rota page. Testers pointed out that found difficulty in selecting and viewing multiple
                         ocularists'
-                        rotas on the team rota page. To remedy this, we created a user manual which, gives new users
+                        rotas on the team rota page. To remedy this, we created a user manual which gives new users
                         instructions on how to use our system. Further feedback from our user acceptance tests can be
                         found on the 'Testing' tab on
                         the navigation bar.<br><br>
@@ -519,7 +545,8 @@
                         testers, our application provides a simple, easy to use and usable user interface. We believe
                         that this was
                         achieved by stringently following the HCI design principles.<br><br>
-                        We rate our achievement in 'User Interface and Experience' as <strong>Excellent</strong>.<br>
+                        We rate our achievement in 'User Interface and Experience' as <span
+                            class="excellent"><strong>Excellent</strong></span>.<br>
                     </p>
                     <br>
                     <h3 class="section-title text-gradient">Functionality</h3>
@@ -557,7 +584,8 @@
                     <br>
 
                     <p>
-                        We are very proud of accomplishing <strong>89%</strong> of the key functionality in the
+                        We are very proud of accomplishing <span class="excellent"><strong>89%</strong></span> of the
+                        key functionality in the
                         functional MOSCOW list.
                         It is also important to note that our client is very satisfied with the proof-of-concept that we
                         handed over to them.<br><br>
@@ -580,59 +608,132 @@
                         outlined in our functional MoSCoW list.<br><br>
 
 
-                        We rate our achievement in 'Functionality' as <strong>Very Good</strong>.
+                        We rate our achievement in 'Functionality' as <span
+                            class="excellent"><strong>Excellent</strong></span>.
 
                     </p>
                     <br>
-                    <h3 class="section-title text-gradient">Stability-Efficiency</h3>
+                    <h3 class="section-title text-gradient">Stability</h3>
                     <p>
-                        We conducted multiple testing procedures to ensure our application is stable.
-                        We managed to reach code coverage of 97%.<br>
-                        Passing all unit tests, we know all individual functions work as we intended.
-                        Passing all intergrated tests, we know individual fucntions are intergrated correctly and
-                        perform as we expected.<br>
-                        Our application respond to request with few second.
-                        It processes filters within few seconds.
-                        If this application is to be further developed, we can switch SQLite to a database suits for
-                        large volume such as azure cosmos database and switch docker to virtual machine
-                        We can say that we have very good stability and efficiency.
+                        We conducted two different types of automated testing to ensure our application is stable, we
+                        used unit tests and integration tests.
+                        We managed to reach a code coverage of <span class="excellent"><strong>97%</strong></span>.
+                        Passing all unit tests informs us that individual functions work as we intended. Passing all
+                        integration tests informs us that views integrate with templates to render or redirect to the
+                        correct
+                        template.<br><br>
+
+                        One way that we could improve testing procedure to more rigorously measure the stability is to
+                        check what values are passed to each template in the response. Currently this check is not
+                        performed on
+                        every integration test. Implementing this check would only require adding one extra assert
+                        statement to the test so there is not much extra work for future developers.<br><br>
+
+                        Overall we have a high test coverage with all tests passing. Some tests could be extended to be
+                        more rigorous.<br><br>
+
+                        We rate our achievement in 'Stability' as <span class="very-good"><strong>Very
+                                Good</strong></span>.
                     </p>
                     <br>
-                    <h3 class="section-title text-gradient">Compatibility and Maintainability</h3>
+
+                    <h3 class="section-title text-gradient">Efficiency</h3>
                     <p>
-                        We deployed our application by running it as a docker image and host it on Azure cloud.
-                        This allows our application to be accessed by multiple browsers.
-                        We application also runs perfectly on mobile phone and ipad.<br>
+                        Since our code base is very simple, it’s very efficient to run.
+                        Currently, our application responds to a request within a few seconds.
+                        It processes searches and logins within few seconds too.<br><br>
+
+                        This proof-of-concept will not be used with real patients data, it will be used to aid
+                        development for Moorfields. Because of this, it was a low priority for us to measure efficiency,
+                        particularly with a large database of patients as this was unlikely to happen under Moorfields
+                        normal usage of the system.<br><br>
+
+                        Currently, using a small database of patients we rate our achievement in 'Efficiency' as <span
+                            class="excellent"><strong>Excellent</strong></span>.<br><br>
+                        *To further measure efficiency, beyond what we measured, future developers should test on larger
+                        datasets.
+                    </p>
+                    <br>
+
+                    <h3 class="section-title text-gradient">Compatibility</h3>
+                    <p>
+                        We deployed our application by running it as a docker image and hosting it on Azure Cloud.
+                        This allows our application to be accessed by multiple browsers, across multiple devices from
+                        anywhere with an internet connection.<br><br>
+
+                        In addition to this, we programmed the front-end in Bootstrap, this improves the compatability
+                        because Bootstrap supports automatic formatting for different devices.
+                        To elaborate, the page and the navbar will automatically change based on screen size in order to
+                        display all of the contents in a clear and logical fashion.<br><br>
+
                         If multiple systems were to be integrated such as synchronising our workflow management app with
                         PAS,
-                        a virtue machine should be a better option than docker.
+                        a virtual machine could be a better option than docker as docker is better suited to supporting
+                        one application.
+                        If this is the case, Moorfields can implement this as the source code for the project has been
+                        provided via git repository.<br><br>
 
-                        Our codebase has clear model-view-template structure.
-                        All modules and classes are given sensible names so that our code is highly cohesive.<br>
-                        Each functionality has seperated view class and html templates, ensuring our code is loosely
-                        coupled.
-                        We also thoroughly documented our codebase and tested each modules to make sure thet work.
-                        Overall our application has good compatibility and is easy to maintain <br>
+                        Overall our system has compatability across multiple devices. It has good potential for
+                        compatability with other systems that Moorfields use. If Moorfields would like to implement this
+                        compatability across systems we have suggested how they could do so.<br><br>
+
+                        We rate our achievement in 'Compatability' as <span
+                            class="excellent"><strong>Excellent</strong></span>.
                     </p>
                     <br>
-                    <h3 class="text-gradient">Project management</h3>
+
+
+                    <h3 class="section-title text-gradient">Maintainability</h3>
                     <p>
-                        Our team used gantt chart timeline to make sure our project is on track
-                        and use trello board to organised our work and to set up tasks for teammates.<br>
-                        This is shared between our project monitor and Moorfields eye Hospital.<br>
-                        We also take minutes of every meetings we had with Moorfields eye Hospital.
-                        This way we can go back and check what we discussed and agreed with them.<br>
-                        After we started implementing the application,
-                        we wrote a google doc with a list of checkboxs regarding specific coding tasks that we need to
-                        do.<br>
-                        We use telegram to communicate with team mates on daily bases and we have regular weekly
-                        meetings with our TA,
-                        project monitor and our client Moorfields Eye Hospital.<br>
+                        Our code comes with documentation in for form of a website. Other developer should not have any
+                        trouble understanding what the code does and how it does it. Meaning it would be easy for them
+                        to modify the code to implement new features<br><br>
 
-                        Overall We had good project management skill.
+                        Our code also comes with an easy to use, CI pipeline. Developers only need to push to main for
+                        changes to be reflected on the live server, more information about the CI pipeline can be seen
+                        on the 'Deployment' tab on the navigation bar.<br><br>
+
+                        For the most part our code complies with PEP8 standards. We performed checks on our code with
+                        flake8
+                        and fixed the syntax standard violations. We did this to make our code as readable as possible
+                        for future developer, we believe that the more readable the code it, the more maintainable it
+                        can be.<br><br>
+
+                        We also have a small codebase with sensible variable names which further makes the code readable
+                        and easy to follow.<br><br>
+
+                        We implemented seperation of concerns which can further help with maintainability, we did this
+                        when we seperated the views into different files and followed the MVT design pattern.<br><br>
+
+                        Overall we took multiple actions to make our codebase as maintainable as possible in order to
+                        aid development during the project and future development by Moorfields. <br><br>
+
+                        We rate our achievement in 'Maintainability' as <span
+                            class="excellent"><strong>Excellent</strong></span>.
                     </p>
-
                     <br>
+                    <h3 class="text-gradient">Project Management</h3>
+                    <p>
+                        Our team used a gantt chart timeline to make sure our project is on track
+                        and we used trello board to organise our work and to set tasks for teammates during the design
+                        phase.
+                        We shared these with our TA, our IXN mentor and Moorfields.<br><br>
+
+                        We met our client weekly on Thurday afternoons to discuss progress. During each of these
+                        meetings we took minutes so we could refer back to them during the week. We also had weekly
+                        meetings with out TA and our IXN mentor.<br><br>
+
+                        During the implementation phase it was easier for us to allocate tasks on a google doc than on
+                        trello. The google doc had a list with checkboxs of tasks that needed to be completed. The tasks
+                        were colour coded based on priority and who was assigned to it. Most of the team completed tasks
+                        by the time that they were set.<br><br>
+
+                        We used telegram to communicate with team mates and email to communicate with
+                        Moorfields.<br><br>
+
+                        Overall, we rate our achievement in 'Project Management' as <span class="very-good"><strong>Very
+                                Good</strong></span>.
+                    </p>
                     <br>
 
                     <h1 class="section-title text-gradient header-underline">Further work</h1>
