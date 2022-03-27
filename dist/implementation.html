@@ -228,7 +228,8 @@
 
                         <br>
                         <h4 class="section-title text-gradient">Display Daily Timetable</h4><br>
-                        <p> This section describes how we show a user's timetable on the "My Rota" page. It is nessecary
+                        <p> This section describes how we show a user's daily timetable on the "My Rota" page. It is
+                            nessecary
                             to understand this process as generating weekly rota and team rota are variations of this
                             process. </p>
                         <strong>1. Identify logged in user</strong><br>
@@ -238,117 +239,174 @@
                             automatically fetches username and firstname for logged in users.
                             It is a base class and is extended by RotaView.
                             At RotaView, the user object can be identified by
-                            comparing fetched usernames.
+                            the fetched username.
                         </p>
-                        <br>
-                        <strong>2. Identify required date(s)</strong><br>
+                        <strong>2. Identify required date</strong><br>
 
                         <p>
-                            A datetime picker is imported from "bootstrap_datepicker_plus.widgets" and it works
-                            alongside jquery and django forms to provide functionality
-                            to select a particular date to display.
-                            When the user sends a valid form it is sent to RotaView in the request.
-                            We use the variables <code>selected_date</code> (set to the current date if no user input)
-                            and <code>weekly_view</code> to store user inputs.
+                            A datetime picker is imported from "bootstrap_datepicker_plus.widgets". It works
+                            alongside jquery and Django forms to provide functionality
+                            to select a particular date on a GUI.
+                            When the user sends a valid form, either by entering the date manually or clicking on the
+                            graphical calendar, it is sent to RotaView in the request.
+                            We use the variable <code>selected_date</code> (set to the current date if no user input)
+                            to store user input.
                         </p>
                         <br>
-                        <pre class="text-left"><code class="language-python">
-                            <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
-                                super().fetch_details(request)
-                                <span style='color:green'>form </span>= MyRotaDateForm(request.GET)
-                                if <span style='color:green'>form </span>.is_valid():
-                                    dic = <span style='color:green'>form </span>.cleaned_data
-                                    date_picked = dic.get('date')
-                                    <span style='color:green'>selected_date </span>= date_picked
-                                    <span style='color:green'>weekly_view </span>= dic.get("weekly_view")
-                                if not selected_date:
-                                    <span style='color:green'>selected_date </span>= date.today()
-                                user = User.objects.get(username=request.user.username)
-                                ...
-                         </code>
-                         </pre>
-                        <br>
-                        <strong>3. Generate dynamic data </strong>
-                        <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
-                            When requested,firstly the
-                            <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all
-                            appointment objects and use django build in object.all().filter() method to get a list of
-                            all appointments belonging to logged in users and booked at selected date. Appointments that
-                            has
-                            been canceled are excluded.
-                            Then the <code>generate_day_rota(rota_appointments_ordered, tmp_rota)</code> function is
-                            called
-                            to matche appointment types and assign each appointment different amount of slots.
-                            It then generate a dictionary with static time slot as keys and its corresponding
-                            appointment
-                            object as values.
-                            The view class then renders templates and return responses.
-                        </p>
-                        <br>
-                        <pre class="text-left"><code class="language-python">
-                            <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
-                                ...
-                                tmp_rota = DAY_ROTA.copy()
-                                <span style='color:grey'>//DAY_ROTA is a dictionary storing static time slots</span>
-                                <span style='color:red'>if </span><span style='color:green'>weekly_view </span>:
-                                    dates = [str(<span style='color:green'>selected_date </span> + timedelta(days=x))
-                                            for x in range(0, 8)]
-                                    weekly_rota = <span style='color:red'>self.generate_weekly_rota([], dates, user)</span>
-                                    return render(request, 'website/my_rota.html',
-                                                {'weekly_rota': weekly_rota, 'date': <span style='color:green'>selected_date </span>,
-                                                'form': form, 'first_name': self.first_name,
-                                                'weekly': True})
-                                <span style='color:red'>else:</span>
-                                   rota_appointments_ordered = <span style='color:red'>self.generate_rota_appointments_ordered</span>(
-                                        <span style='color:green'>selected_date </span>, user)
-                                    rota = <span style='color:red'>self.generate_day_rota</span>(rota_appointments_ordered, tmp_rota)
-                                    return render(request, 'website/my_rota.html',
-                                                {'rota': rota, 'date': <span style='color:green'>selected_date </span>, 'form': form,
-                                                'first_name': self.first_name, 'weekly': False})
+                        <strong>3. Generate rota </strong>
+                        <p> We nearly have all of the information to generate the rota (the user and the date).
 
+                            Now we get all non-cancelled appointments with this user on selected_date and order them by
+                            start time with
+                            these lines of code.
+                            As seen below we make use of Django's built in .filter() and .exclude() functions.</p>
+
+                        <pre class="text-left"><code class="language-python">
+                                def generate_rota_appointments_ordered(self, selected_date, user):
+                                    cancelled = AppointmentStatus.objects.all().filter(
+                                        status='Cancelled')[0]
+                                    rota_appointments_ordered = list(Appointment.objects.all().filter(
+                                        appointment_date=selected_date, team_member=user).exclude(
+                                            appointment_status=cancelled))
+                                    rota_appointments_ordered.sort(
+                                        key=lambda x: (x.appointment_start_time))
+
+                                    return rota_appointments_ordered
+                            </code></pre>
+
+                        <p>
+
+                            Then the <code>generate_day_rota(self, appointments, tmp_rota)</code> function is
+                            called
+                            to assign each appointment to its time slots. This is done by looking at the start time of
+                            each appointment and the appointment type, which determines the amount of slots taken up.
+                            Each appointment is filled into its timeslots on tmp_rota, which is an empty dictionary with
+                            time
+                            slot as keys and
+                            appointment objects as values.
+                            tmp_rota is a duplicate of DAY_ROTA which can be found in constants.py.
+
+                            The view class then renders the template and returns this rota in the response.
+                        </p>
+                        <br>
+                        <pre class="text-left"><code class="language-python">
+                            def generate_day_rota(self, appointments, tmp_rota):
+                                for appointment in appointments:
+                                    appointment_code = (
+                                        appointment.appointment_code.appointment_description)
+                                    appointment_length = SLOTS[appointment_code]
+                                    start_time = str(appointment.appointment_start_time)[:5]
+                                    start_index = DAY_ROTA_KEYS.index(start_time)
+
+                                    for i in range(start_index, start_index + appointment_length):
+                                        key = DAY_ROTA_KEYS[i]
+                                        tmp_rota[key] = appointment
+
+                                return tmp_rota
                              </code>
                          </pre>
-                        <br>
                         <strong>4. Display</strong>
                         <p>
-                            Boostrap table is used to build html templates.
-                            The template recieves static time slots and rota data from a view class ,it then uses nested
-                            if
-                            statements and for loops to fill in informations for timetable.
-                            The timetable presents different colours for empty slots and booked slots by using bootstrap
-                            contextual classes to color table rows.
-                            Add new appointment function is implementated using a button with link to add new
-                            appointment
-                            forms.
-                            The patient name and ID are stored in timetable as a link to another templates showing more
-                            details.
-                            <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png"
-                                alt="Card image cap">
+                            The template recieves the rota from the view class. Using a loop and a table we display the
+                            rota graphically. Looping through the dictionary creates the rows in the table.
+                            If statements are used to determine how the row should look, depending on whether dictionary
+                            value is populated or empty; the different row colours are implemented using Bootstrap.
+                            'Add New Appointment' button is implementated using a Bootstrap, it is embedded with a link
+                            and clicking the button will
+                            take the user to a form.
+                            The patient name and appointment ID are displayed on the table, they are embedded with a
+                            link to another
+                            template which shows the user more details.</p>
+                        <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png"
+                            alt="Card image cap">
                         </p>
 
                         <br><br>
-                        <h4 class="section-title text-gradient">Display Patient List</h4>
-                        <br>
-                        <strong>1.Categorize data</strong>
-                        <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting
-                            Patients
-                            using <code>Patient.objects.all().filter() </code>function<br>
-                            In AppointmentView class, appointment objects are categorized to Upcoming appointments,
-                            Cancelled appointments and Past appointments using similar methods.
-                            Both classes use HTTP GET request to perform above functions.
-                            Templates are rendered after this.
+
+                        <h4 class="section-title text-gradient">Display Weekly Timetable</h4><br>
+                        <p> This process is nearly identical to displaying a daily rota as above.</p>
+                        <strong>1. Identify logged in user</strong><br>
+                        <p>
+                            Same case as above.
                         </p>
                         <br>
+                        <strong>2. Identify required dates</strong><br>
+
+                        <p>
+                            As above, user selects a date manually or through the GUI.
+                            We generate an array of 7 consecutive days from this date, this is the week we will display.
+                            It is stored under <strong>VARIABLE</strong>.
+                        </p>
+                        <pre class="text-left"><code class="language-python">
+                            dates = [str(selected_date + timedelta(days=x)) for x in range(0, 8)]</code></pre>
+                        <br>
+
+                        <strong>3. Generate rotas</strong><br>
+                        <p> Step 3 is very similar to above, instead we call <code>generate_day_rota()</code> for each
+                            date
+                            and store these rotas in an array.
+                            The view passes this array to the template in the response.
+                        </p>
+
+                        <strong>4. Display</strong><br>
+                        <p> Step 4 is very similar to above. We loop through the array of rotas and display each one
+                            side by side. We display each rota in an identical fashion as above.
+                        </p>
+
+                        <h4 class="section-title text-gradient">Display Patient List</h4>
+                        <br>
+                        <strong>1. Fetch data</strong>
+                        <p> In <code>WaitingListView</code> class, patients are seperated to <code>bookedPatients</code>
+                            and <code>waitingPatients</code>. These queries are passed to the response by the view.</p>
+
+                        <pre class="text-left"><code class="language-python">
+                            bookedPatients = Patient.objects.all().filter(patient_status=booked)
+                            waitingPatients = Patient.objects.all().exclude(patient_status=booked)
+                            </code></pre>
+                        <br>
                         <strong>2.Display </strong>
-                        <p>Bootstrap Cards are used as content containers in html templates.
-                            We For loops to dynamically fill in patient's and appointment's data to corresponding cards
+                        <p> Bootstrap cards are used as content containers in our HTML templates.
+                            We used for loops to generate a card and to dynamically fill in a patient's data to that
+                            card.
                         </p>
 
                         <br><br>
 
                         <h4 class="section-title text-gradient">Display Appointment List</h4>
                         <br>
-                        <p>*same as above</p>
+                        <strong>1. Fetch data</strong>
+                        <p>In <code>AppointmentView</code> class, appointments are seperated
+                            into past, upcoming and cancelled. This is done so through a simple for loop.
+                            We take all non-cancelled appointments and loop through them. For each appointment, if
+                            appointment_date is before today is goes to an array storing past appointments
+                            otherwise it does to an array storing future appointments.
+
+                        <pre class="text-left"><code class="language-python">
+                                temporaryAppointments = Appointment.objects.all().exclude(
+                                    appointment_status=cancelled)
+                                appointments = []
+                                past = []
+                                for appointment in temporaryAppointments:
+                                    if appointment.appointment_date < today:
+                                        past.append(appointment)
+                                    else:
+                                        appointments.append(appointment)
+                                </code></pre>
+
+                        <p>Cancelled appointments are collected with a query.</p>
+
+                        <pre class="text-left"><code class="language-python">
+                        cancelledAppointments = Appointment.objects.all().filter(
+                            appointment_status=cancelled)
+                        </code></pre>
+                        <p>These queries and arrays are passed to the response by the view.</p>
+
+                        <strong>2. Display</strong>
+                        <p> Bootstrap cards are used as content containers our HTML templates.
+                            For each array/query given to the template we do a seperate loop.
+                            The loops generates a card and dynamically fills in an appointment's data to that card.
+                            The loop will also add buttons, such as cancel and update, to the card if nessecary.</p>
+                        <br>
                         <p>##################################################</p>
                         <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or
                             patients
