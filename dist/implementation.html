@@ -167,10 +167,12 @@
                                 class from logged-in users. In this class, any unauthorised user will be redirected to
                                 the
                                 log-in page.
-                                We implemented a view class called 'UserView' which inherits
+                                We implemented a view class called <code>UserView</code> which can be found in
+                                <code>UserView.py</code>. It inherits
                                 <code>LoginRequiredMixin</code>. All other
                                 view
-                                classes extend 'UserView', therefore, all successful HTTP requests to our application
+                                classes extend <code>UserView</code>, therefore, all successful HTTP requests to our
+                                application
                                 require the user to be logged in.<br>
 
                             <pre class="text-left"><code class="language-python">
@@ -198,7 +200,8 @@
                                 Django's built-in admin site allows admins to manage users as well as user groups and
                                 permissions.<br><br>
 
-                                At admin.py, <code>admin.site.register(model)</code> functions are used to register data
+                                At <code>admin.py</code>, <code>admin.site.register(model)</code> functions are used to
+                                register data
                                 models to the admin site so that these models can easily be created, destroyed and
                                 modified
                                 through the user interface.<br>
@@ -221,7 +224,8 @@
                                 In settings.py there exists a dictionary that contains the settings for the databases
                                 that
                                 would be used in the web app.
-                                NAME specifies the name of the database and ENGINE specifies the type of database.
+                                <code>NAME</code> specifies the name of the database and <code>ENGINE</code> specifies
+                                the type of database.
                             </p>
 
                             <pre class="text-left"><code class="language-python">
@@ -241,68 +245,82 @@
                         <br>
                         <section>
                             <h4 class="section-title text-gradient">Display Daily Rota</h4><br>
-                            <p> This section describes how we show a user's daily timetable on the "My Rota" page. It is
+                            <p> This section describes how we show a user's daily timetable on
+                                <code>my_rota.html</code>. It is
                                 necessary
-                                to understand this process as generating weekly rota and team rota are variations of
-                                this
-                                process.
+                                to understand this process as generating the weekly rota on the same page and the team
+                                rota
+                                on <code>team_rota.html</code> are variations of
+                                this process.<br><br>
+
+                                Displaying the daily rota is handled by <code>RotaView</code> in
+                                <code>RotaView.py</code>
                             </p>
                             <strong>1. Identify logged in user</strong><br>
                             <p>
                                 The <code>UserView</code> class has a <code>fetch_details(self, request)</code> function
                                 which
-                                automatically fetches username and firstname for logged in users.
-                                It is a base class and is extended by RotaView.
-                                At RotaView, the user object can be identified by
-                                the fetched username.
+                                automatically fetches the username and the first name for logged in users.
+                                It is a base class and is extended by <code>RotaView</code>.
+                                At <code>RotaView</code>, the user object is queried as we have identified the user's
+                                username.
+                                The user object is stored in the variable <code>user</code>
                             </p>
                             <strong>2. Identify the required date</strong><br>
                             <p>
-                                A datetime picker is imported from "bootstrap_datepicker_plus.widgets". It works
-                                alongside jquery and Django forms to provide the functionality
+                                A datetime picker is imported from <code>bootstrap_datepicker_plus.widgets</code>. It
+                                works
+                                alongside jQuery and Django forms to provide the functionality
                                 to select a particular date on a GUI.
                                 When the user sends a valid form, either by entering the date manually or clicking on
                                 the
-                                graphical calendar, it is sent to RotaView in the request.
+                                graphical calendar, <code>urls.py</code> directs the request to <code>RotaView</code>.
                                 We use the variable <code>selected_date</code> (set to the current date if no user
                                 input)
                                 to store user input.
                             </p>
-                            <strong>3. Generate rota </strong>
-                            <p> We nearly have all of the information to generate the rota (the user and the date).
+                            <strong>3. Generate appointments for the rota </strong>
+                            <p> We nearly have all of the information to generate the rota (<code>user</code> and
+                                <code>selected_date</code>), we are still missing the correct appointments.
 
-                                Now we get all non-cancelled appointments with this user on selected_date and order them
+                                Now we get all non-cancelled appointments with this user on <code>selected_date</code>
+                                and order them
                                 by
-                                start time with
-                                these lines of code.
-                                As seen below we make use of Django's built-in .filter() and .exclude() functions.
+                                start time with the lines of code below.
+                                As seen below we make use of Django's built-in <code>.filter()</code> and
+                                <code>.exclude()</code> functions which are used for querying the database.
                             </p>
                             <pre class="text-left"><code class="language-python">
-                                    def generate_rota_appointments_ordered(self, selected_date, user):
-                                        cancelled = AppointmentStatus.objects.all().filter(
-                                            status='Cancelled')[0]
-                                        rota_appointments_ordered = list(Appointment.objects.all().filter(
-                                            appointment_date=selected_date, team_member=user).exclude(
-                                                appointment_status=cancelled))
-                                        rota_appointments_ordered.sort(
-                                            key=lambda x: (x.appointment_start_time))
+                            def generate_rota_appointments_ordered(self, selected_date, user):
+                                cancelled = AppointmentStatus.objects.all().filter(
+                                    status='Cancelled')[0]
+                                rota_appointments_ordered = list(Appointment.objects.all().filter(
+                                    appointment_date=selected_date, team_member=user).exclude(
+                                        appointment_status=cancelled))
+                                rota_appointments_ordered.sort(
+                                    key=lambda x: (x.appointment_start_time))
 
-                                        return rota_appointments_ordered
+                                return rota_appointments_ordered
                             </code></pre>
+                            <strong>4. Generate rota</strong>
                             <p>
-                                Then the <code>generate_day_rota(self, appointments, tmp_rota)</code> function is
+                                The <code>generate_day_rota(self, appointments, tmp_rota)</code> function is
                                 called
                                 to assign each appointment to its time slots. This is done by looking at the start time
                                 of
-                                each appointment and the appointment type, which determines the number of slots taken
+                                each appointment and the appointment type. The appointment type determines the number of
+                                slots taken
                                 up.
-                                Each appointment is filled into its timeslots on tmp_rota, which is an empty dictionary
+                                Each appointment is filled into its timeslots on <code>tmp_rota</code>, which is an
+                                empty dictionary
                                 with
                                 time
                                 slots as keys and
                                 appointment objects as values.
-                                tmp_rota is a duplicate of DAY_ROTA which can be found in constants.py.
-                                The view class then renders the template and returns this rota in the response.
+                                <code>tmp_rota</code> is a duplicate of <code>DAY_ROTA</code> which can be found in
+                                <code>constants.py</code>.
+                                <code>RotaView</code> then renders the template <code>my_rota.html</code> and returns
+                                this filled in rota in the response.
                             </p>
                             <pre class="text-left"><code class="language-python">
                                 def generate_day_rota(self, appointments, tmp_rota):
@@ -319,21 +337,25 @@
 
                                     return tmp_rota
                             </code></pre>
-                            <strong>4. Display</strong>
+                            <strong>5. Display</strong>
                             <p>
-                                The template receives the rota from the view class. Using a loop and a table we display
+                                <code>my_rota.html</code> receives the rota from the <code>RotaView</code>. Using a loop
+                                and a table we display
                                 the
                                 rota graphically. Looping through the dictionary creates the rows in the table.
                                 If statements are used to determine how the row should look, depending on whether
                                 the dictionary
-                                value is populated or empty; the different row colours are implemented using Bootstrap.
-                                'Add New Appointment' button is implemented using Bootstrap, it is embedded with a
+                                value is populated or empty; the different row colours are implemented using
+                                Bootstrap.<br><br>
+                                The 'Add New Appointment' button is implemented using Bootstrap, it is embedded with a
                                 link
                                 and clicking the button will
-                                take the user to a form.
+                                take the user to an <code>AppointmentForm</code>.<br><br>
                                 The patient name and appointment ID are displayed on the table, they are embedded with a
-                                link to another
-                                template which shows the user more details.
+                                links to other
+                                templates which show more details to the user.
+                                Clicking the the patient name takes the user to <code>patient_detail.html</code>,
+                                clicking the appointment id will take the user to <code>appointment_detail.html</code>.
                             </p>
                             <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png"
                                 alt="Card image cap">
@@ -342,47 +364,89 @@
                         <br><br>
                         <section>
                             <h4 class="section-title text-gradient">Display Weekly Rota</h4><br>
-                            <p> This process is nearly identical to displaying a daily rota as above.</p>
+                            <p> This section explains how the weekly rota is displayed. This process is nearly identical
+                                to displaying a daily rota as above in the '<span class='text-gradient'>Daily
+                                    Rota</span>' section. Please read '<span class='text-gradient'>Daily
+                                    Rota</span>' section before reading this section.<br><br>
+                                Displaying the
+                                daily rota is handled by <code>RotaView</code> in <code>RotaView.py</code>.</p>
                             <strong>1. Identify logged in user</strong><br>
                             <p>
-                                Same case as 'Daily Rota'.
+                                *The same case as the '<span class='text-gradient'>Daily Rota</span>' section.
                             </p>
                             <br>
                             <strong>2. Identify required dates</strong><br>
 
                             <p>
-                                As above, the user selects a date manually or through the GUI.
-                                We generate an array of 7 consecutive days from this date, this is the week we will
-                                display.
-                                It is stored under <strong>VARIABLE</strong>.
+                                As above, in the '<span class='text-gradient'>Daily Rota</span>' section, the user
+                                selects a date manually or through the GUI.<br><br>
+
+                                However, to add to this, we generate an array of 7 consecutive days from this date, this
+                                is the week we will
+                                display on the rota.
+                                It is stored under the <code>dates</code> variable.
                             </p>
                             <pre class="text-left"><code class="language-python">
                                 dates = [str(selected_date + timedelta(days=x)) for x in range(0, 8)]</code></pre>
                             <br>
 
                             <strong>3. Generate rotas</strong><br>
-                            <p> Step 3 is very similar to 'Daily Rota', instead, we call
+                            <p> Step 3 is very similar to above in the '<span class='text-gradient'>Daily Rota</span>'
+                                section. Instead, we call
                                 <code>generate_day_rota()</code> for
-                                each
-                                date
-                                and store these rotas in an array.
-                                The view passes this array to the template in the response.
+                                each date and store these rotas in an array, called <code>weekly_rota</code>. This
+                                behaviour is
+                                handled
+                                by <code>generate_weekly_rota(self, weekly_rota, dates, user)</code>.
+
+                            <pre class="text-left"><code class="language-python">
+                            def generate_weekly_rota(self, weekly_rota, dates, user):
+                                cancelled = AppointmentStatus.objects.all().filter(
+                                    status='Cancelled')[0]
+                                for d in dates:
+                                    rota_appointments_ordered = list(Appointment.objects.all().filter(
+                                        appointment_date=d, team_member=user).exclude(
+                                            appointment_status=cancelled))
+                                    rota_appointments_ordered.sort(
+                                        key=lambda x: (x.appointment_start_time))
+                                    tmp_rota = DAY_ROTA.copy()
+                                    rota = self.generate_day_rota(rota_appointments_ordered, tmp_rota)
+                                    date_rota_tuple = (d, rota)
+
+                                    weekly_rota.append(date_rota_tuple)
+
+                                return weekly_rota
+                            </code></pre>
+
+                            <p><code>RotaView</code> passes this <code>weekly_rota</code> to the template
+                                (<code>my_rota.html</code>) in the
+                                response.
                             </p>
 
                             <strong>4. Display</strong><br>
-                            <p> Step 4 is very similar to 'Daily Rota'. We loop through the array of rotas and display
+                            <p> Step 4 is very similar to above in the '<span class='text-gradient'>Daily Rota</span>'
+                                section. Instead, we loop through the array of rotas and display
                                 each one
-                                side by side. We display each rota in an identical fashion as 'Daily Rota'.
+                                side by side. We display each rota in an identical fashion as described in the '<span
+                                    class='text-gradient'>Daily Rota</span>' section.
                             </p>
                         </section>
                         <br><br>
                         <section>
                             <h4 class="section-title text-gradient">Display Patient List</h4>
+                            <p>This section describes how the patients are displayed on
+                                <code>wait_list.html</code><br><br>
+
+                                Displaying the patients is handled by <code>WaitingListView</code> in
+                                <code>WaitingListView.py</code></p>
                             <br>
                             <strong>1. Fetch data</strong>
-                            <p> In <code>WaitingListView</code> class, patients are separated into
+                            <p>
+
+                                In <code>WaitingListView</code>, patients are separated into
                                 <code>bookedPatients</code>
-                                and <code>waitingPatients</code>. These queries are passed to the response by the view.
+                                and <code>waitingPatients</code>. These queries are passed to
+                                <code>wait_list.html</code> in the response.
                             </p>
 
                             <pre class="text-left"><code class="language-python">
@@ -392,19 +456,29 @@
                             <br>
                             <strong>2. Display </strong>
                             <p> Bootstrap cards are used as content containers in our HTML templates.
-                                We used for loops to generate a card and to dynamically fill in a patient's data to that
+                                For loops are used to generate a card and to dynamically fill in a patient's data to
+                                that
                                 card.
                             </p>
                         </section>
                         <br><br>
                         <section>
                             <h4 class="section-title text-gradient">Display Appointment List</h4><br>
+                            <p>This section describes how the appointments are displayed on
+                                <code>appointments.html</code><br><br>
+
+                                Displaying the appointments is handled by <code>AppointmentView</code> in
+                                <code>AppointmentView.py</code></p>
+                            <br>
+
                             <strong>1. Fetch data</strong>
-                            <p>In <code>AppointmentView</code> class, appointments are separated
-                                into past, upcoming and cancelled. This is done so through a simple for loop.
+                            <p>In <code>AppointmentView</code>, appointments are separated
+                                into <code>past</code> (past appointments), <code>appointments</code> (upcoming
+                                appointments) and <code>cancelled</code> (cancelled appointments). This is done so
+                                through a simple for loop which can be seen in the code snippet below.<br><br>
                                 We take all non-cancelled appointments and loop through them. For each appointment, if
-                                appointment_date is before today it goes to an array storing past appointments
-                                otherwise it does to an array storing future appointments.
+                                <code>appointment_date</code> is before today it goes into <code>past</code>
+                                otherwise it goes to <code>appointments</code>.
 
                             <pre class="text-left"><code class="language-python">
                                     temporaryAppointments = Appointment.objects.all().exclude(
@@ -424,24 +498,31 @@
                             cancelledAppointments = Appointment.objects.all().filter(
                                 appointment_status=cancelled)
                             </code></pre>
-                            <p>These queries and arrays are passed to the response by the view.</p>
+                            <p>These queries and arrays are passed to <code>appointments.html</code> by <code>AppointmentView</code> in the response.</p>
 
                             <strong>2. Display</strong>
                             <p> Bootstrap cards are used as content containers for our HTML templates.
                                 For each array/query given to the template, we do a separate loop.
-                                The loops generates a card and dynamically fills in an appointment's data to that card.
+                                The loops generate a card for each appointment and dynamically fill in the appointment's data to that card.
                                 The loop will also add buttons, such as cancel and update, to the card if necessary.
                             </p>
                         </section>
 
                         <section>
                             <h4 class="section-title text-gradient">PAS Checklist</h4><br>
-                            <p> The PAS checklist is handled by the <code>ChecklistView</code> class, appointments that haven't been confirmed on PAS
-                                are displayed. Once an admin staff has input changes into PAS, they can tick of the
-                                appointment from the checklist page. This section will explain how this functionality is
-                                implemented.</p><br>
-                                <strong>Fetch Appointments</strong>
-                                <p> In ChecklistView appointments that aren't confirmed on PAS are retrieved from the database and returned in the response to the template.
+                            <p> This section describes how the PAS checklist is implemented on <code>checklist.html</code>.<br><br>
+
+                                
+                                
+                                The PAS checklist is used by admin staff. Appointments that
+                                haven't been confirmed on PAS
+                                are displayed on this page. Once an admin staff has input the changes into PAS, they can tick of the
+                                appointment from the <code>checklist.html</code>. <br><br>
+
+                                The PAS checklist is handled by <code>ChecklistView</code> which can be found in <code>ChecklistView.py</code>. <br></p>    
+                            <strong>Fetch Appointments</strong>
+                            <p> In ChecklistView appointments that aren't confirmed on PAS are retrieved from the
+                                database and returned in the response to the template.
 
                             <pre class="text-left"><code class="language-python">
                             def get(self, request):
@@ -458,17 +539,21 @@
                         
                             </code></pre>
 
-                            <p> These appointments are displayed with a Bootstrap card in a very similar fashion to how patients are displayed on the patients page, and appointments on the appointments page.
+                            <p> These appointments are displayed with a Bootstrap card in a very similar fashion to how
+                                patients are displayed on the patients page, and appointments on the appointments page.
                                 Each appointment has a button to tick it off.
                             </p>
                             <strong>Tick Appointments</strong>
-                            <p> When a user clicks the button to tick the appointment the following actions are taken: <br>
+                            <p> When a user clicks the button to tick the appointment the following actions are taken:
+                                <br>
                                 1. User is taken to /tick_appointment/pk.<br><br>
                                 2. urls.py sends to user to TickAppointmentView.py.<br><br>
-                                3. TickAppointmentView sets status_confirmed_on_pas to 'Y' and removes the comments about the changes.<br><br>
+                                3. TickAppointmentView sets status_confirmed_on_pas to 'Y' and removes the comments
+                                about the changes.<br><br>
                                 4. User gets redirected to checklist.<br><br>
 
-                                This appointment will no longer appear on the checklist as its status_confirmed_on_pas is 'Y' and not 'N' or 'n'
+                                This appointment will no longer appear on the checklist as its status_confirmed_on_pas
+                                is 'Y' and not 'N' or 'n'
                             </p>
                         </section>
 
