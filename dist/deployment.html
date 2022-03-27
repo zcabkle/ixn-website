@@ -238,6 +238,30 @@
                         <p>
                             <strong>Contents of the Dockerfile
                             </strong><br>
+
+                            <samp><code>FROM</code> python:3.8.3-alpine<samp><br><br>
+                                <samp># set work directory<samp><br>
+                                
+                                <samp><code>WORKDIR</code> /usr/src/app<samp><br><br>
+                                
+                                <samp># set environment variables<samp><br>
+                                <samp><code>ENV</code> PYTHONDONTWRITEBYTECODE 1<samp><br>
+                                <samp><code>ENV</code> PYTHONUNBUFFERED 1<samp><br><br>
+                                
+                                <samp># copy project<samp><br>
+                                <samp><code>COPY</code> . /usr/src/app<samp><br><br>
+                                
+                                <samp># install dependencies<samp><br>
+                                <samp><code>RUN</code> python -m pip install -r requirements.txt<samp><br>
+                                
+                                <samp><code>EXPOSE</code> 8000<samp><br><br>
+
+                                <samp># commands issued to container<samp><br>
+
+                                <samp><code>RUN</code> python myvenv/manage.py clearsessions<samp><br>
+                                <samp><code>RUN</code> python myvenv/manage.py makemigrations<samp><br>
+                                <samp><code>RUN</code> python myvenv/manage.py migrate<samp><br>
+                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:80"]<samp><br>
                         </p>
                     </div>
                 </div>
