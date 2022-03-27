@@ -361,7 +361,8 @@
                             <br>
 
                             <strong>3. Generate rotas</strong><br>
-                            <p> Step 3 is very similar to 'Daily Rota', instead, we call <code>generate_day_rota()</code> for
+                            <p> Step 3 is very similar to 'Daily Rota', instead, we call
+                                <code>generate_day_rota()</code> for
                                 each
                                 date
                                 and store these rotas in an array.
@@ -369,7 +370,8 @@
                             </p>
 
                             <strong>4. Display</strong><br>
-                            <p> Step 4 is very similar to 'Daily Rota'. We loop through the array of rotas and display each one
+                            <p> Step 4 is very similar to 'Daily Rota'. We loop through the array of rotas and display
+                                each one
                                 side by side. We display each rota in an identical fashion as 'Daily Rota'.
                             </p>
                         </section>
@@ -431,6 +433,45 @@
                                 The loop will also add buttons, such as cancel and update, to the card if necessary.
                             </p>
                         </section>
+
+                        <section>
+                            <h4 class="section-title text-gradient">PAS Checklist</h4><br>
+                            <p> The PAS checklist is handled by the <code>ChecklistView</code> class, appointments that haven't been confirmed on PAS
+                                are displayed. Once an admin staff has input changes into PAS, they can tick of the
+                                appointment from the checklist page. This section will explain how this functionality is
+                                implemented.</p><br>
+                                <strong>Fetch Appointments</strong>
+                                <p> In ChecklistView appointments that aren't confirmed on PAS are retrieved from the database and returned in the response to the template.
+
+                            <pre class="text-left"><code class="language-python">
+                            def get(self, request):
+                                super().fetch_details(request)
+                                appointmentsn = Appointment.objects.filter(
+                                    status_confirmed_on_pas='n')
+                                appointmentsN = Appointment.objects.filter(
+                                    status_confirmed_on_pas='N')
+                        
+                                appointments = appointmentsn | appointmentsN
+                                return render(request, 'website/checklist.html',
+                                                {'appointments': appointments,
+                                                'first_name': self.first_name})
+                        
+                            </code></pre>
+
+                            <p> These appointments are displayed with a Bootstrap card in a very similar fashion to how patients are displayed on the patients page, and appointments on the appointments page.
+                                Each appointment has a button to tick it off.
+                            </p>
+                            <strong>Tick Appointments</strong>
+                            <p> When a user clicks the button to tick the appointment the following actions are taken: <br>
+                                1. User is taken to /tick_appointment/pk.<br><br>
+                                2. urls.py sends to user to TickAppointmentView.py.<br><br>
+                                3. TickAppointmentView sets status_confirmed_on_pas to 'Y' and removes the comments about the changes.<br><br>
+                                4. User gets redirected to checklist.<br><br>
+
+                                This appointment will no longer appear on the checklist as its status_confirmed_on_pas is 'Y' and not 'N' or 'n'
+                            </p>
+                        </section>
+
                         <section>
                             <h4 class="section-title text-gradient">Update Patient</h4><br>
                             <p>This section describes how updating a patient works. Updating an appointment is very
@@ -535,7 +576,7 @@
                                 section.</p>
                             <strong> Clean Functions </strong>
                             <p>
-                                It is necessary to understand how the clean functions work 
+                                It is necessary to understand how the clean functions work
                                 to understand this section along
                                 with 'Add Appointment'.<br><br>
                                 Clean functions are used by <code>.is_valid()</code> to check the data. If a clean
@@ -714,10 +755,11 @@
 
                         <strong> Forms </strong>
                         <p> Filter functionality for the appointment page is implemented using a Django
-                            form. This is <strong>NOT</strong> a model form. The form used is called SearchAppointmentForm in forms.py.
+                            form. This is <strong>NOT</strong> a model form. The form used is called
+                            SearchAppointmentForm in forms.py.
                             It is a series of search bars with a single submit button.</p>
 
-                            <pre class="text-left"><code class="language-python">
+                        <pre class="text-left"><code class="language-python">
                             class SearchAppointmentForm(forms.Form):
                                 appointment_ID = forms.CharField(
                                     label='Search by ID',
@@ -729,7 +771,8 @@
                             User inputs to the forms are used to filter objects using <code>processQuery()</code>
                             function.
                             Below is a section of code for filtering appointments.
-                            The parameter dic is defined by <code>dic = form.cleaned_data</code>, it stored to inputs to the form by the user.
+                            The parameter dic is defined by <code>dic = form.cleaned_data</code>, it stored to inputs to
+                            the form by the user.
                             For each value in dic, if it is not None then appointment objects are filtered to
                             find
                             the particular appointments that match the search request.
