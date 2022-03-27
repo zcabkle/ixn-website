@@ -160,13 +160,13 @@
                         <section>
                             <h3 class="section-title text-gradient">Authentication</h3><br>
                             <p>
-                                In Django <code>LoginRequiredMixin</code> is an inheritance class which only allows
+                                In Django, <code>LoginRequiredMixin</code> is an inheritance class that only allows
                                 requests
                                 to
                                 a view
-                                class from logged in users. In this class, any unauthorised user will be redirected to
+                                class from logged-in users. In this class, any unauthorised user will be redirected to
                                 the
-                                log in page.
+                                log-in page.
                                 We implemented a view class called 'UserView' which inherits
                                 <code>LoginRequiredMixin</code>. All other
                                 view
@@ -195,7 +195,7 @@
                         <section>
                             <h3 class="section-title text-gradient">Admin Responsibilities</h3><br>
                             <p>
-                                Django's built in admin site allows admins to manage users as well as user groups and
+                                Django's built-in admin site allows admins to manage users as well as user groups and
                                 permissions.<br><br>
 
                                 At admin.py, <code>admin.site.register(model)</code> functions are used to register data
@@ -220,7 +220,7 @@
 
                                 In settings.py there exists a dictionary that contains the settings for the databases
                                 that
-                                would be used in the webapp.
+                                would be used in the web app.
                                 NAME specifies the name of the database and ENGINE specifies the type of database.
                             </p>
 
@@ -233,7 +233,7 @@
                                 }
                             </code></pre>
 
-                            <p>If connecting to another type of database, other parameters may be required such as
+                            <p>If connecting to another type of database, other parameters may be required, such as
                                 username,
                                 password and host.</p>
                             <br>
@@ -242,24 +242,24 @@
                         <section>
                             <h4 class="section-title text-gradient">Display Daily Rota</h4><br>
                             <p> This section describes how we show a user's daily timetable on the "My Rota" page. It is
-                                nessecary
+                                necessary
                                 to understand this process as generating weekly rota and team rota are variations of
                                 this
                                 process.
                             </p>
                             <strong>1. Identify logged in user</strong><br>
                             <p>
-                                The <code>UserView</code> class has a <code>fetch_details(self,request)</code> function
+                                The <code>UserView</code> class has a <code>fetch_details(self, request)</code> function
                                 which
                                 automatically fetches username and firstname for logged in users.
                                 It is a base class and is extended by RotaView.
                                 At RotaView, the user object can be identified by
                                 the fetched username.
                             </p>
-                            <strong>2. Identify required date</strong><br>
+                            <strong>2. Identify the required date</strong><br>
                             <p>
                                 A datetime picker is imported from "bootstrap_datepicker_plus.widgets". It works
-                                alongside jquery and Django forms to provide functionality
+                                alongside jquery and Django forms to provide the functionality
                                 to select a particular date on a GUI.
                                 When the user sends a valid form, either by entering the date manually or clicking on
                                 the
@@ -275,7 +275,7 @@
                                 by
                                 start time with
                                 these lines of code.
-                                As seen below we make use of Django's built in .filter() and .exclude() functions.
+                                As seen below we make use of Django's built-in .filter() and .exclude() functions.
                             </p>
                             <pre class="text-left"><code class="language-python">
                                     def generate_rota_appointments_ordered(self, selected_date, user):
@@ -294,12 +294,12 @@
                                 called
                                 to assign each appointment to its time slots. This is done by looking at the start time
                                 of
-                                each appointment and the appointment type, which determines the amount of slots taken
+                                each appointment and the appointment type, which determines the number of slots taken
                                 up.
                                 Each appointment is filled into its timeslots on tmp_rota, which is an empty dictionary
                                 with
                                 time
-                                slot as keys and
+                                slots as keys and
                                 appointment objects as values.
                                 tmp_rota is a duplicate of DAY_ROTA which can be found in constants.py.
                                 The view class then renders the template and returns this rota in the response.
@@ -321,13 +321,13 @@
                             </code></pre>
                             <strong>4. Display</strong>
                             <p>
-                                The template recieves the rota from the view class. Using a loop and a table we display
+                                The template receives the rota from the view class. Using a loop and a table we display
                                 the
                                 rota graphically. Looping through the dictionary creates the rows in the table.
                                 If statements are used to determine how the row should look, depending on whether
-                                dictionary
+                                the dictionary
                                 value is populated or empty; the different row colours are implemented using Bootstrap.
-                                'Add New Appointment' button is implementated using a Bootstrap, it is embedded with a
+                                'Add New Appointment' button is implemented using Bootstrap, it is embedded with a
                                 link
                                 and clicking the button will
                                 take the user to a form.
@@ -345,13 +345,13 @@
                             <p> This process is nearly identical to displaying a daily rota as above.</p>
                             <strong>1. Identify logged in user</strong><br>
                             <p>
-                                Same case as above.
+                                Same case as 'Daily Rota'.
                             </p>
                             <br>
                             <strong>2. Identify required dates</strong><br>
 
                             <p>
-                                As above, user selects a date manually or through the GUI.
+                                As above, the user selects a date manually or through the GUI.
                                 We generate an array of 7 consecutive days from this date, this is the week we will
                                 display.
                                 It is stored under <strong>VARIABLE</strong>.
@@ -361,7 +361,7 @@
                             <br>
 
                             <strong>3. Generate rotas</strong><br>
-                            <p> Step 3 is very similar to above, instead we call <code>generate_day_rota()</code> for
+                            <p> Step 3 is very similar to 'Daily Rota', instead, we call <code>generate_day_rota()</code> for
                                 each
                                 date
                                 and store these rotas in an array.
@@ -369,8 +369,8 @@
                             </p>
 
                             <strong>4. Display</strong><br>
-                            <p> Step 4 is very similar to above. We loop through the array of rotas and display each one
-                                side by side. We display each rota in an identical fashion as above.
+                            <p> Step 4 is very similar to 'Daily Rota'. We loop through the array of rotas and display each one
+                                side by side. We display each rota in an identical fashion as 'Daily Rota'.
                             </p>
                         </section>
                         <br><br>
@@ -378,7 +378,7 @@
                             <h4 class="section-title text-gradient">Display Patient List</h4>
                             <br>
                             <strong>1. Fetch data</strong>
-                            <p> In <code>WaitingListView</code> class, patients are seperated to
+                            <p> In <code>WaitingListView</code> class, patients are separated into
                                 <code>bookedPatients</code>
                                 and <code>waitingPatients</code>. These queries are passed to the response by the view.
                             </p>
@@ -388,7 +388,7 @@
                                 waitingPatients = Patient.objects.all().exclude(patient_status=booked)
                                 </code></pre>
                             <br>
-                            <strong>2.Display </strong>
+                            <strong>2. Display </strong>
                             <p> Bootstrap cards are used as content containers in our HTML templates.
                                 We used for loops to generate a card and to dynamically fill in a patient's data to that
                                 card.
@@ -398,10 +398,10 @@
                         <section>
                             <h4 class="section-title text-gradient">Display Appointment List</h4><br>
                             <strong>1. Fetch data</strong>
-                            <p>In <code>AppointmentView</code> class, appointments are seperated
+                            <p>In <code>AppointmentView</code> class, appointments are separated
                                 into past, upcoming and cancelled. This is done so through a simple for loop.
                                 We take all non-cancelled appointments and loop through them. For each appointment, if
-                                appointment_date is before today is goes to an array storing past appointments
+                                appointment_date is before today it goes to an array storing past appointments
                                 otherwise it does to an array storing future appointments.
 
                             <pre class="text-left"><code class="language-python">
@@ -425,10 +425,10 @@
                             <p>These queries and arrays are passed to the response by the view.</p>
 
                             <strong>2. Display</strong>
-                            <p> Bootstrap cards are used as content containers our HTML templates.
-                                For each array/query given to the template we do a seperate loop.
+                            <p> Bootstrap cards are used as content containers for our HTML templates.
+                                For each array/query given to the template, we do a separate loop.
                                 The loops generates a card and dynamically fills in an appointment's data to that card.
-                                The loop will also add buttons, such as cancel and update, to the card if nessecary.
+                                The loop will also add buttons, such as cancel and update, to the card if necessary.
                             </p>
                         </section>
                         <section>
@@ -437,7 +437,7 @@
                                 similar to this process.</p>
                             <strong> Model Forms </strong>
                             <p>
-                                It is nessecary to understand how the Django <code>ModelForm</code> class works in order
+                                It is necessary to understand how the Django <code>ModelForm</code> class works in order
                                 to understand this section along
                                 with Add Patient, Update Appointment and Update Patient.<br><br>
                                 This class creates a form from a Django model.
@@ -460,11 +460,11 @@
                                 </code></pre>
 
                             <strong> is_valid() </strong>
-                            <p> It is also nessecary to understand how <code>.is_valid()</code> works in order to
+                            <p> It is also necessary to understand how <code>.is_valid()</code> works to
                                 understand this section along
                                 with Add Patient, Update Appointment and Update Patient.<br><br>
 
-                                By default this function checks the data input into the fields. If and only if there is
+                                By default, this function checks the data input into the fields. If and only if there is
                                 a violation regarding the type of data input to the field, then is_valid returns false.
                                 For example, using the code snippet above, if <code>'hello'</code> is input to the
                                 <code>PAS_number</code> field then <code>is_valid()</code> will return false.
@@ -501,7 +501,7 @@
                             <strong> Post Method </strong>
                             <p> If the user is posting to the update patient page the functionality works as
                                 follows.<br><br>
-                                1. UpdatePatientView recieves the form and checks if it is vaild using
+                                1. UpdatePatientView receives the form and checks if it is valid using
                                 <code>.is_valid()</code><br>
                                 2. If it is valid then the form is saved to the database and the user gets
                                 redirected<br>
@@ -531,23 +531,25 @@
                         <section>
                             <h4 class="section-title text-gradient">Update Appointment</h4><br>
                             <p>This section describes how updating an appointment works. Updating an appointment is very
-                                similar to updating a patients. Please fully read 'Update Patient' before reading this
+                                similar to updating a patient. Please fully read 'Update Patient' before reading this
                                 section.</p>
                             <strong> Clean Functions </strong>
                             <p>
-                                It is nessecary to understand how the clean functions works in order
+                                It is necessary to understand how the clean functions work 
                                 to understand this section along
-                                with Add Appointment .<br><br>
+                                with 'Add Appointment'.<br><br>
                                 Clean functions are used by <code>.is_valid()</code> to check the data. If a clean
-                                funciton isn't defined, for example in a patient form, then <code>.is_valid()</code>
+                                function isn't defined, for example in a patient form, then <code>.is_valid()</code>
                                 works as described in Update Patient. However, when we are updating appointments we want
-                                to check for appointment clashes so we define a clean function that performs the check that are performed by the default
+                                to check for appointment clashes so we define a clean function that performs the checks
+                                that are performed by the default
                                 <code>is_valid()</code> function and also checks for appointment clashes. <br><br>
-                                
-                                This funciton raises validation errors if there are any problems with the inputs.
-                                These validation errors will be displayed to the used in the event that they cant submit the form. <br><br>
-                                
-                                *this code snippet is quite large, but it can be found in forms.py
+
+                                This function raises validation errors if there are any problems with the inputs.
+                                These validation errors will be displayed to the user if they cant submit
+                                the form. <br><br>
+
+                                *This code snippet is quite large, but it can be found in forms.py
                             </p>
 
                             <strong> Get Method </strong>
@@ -558,7 +560,7 @@
                                 2. urls.py sends the user to UpdateAppointmenttView.<br>
                                 3. UpdateAppointmentView uses this pk to fetch the appointment object with this primary
                                 key.<br>
-                                4. UpdateAppointmentView creates a AppointmentForm for a appointment and fills in the
+                                4. UpdateAppointmentView creates an AppointmentForm for an appointment and fills in the
                                 form with the
                                 appointment's information.<br>
                                 5. UpdateAppointmentView renders this form in the template.<br><br>
@@ -569,12 +571,15 @@
                             <strong> Post Method </strong>
                             <p> If the user is posting to the update appointment page the functionality works as
                                 follows.<br><br>
-                                1. UpdateAppointmentView recieves the form and checks if it is vaild using
-                                <code>.is_valid()</code>, this <code>is_valid()</code> function uses the clean funciton that we defined. So it also check for appointment clashes.<br>
-                                2. If it is valid then the end time is calculated, the form is saved to the database and the user gets
+                                1. UpdateAppointmentView receives the form and checks if it is valid using
+                                <code>.is_valid()</code>, this <code>is_valid()</code> function uses the clean function
+                                that we defined. So it also checks for appointment clashes.<br>
+                                2. If it is valid then the end time is calculated, the form is saved to the database and
+                                the user gets
                                 redirected<br>
                                 3. Else, the user cant submit the form and an error message will explain what is wrong
                                 with the form.<br>
+                            </p>
 
                             <pre class="text-left"><code class="language-python">
                                 def post(self, request, appointment_id):
@@ -602,97 +607,145 @@
 
                         </section>
 
+                        <section>
+                            <h4 class="section-title text-gradient">Add Patient</h4><br>
+                            <p>This section describes how adding a patient works. Updating a patient is very similar to
+                                this process, please read 'Update Patient' before reading this section.</p>
 
-                        <p>##################################################</p>
-                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or
-                            patients
-                        </h4><br>
-                        <br>
-                        <strong>Forms</strong>
+                            <strong> Get Method </strong>
+                            <p>If the user is getting the update patient page, the functionality works as
+                                follows:<br><br>
+                                1. User clicks update patient button which brings them to the URL,
+                                /add_patient<br>
+                                2. urls.py sends the user to AddPatientView.<br>
+                                3. AddPatientView creates an empty PatientForm.<br>
+                                4. UpdatePatientView renders this form in the template.<br>
+                            </p>
+
+                            <strong> Post Method </strong>
+                            <p> If the user is posting to the add patient page the functionality works as
+                                follows.<br><br>
+                                1. AddPatientView recieves the form and checks if it is vaild using
+                                <code>.is_valid()</code>. <code>.is_valid()</code> works as described in 'Update
+                                Patient'.<br>
+                                2. If it is valid then the form is saved to the database and the user gets
+                                redirected<br>
+                                3. Else, the user cant submit the form and an error message will explain what is wrong
+                                with the form.<br>
+
+                        </section>
+
+                        <section>
+                            <h4 class="section-title text-gradient">Add Appointment</h4><br>
+                            <p>This section describes how adding an appointment works. Updating an appointment is very
+                                similar to
+                                this process, please read 'Update Appointment' before reading this section.</p>
+
+                            <strong> Get Method </strong>
+                            <p> If the user is getting the add appointment page, the functionality works as
+                                follows:<br><br>
+                                1. User clicks add appointment button which brings them to the URL,
+                                /add_appointment.<br>
+                                2. urls.py sends the user to AddAppointmenttView.<br>
+                                3. AddAppointmentView creates an empty AppointmentForm.<br>
+                                4. AddAppointmentView renders this form in the template.<br><br>
+
+                                *This works identically to adding a patient
+                            </p>
+
+                            <strong> Post Method </strong>
+                            <p> If the user is posting to the add appointment page the functionality works as
+                                follows.<br><br>
+                                1. AddAppointmentView receives the form and checks if it is valid using
+                                <code>.is_valid()</code>, this <code>is_valid()</code> function uses the clean function
+                                that we defined. So it also checks for appointment clashes.
+                                Read about the clean method in 'Update Appointment'<br>
+                                2. If it is valid then the end time is calculated, the form is saved to the database and
+                                the user gets
+                                redirected<br>
+                                3. Else, the user cant submit the form and an error message will explain what is wrong
+                                with the form.<br>
+
+                        </section>
+                        <section>
+                            <h4 class="section-title text-gradient">Delete Patient</h4><br>
+                            <p>Deleting a patient is handled by DeletePatientView.py</p>
+                            <strong>1. Delete a patient if they exist.</strong>
+                            <p> This functionality is accessed by the URL /delete_patient/pk. To check that a patient
+                                with this pk exists we try to query a patient with this pk. If an error is thrown then
+                                they don't exist. If an error is not thrown then they exist and we delete the patient.
+                            </p>
+
+                            <strong>2. Generate message.</strong>
+                            <p>
+                                We also create a message for the user to be displayed in the green panel on our
+                                interface.
+                            </p>
+
+                            <strong>3. Display.</strong>
+                            <p>
+                                The view renders the patients page and displays all of the patients that still exist on
+                                the database. The message is also rendered in the notification panel.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h4 class="section-title text-gradient">Cancel Appointment</h4>
+                            <p> Cancelling appointments uses CancelAppointmentView.py and this file will be referred to
+                                throughout this section. </p>
+                            <strong> Get Method </strong>
+                            <p>
+                                Cancel appointment functionality works as follows:<br><br>
+
+                                1. User accesses cancel_appointment/pk then urls.py sends the user to
+                                CancelAppointmentView.py.<br>
+                                2. If it is less than 2 days before the appointment, a message is added to the
+                                appointment which can be viewed on the PAS checklist.<br>
+                                3. Appointment status is set to 'Cancelled' and status_confirmed_on_pas is set to
+                                'N'.<br>
+                                4. Information for patients page is generated and the patients page is rendered.<br>
+                            </p>
+                        </section>
+
+
+                        <h4 class="section-title text-gradient">Filters</h4>
+                        <p> *filter functionality for appointments and patients is implemented identically, for
+                            simplicity's sake, this document will only discuss filtering appointments.</p>
+
+                        <strong> Forms </strong>
+                        <p> Filter functionality for the appointment page is implemented using a Django
+                            form. This is <strong>NOT</strong> a model form. The form used is called SearchAppointmentForm in forms.py.
+                            It is a series of search bars with a single submit button.</p>
+
+                            <pre class="text-left"><code class="language-python">
+                            class SearchAppointmentForm(forms.Form):
+                                appointment_ID = forms.CharField(
+                                    label='Search by ID',
+                                    max_length=100, required=False)
+                                ...
+                            </code></pre>
+                        <strong>Processing Input</strong><br>
                         <p>
-                            Users make changes to appointments or patients data through django model forms.
-                            All of the django forms are written in form.py. They are then imported by View classes and
-                            sent
-                            to be rendered in templates.
-                            User's input to the form will be stored in form attribute <code>clean()</code>.
-                            At view class Model Form <code>save()</code>method is call to creates and saves a database
-                            object or update a current data object from the data recieved in form.
-                        </p>
-                        <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data
-                            format
-                            and raise validationError otherwise.
-                            It also calculate start time and end time for user input appointment and check if it clashes
-                            with existing appointment.
-                        </p>
-                        <br>
-                        <strong>Modifying</strong>
-                        <p>To update a existing appointment or patients, the pk value from URLs are used to identify
-                            objects
-                            at view class.
-                            Below is a example of update patient view class.
-                            The parameter<code>(instance=patient)</code> tells the form the modify existing object
-                            patient.<br>
-                        </p>
-                        <pre class="text-left"><code class="language-python">
-                        <span style="color:orange;">Class </span><span style="color:blue;">UpdatePatientView</span>(UserView):
-                            <span style="color:orange;">def</span> <span style="color:blue;">get</span>(self,request,patient_id):
-                                super().fetch_details(request)
-                                <span style="color:green;">patient</span> = Patient.objects.get(pk=patient_id)
-                                <span style="color:green;">form</span> = PatientForm(request.POST or None, 
-                                    instance=<span style='color:green;'>patient</span>)
-                                return render(request, 'website/update_patient.html',
-                                            {'patient': <span style='color:green;'>patient</span>, 'form': <span style='color:green;'>form</span>,
-                                            'first_name': self.first_name})
-                            
-                            <span style="color:orange;">def</span> <span style="color:blue;">post</span>(self,request,patient_id):
-                                super().fetch_details(request)
-                                <span style='color:green;'>patient</span> = Patient.objects.get(pk=patient_id)
-                                <span style='color:green;'>form</span> = PatientForm(request.POST or None, 
-                                    instance=<span style='color:green;'>patient</span>)
-                                
-                                if form.is_valid():
-                                    <span style='color:red'>form.save()</span>
-                                    return redirect('/wait_list')
-                                return render(request, 'website/update_patient.html',
-                                                {'patient': <span style='color:green;'>patient</span>, 'form': <span style='color:green;'>form</span>
-                                                'first_name': self.first_name})
-                        </code></pre>
-                        <strong>Cancelling</strong><br>
-                        <p>When CancelAppointmentView is requested, appointment object is identified using
-                            pk(appointment_id)from URLs.
-                            The appointment status of this appointment object is then set to cancelled.
-                            Then the viewclass will redo the appointment categorize process and render the
-                            appointments.html
-                            with new data set.
-                            It will calculate if appointment is canceled within 2 days and send notitification if
-                            so.<br>
-                            Delete patient functionality is implementated in similar methods.
-                        </p>
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Filters</h4>
-                        <p>Filter functionality for Appointment page and Patient page are implementated using django
-                            form as
-                            well.
-                            User inputs to the forms are used to filter objects using<code>processQuery()</code>
+                            User inputs to the forms are used to filter objects using <code>processQuery()</code>
                             function.
-                            Below is a section of code for filtering appointments at appointment View.
-                            The parameter dic is defined by <code> dic = form.cleaned_data</code>, It stores userinputs.
-                            If userinput in the dic for a attribute is not none, appointment objects are filtered to
+                            Below is a section of code for filtering appointments.
+                            The parameter dic is defined by <code>dic = form.cleaned_data</code>, it stored to inputs to the form by the user.
+                            For each value in dic, if it is not None then appointment objects are filtered to
                             find
-                            the particular appointments that match requirements.
-                            These appointment are then used to render templates.
+                            the particular appointments that match the search request.
+                            These appointments are sent to the appointments page to be displayed.
                         </p>
                         <pre class="text-left"><code class="language-python">
-                            <span style="color:orange;">def </span><span style="color:blue">processQuery</span>(self,dic,appointments):
-                                <span style="color:green;">appointment_ID</span>= dic['appointment_ID']
-                                <span style="color:green;">PAS_number</span>=dic['PAS_number']
+                            <span style="color:orange;">def </span><span style="color:blue">processQuery</span>(self, dic, appointments):
+                                <span style="color:green;">appointment_ID</span> = dic['appointment_ID']
+                                <span style="color:green;">PAS_number</span> = dic['PAS_number']
                                 ...
                                 <span style="color:red;">if </span><span style="color:green;">appointment_ID</span>:
                                     <span style="color:green;">appointments</span> = <span style="color:green;">appointments</span>.filter
-                                        (appointment_ID =<span style="color:green;">appointment_ID</span>)
+                                        (appointment_ID=<span style="color:green;">appointment_ID</span>)
                                 <span style="color:red;">if </span><span style="color:green;">PAS_number</span>:
                                     <span style="color:green;">appointments</span> = <span style="color:green;">appointments</span>.filter
-                                        (PAS_number =<span style="color:green;">PAS_number</span>)
+                                        (PAS_number=<span style="color:green;">PAS_number</span>)
                                 ...
                                 return <span style="color:green">appointments</span>
                         </code>
