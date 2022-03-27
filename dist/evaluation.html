@@ -74,30 +74,36 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="requirements.html">Requirements</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="requirements.html">Requirements</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System Design</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="implementation.html">Implementation</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System
+                            Design</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="implementation.html">Implementation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/gradient.png')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>Evaluation</h1>
-                        </div>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/gradient.png')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Evaluation</h1>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </header>
     <!-- Main Content-->
@@ -227,7 +233,7 @@
                                 <td>✔</td>
                                 <td></td>
                             </tr>
-                            <tr class="table-secondary">
+                            <tr class="table-danger">
                                 <th scope="rol">15</th>
                                 <td>Hide patient already seen from timetable.</td>
                                 <td>Should</td>
@@ -241,7 +247,7 @@
                                 <td>✔</td>
                                 <td></td>
                             </tr>
-                            <tr class="table-secondary">
+                            <tr class="table-danger">
                                 <th scope="rol">17</th>
                                 <td>Arrange free slots between each appointments in a day.</td>
                                 <td>Should</td>
@@ -255,7 +261,7 @@
                                 <td>✔</td>
                                 <td></td>
                             </tr>
-                            <tr class="table-secondary">
+                            <tr class="table-danger">
                                 <th scope="rol">19</th>
                                 <td>Suggest patients from waitlists according to their waiting time and urgency.
                                 </td>
@@ -263,24 +269,24 @@
                                 <td>✖</td>
                                 <td></td>
                             </tr>
-                            <tr class="table-secondary">
+                            <tr class="table-danger">
                                 <th scope="rol">20</th>
                                 <td>Automatic time slot suggestion when scheduling a patient.</td>
                                 <td>Could</td>
                                 <td>✖</td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="table-secondary">
                                 <th scope="rol">21</th>
                                 <td>Manufacturing Tracking.</td>
-                                <td>Won't have</td>
+                                <td>Won't</td>
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="table-secondary">
                                 <th scope="rol">22</th>
                                 <td>Statistics Tracking.</td>
-                                <td>Won't have</td>
+                                <td>Won't</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -376,8 +382,8 @@
                                 <td>✔</td>
 
                             </tr>
-                            <tr class="">
-                                <th scope="'rol">10</th>
+                            <tr class="table-secondary">
+                                <th scope="rol">10</th>
                                 <td>System integration with PAS and OpenEyes.</td>
                                 <td>Won't</td>
                                 <td></td>
@@ -490,12 +496,46 @@
                     </table>
                     <br>
                     <h2 class="section-title text-gradient">Known Bugs</h2><br>
-                    <p>
-                        We keep track of issues in our google docs.
-                        We had a problem with setting date format for the date time picker but we manages to solved it
-                        after reading documentations and posting on stackoverfow.<br>
-                        We still have improvements left on our list but the bug list is now empty!
-                    </p>
+                    <p> This is a list of known bugs, their severity is ranked from <span
+                            class="excellent"><strong>Low</strong></span>, <span
+                            class="good"><strong>Medium</strong></span> and <span
+                            class="bad"><strong>High</strong></span>.</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Bug Description</th>
+                                <th scope="col">Severity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p> Users can set an already cancelled appointmemt back to booked status.
+                                        This should not be allowed. Users should instead create a completely new
+                                        appointmemt to replace the cancelled one.</p>
+                                </td>
+                                <td><span class="good"><strong>Medium</strong></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>If searching for a cancelled appointment, the result will be displayed under
+                                        'Upcoming Appointments' and a cancel button will be displayed. A user should not
+                                        be able to cancel an already cancelled appointment.</p>
+                                </td>
+                                <td><span class="good"><strong>Medium</strong></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p> On the appointmemt form, the dropdown list for appointmemt code section
+                                        displays<br> "appointment code object N07" instead of "N07".</p>
+
+                                </td>
+                                <td><span class="excellent"><strong>Low</strong></span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                     <br>
 
                     <h1 class="section-title text-gradient header-underline">Critical Evaluation</h1><br>
@@ -601,7 +641,8 @@
                         major requirements.<br><br>
 
                         Overall we produced a proof-of-concept that Moorfields is very satisfied with and solves
-                        Moorfields major frictions with the current system and achieves 89% of the functionality
+                        Moorfields major frictions with the current system and achieves <span
+                            class="excellent"><strong>89%</strong></span> of the functionality
                         outlined in our functional MoSCoW list.<br><br>
 
 
@@ -722,8 +763,9 @@
 
                         During the implementation phase it was easier for us to allocate tasks on a google doc than on
                         trello. The google doc had a list with checkboxs of tasks that needed to be completed. The tasks
-                        were colour coded based on priority and who was assigned to it. Most of the team completed tasks
-                        by the time that they were set.<br><br>
+                        were colour coded based on priority and who was assigned to it. A majority of the team completed
+                        tasks
+                        by the agreed deadlines.<br><br>
 
                         We used telegram to communicate with team mates and email to communicate with
                         Moorfields.<br><br>
@@ -733,16 +775,46 @@
                     </p>
                     <br>
 
-                    <h1 class="section-title text-gradient header-underline">Further work</h1>
-                    <p>If more time are given, we will make following improvements<br>
-                        1. Make log in box presents at the middle of the page, with 'fogot password' functionality<br>
-                        2. Provide instruction on how to select multiple team members at team rota.<br>
-                        3. Improve page layout for mobiles and ipads<br>
-                        4. Prompts that require users to confirm their actions.
-                        5. Functionality for Manufacturing Tracking<br>
-                        6. Automated patient suggestion according to their appointmemt type and wait time.<br>
-                        7. Intergrated with PAS and OpenEye systems.
+                    <h1 class="section-title text-gradient header-underline">Further Work</h1>
+                    <p> If more time was given, we would make implement the following features to further improve our
+                        system:<br><br>
+                        1. We would integrate our system with PAS. Doing so would save time on things like adding
+                        patients to the workflow application. We could also add functionality to automatically create
+                        and
+                        send letters to patients once appointments have been made, this would save time for the admin
+                        staff.<br><br>
 
+                        2. Automatic appointment allocation. This was one of the suggestions made when exploring the
+                        requirements at the start of the project.
+                        We thought it was too complex to fully implement in our timeframe. Future developers could use
+                        information about previous appointments
+                        to predict when the best time is to book a new appointment and automatically book this
+                        appointment in.<br><br>
+
+                        3. Further support for mobile device users. Moorfields primarily use computers to manage
+                        patients so we spent all of our time
+                        designing our UI for a computer user, however, using Bootstrap meant that all of the content is
+                        still visible on mobile devices.
+                        In the future we believe we could provide a more usable UI for mobile devices if we spent more
+                        designing specifically for these devices.<br><br>
+
+                        4. Improve the login experience. Currently our login page is very bare-bones. If we had extra
+                        time, we would consult users on how to improve the experience.
+                        We believe that implementing 'Forgot Password' functionality may be one way to improve the user
+                        experience when logging in.<br><br>
+
+                        5. Prompts that require users to confirm their actions. Currently, a user can delete an
+                        appointment at the click of a button. Although the purpose of the
+                        button is very clear, it may be a good idea to ask users to confirm their actions to avoid
+                        mistakes from occuring when using the system. If it takes a significant
+                        amount of extra admin work to rebook the appointment, this functionality could be incredibly
+                        useful.<br><br>
+
+                        6. Functionality for manufacturing tracking. We explored this functionality at the start of the
+                        project however we decided to
+                        narrow the scope and to not implement this in our system. Once our system if polished it could
+                        be useful for Moorfields to track which
+                        materials were used for which prosthetic.<br>
 
                     </p>
                 </div>
