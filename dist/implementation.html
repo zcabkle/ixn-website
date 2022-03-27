@@ -220,7 +220,6 @@
                                 ...
                          </code>
                          </pre>
-<<<<<<< HEAD
                     <br>
                     <strong>3.Generating Dynamic Data </strong>
                     <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
@@ -237,27 +236,6 @@
                     </p>
                     <br>
                     <pre class="text-left"><code class="language-python">
-=======
-                        <br>
-                        <strong>3.Generating Dynamic Data </strong>
-                        <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
-                            When requested,firstly the
-                            <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all
-                            appointment objects and use django build in object.all().filter() method to get a list of
-                            all appointments belonging to logged in users and booked at selected date. Appointments that
-                            has
-                            been canceled are excluded.
-                            Then the <code>generate_day_rota(rota_appointments_ordered, tmp_rota)</code> function is
-                            called
-                            to matche appointment types and assign each appointment different amount of slots.
-                            It then generate a dictionary with static time slot as keys and its corresponding
-                            appointment
-                            object as values.
-                            The view class then renders templates and return responses.
-                        </p>
-                        <br>
-                        <pre class="text-left"><code class="language-python">
->>>>>>> 4f811d7a12a822a6c9ab1b10b7d8ba76b92248eb
                             <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
                                 ...
                                 tmp_rota = DAY_ROTA.copy()
@@ -280,7 +258,6 @@
 
                              </code>
                          </pre>
-<<<<<<< HEAD
                     <br>
                     <strong>4.Display</strong>
                     <p>
@@ -340,75 +317,6 @@
                         patient.<br>
                     </p>
                     <pre class="text-left"><code class="language-python">
-=======
-                        <br>
-                        <strong>4.Display</strong>
-                        <p>
-                            Boostrap table is used to build html templates.
-                            The template recieves static time slots and rota data from a view class ,it then uses nested
-                            if
-                            statements and for loops to fill in informations for timetable.
-                            The timetable presents different colours for empty slots and booked slots by using bootstrap
-                            contextual classes to color table rows.
-                            Add new appointment function is implementated using a button with link to add new
-                            appointment
-                            forms.
-                            The patient name and ID are stored in timetable as a link to another templates showing more
-                            details.
-                            <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png"
-                                alt="Card image cap">
-                        </p>
-
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4>
-                        <br>
-                        <strong>1.Categorize data</strong>
-                        <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting
-                            Patients
-                            using <code>Patient.objects.all().filter() </code>function<br>
-                            In AppointmentView class, appointment objects are categorized to Upcoming appointments,
-                            Cancelled appointments and Past appointments using similar methods.
-                            Both classes use HTTP GET request to perform above functions.
-                            Templates are rendered after this.
-                        </p>
-                        <br>
-                        <strong>2.Display </strong>
-                        <p>Bootstrap Cards are used as content containers in html templates.
-                            We For loops to dynamically fill in patient's and appointment's data to corresponding cards
-                        </p>
-
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or
-                            patients
-                        </h4><br>
-                        <br>
-                        <strong>Forms</strong>
-                        <p>
-                            Users make changes to appointments or patients data through django model forms.
-                            All of the django forms are written in form.py. They are then imported by View classes and
-                            sent
-                            to be rendered in templates.
-                            User's input to the form will be stored in form attribute <code>clean()</code>.
-                            At view class Model Form <code>save()</code>method is call to creates and saves a database
-                            object or update a current data object from the data recieved in form.
-                        </p>
-                        <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data
-                            format
-                            and raise validationError otherwise.
-                            It also calculate start time and end time for user input appointment and check if it clashes
-                            with existing appointment.
-                        </p>
-                        <br>
-                        <strong>Modifying</strong>
-                        <p>To update a existing appointment or patients, the pk value from URLs are used to identify
-                            objects
-                            at view class.
-                            Below is a example of update patient view class.
-                            The parameter<code>(instance=patient)</code> tells the form the modify existing object
-                            patient.<br>
-                        </p>
-                        <pre class="text-left"><code class="language-python">
->>>>>>> 4f811d7a12a822a6c9ab1b10b7d8ba76b92248eb
                         <span style="color:orange;">Class </span><span style="color:blue;">UpdatePatientView</span>(UserView):
                             <span style="color:orange;">def</span> <span style="color:blue;">get</span>(self,request,patient_id):
                                 super().fetch_details(request)
@@ -432,7 +340,6 @@
                                                 {'patient': <span style='color:green;'>patient</span>, 'form': <span style='color:green;'>form</span>
                                                 'first_name': self.first_name})
                         </code></pre>
-<<<<<<< HEAD
                     <strong>Cancelling</strong><br>
                     <p>When CancelAppointmentView is requested, appointment object is identified using
                         pk(appointment_id)from URLs.
@@ -454,34 +361,6 @@
                         These appointment are then used to render templates.
                     </p>
                     <pre class="text-left"><code class="language-python">
-=======
-                        <strong>Cancelling</strong><br>
-                        <p>When CancelAppointmentView is requested, appointment object is identified using
-                            pk(appointment_id)from URLs.
-                            The appointment status of this appointment object is then set to cancelled.
-                            Then the viewclass will redo the appointment categorize process and render the
-                            appointments.html
-                            with new data set.
-                            It will calculate if appointment is canceled within 2 days and send notitification if
-                            so.<br>
-                            Delete patient functionality is implementated in similar methods.
-                        </p>
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Filters</h4>
-                        <p>Filter functionality for Appointment page and Patient page are implementated using django
-                            form as
-                            well.
-                            User inputs to the forms are used to filter objects using<code>processQuery()</code>
-                            function.
-                            Below is a section of code for filtering appointments at appointment View.
-                            The parameter dic is defined by <code> dic = form.cleaned_data</code>, It stores userinputs.
-                            If userinput in the dic for a attribute is not none, appointment objects are filtered to
-                            find
-                            the particular appointments that match requirements.
-                            These appointment are then used to render templates.
-                        </p>
-                        <pre class="text-left"><code class="language-python">
->>>>>>> 4f811d7a12a822a6c9ab1b10b7d8ba76b92248eb
                             <span style="color:orange;">def </span><span style="color:blue">processQuery</span>(self,dic,appointments):
                                 <span style="color:green;">appointment_ID</span>= dic['appointment_ID']
                                 <span style="color:green;">PAS_number</span>=dic['PAS_number']
@@ -496,17 +375,9 @@
                                 return <span style="color:green">appointments</span>
                         </code>
                         </pre>
-<<<<<<< HEAD
                 </div>
             </div>
         </div>
-=======
-                    </div>
-                </div>
-            </div>
-        </section>
-
->>>>>>> 4f811d7a12a822a6c9ab1b10b7d8ba76b92248eb
     </main>
     <!-- Footer-->
     <footer class="border-top">
@@ -541,11 +412,7 @@
                     </ul>
                     <div class="small text-center text-muted fst-italic">
                         <p>Copyright © 2021 - 2022
-<<<<<<< HEAD
                             <a href="https://www.moorfields.nhs.uk/">Moorfields Hospital</a>
-=======
-                            <a href="!#">Moorfields Hospital</a>
->>>>>>> 4f811d7a12a822a6c9ab1b10b7d8ba76b92248eb
                             ,
                             <a href="https://www.linkedin.com/in/arslan-aftab-472425198/">Arslan Aftab</a>
                             ,
