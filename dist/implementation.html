@@ -438,7 +438,8 @@
                                 <code>wait_list.html</code><br><br>
 
                                 Displaying the patients is handled by <code>WaitingListView</code> in
-                                <code>WaitingListView.py</code></p>
+                                <code>WaitingListView.py</code>
+                            </p>
                             <br>
                             <strong>1. Fetch data</strong>
                             <p>
@@ -468,7 +469,8 @@
                                 <code>appointments.html</code><br><br>
 
                                 Displaying the appointments is handled by <code>AppointmentView</code> in
-                                <code>AppointmentView.py</code></p>
+                                <code>AppointmentView.py</code>
+                            </p>
                             <br>
 
                             <strong>1. Fetch data</strong>
@@ -498,31 +500,39 @@
                             cancelledAppointments = Appointment.objects.all().filter(
                                 appointment_status=cancelled)
                             </code></pre>
-                            <p>These queries and arrays are passed to <code>appointments.html</code> by <code>AppointmentView</code> in the response.</p>
+                            <p>These queries and arrays are passed to <code>appointments.html</code> by
+                                <code>AppointmentView</code> in the response.
+                            </p>
 
                             <strong>2. Display</strong>
                             <p> Bootstrap cards are used as content containers for our HTML templates.
                                 For each array/query given to the template, we do a separate loop.
-                                The loops generate a card for each appointment and dynamically fill in the appointment's data to that card.
+                                The loops generate a card for each appointment and dynamically fill in the appointment's
+                                data to that card.
                                 The loop will also add buttons, such as cancel and update, to the card if necessary.
                             </p>
                         </section>
 
                         <section>
                             <h4 class="section-title text-gradient">PAS Checklist</h4><br>
-                            <p> This section describes how the PAS checklist is implemented on <code>checklist.html</code>.<br><br>
+                            <p> This section describes how the PAS checklist is implemented on
+                                <code>checklist.html</code>.<br><br>
 
-                                
-                                
+
+
                                 The PAS checklist is used by admin staff. Appointments that
                                 haven't been confirmed on PAS
-                                are displayed on this page. Once an admin staff has input the changes into PAS, they can tick of the
-                                appointment from the <code>checklist.html</code>. <br><br>
+                                are displayed on this page. Once an admin staff has input the changes into PAS, they can
+                                tick of the
+                                appointment from the <code>checklist.html</code> page.<br><br>
 
-                                The PAS checklist is handled by <code>ChecklistView</code> which can be found in <code>ChecklistView.py</code>. <br></p>    
+                                The PAS checklist is handled by <code>ChecklistView</code> which can be found in
+                                <code>ChecklistView.py</code>. <br>
+                            </p>
                             <strong>Fetch Appointments</strong>
-                            <p> In ChecklistView appointments that aren't confirmed on PAS are retrieved from the
-                                database and returned in the response to the template.
+                            <p> In <code>ChecklistView</code> appointments that aren't confirmed on PAS are retrieved
+                                from the
+                                database and returned to the template (<code>checklist.html</code>) in the response.
 
                             <pre class="text-left"><code class="language-python">
                             def get(self, request):
@@ -539,36 +549,53 @@
                         
                             </code></pre>
 
-                            <p> These appointments are displayed with a Bootstrap card in a very similar fashion to how
-                                patients are displayed on the patients page, and appointments on the appointments page.
+                            <p> These appointments are displayed with a Bootstrap card. They are displayed in a very
+                                similar fashion to how
+                                patients are displayed on the patients page (described in the '<span
+                                    class='text-gradient'>Display Patient List</span>' section), and appointments on the
+                                appointments page (described in the '<span class='text-gradient'>Display Appointment
+                                    List</span>' section).
                                 Each appointment has a button to tick it off.
                             </p>
                             <strong>Tick Appointments</strong>
                             <p> When a user clicks the button to tick the appointment the following actions are taken:
-                                <br>
-                                1. User is taken to /tick_appointment/pk.<br><br>
-                                2. urls.py sends to user to TickAppointmentView.py.<br><br>
-                                3. TickAppointmentView sets status_confirmed_on_pas to 'Y' and removes the comments
-                                about the changes.<br><br>
-                                4. User gets redirected to checklist.<br><br>
+                                <br><br>
+                                1. User is taken to <code>/tick_appointment/pk</code>.<br>
+                                2. <code>urls.py</code> sends to user to <code>TickAppointmentView</code> in
+                                <code>TickAppointmentView.py</code>.<br>
+                                3. <code>TickAppointmentView</code> sets <code>status_confirmed_on_pas</code> to 'Y' and
+                                sets <code>changes_to_be_confirmed_on_pas</code> to '', effectively deleting the
+                                contents.<br>
+                                4. User gets redirected to <code>checklist.html</code>.<br><br>
 
-                                This appointment will no longer appear on the checklist as its status_confirmed_on_pas
-                                is 'Y' and not 'N' or 'n'
+                                This appointment will no longer appear on the checklist as its
+                                <code>status_confirmed_on_pas</code>
+                                is 'Y' and neither 'N' nor 'n'.
                             </p>
                         </section>
 
                         <section>
                             <h4 class="section-title text-gradient">Update Patient</h4><br>
-                            <p>This section describes how updating a patient works. Updating an appointment is very
-                                similar to this process.</p>
+                            <p>This section describes how updating a patient is implemented on
+                                <code>update_patient.html</code>.<br><br>
+
+                                Updating an appointment is very similar to this process.<br><br>
+
+                                Updating an appointment is handled by <code>UpdatePatientView</code> in
+                                <code>UpdatePatientView.py</code>
+                            </p><br>
                             <strong> Model Forms </strong>
                             <p>
                                 It is necessary to understand how the Django <code>ModelForm</code> class works in order
                                 to understand this section along
-                                with Add Patient, Update Appointment and Update Patient.<br><br>
+                                with the following sections of this document, '<span class='text-gradient'>Add
+                                    Patient</span>', '<span class='text-gradient'>Update Appointment</span>' and '<span
+                                    class='text-gradient'>Update Patient</span>'.<br><br>
                                 This class creates a form from a Django model.
-                                These forms are defined in forms.py, each attribute in the model is given a field to
-                                enter information.
+                                These forms are defined in <code>forms.py</code>, each attribute in the model is given a
+                                field to
+                                enter information. The code snippet below doesn't show all of the fields but it
+                                illustrates how the code is laid out.
                             </p>
                             <pre class="text-left"><code class="language-python">
                                     class PatientForm(ModelForm):
@@ -586,29 +613,37 @@
                                 </code></pre>
 
                             <strong> is_valid() </strong>
-                            <p> It is also necessary to understand how <code>.is_valid()</code> works to
+                            <p> It is also necessary to understand how the <code>.is_valid()</code> function works to
                                 understand this section along
-                                with Add Patient, Update Appointment and Update Patient.<br><br>
+                                with the following sections of this document, '<span class='text-gradient'>Add
+                                    Patient</span>', '<span class='text-gradient'>Update Appointment</span>' and '<span
+                                    class='text-gradient'>Update Patient</span>'.<br><br>
 
                                 By default, this function checks the data input into the fields. If and only if there is
-                                a violation regarding the type of data input to the field, then is_valid returns false.
+                                a violation regarding the type of data input to the field, then <code>.is_valid()</code>
+                                returns <code>False</code>.
                                 For example, using the code snippet above, if <code>'hello'</code> is input to the
-                                <code>PAS_number</code> field then <code>is_valid()</code> will return false.
-                                However, if <code>123</code> was input to the field, then <code>is_valid</code> would
-                                return true.
+                                <code>PAS_number</code> field then <code>.is_valid()</code> will return
+                                <code>False</code>.
+                                However, if <code>123</code> was input to the field, then <code>.is_valid()</code> would
+                                return <code>True</code>.
                             </p>
 
                             <strong> Get Method </strong>
-                            <p>If the user is getting the update patient page, the functionality works as
+                            <p> If the user is getting the update patient page, the functionality works as
                                 follows:<br><br>
                                 1. User clicks update patient button which brings them to the URL,
-                                /update_patient/pk.<br>
-                                2. urls.py sends the user to UpdatePatientView.<br>
-                                3. UpdatePatientView uses this pk to fetch the patient object with this primary
+                                <code>/update_patient/pk</code>.<br>
+                                2. <code>urls.py</code> sends the user to <code>UpdatePatientView</code> in
+                                <code>UpdatePatientView.py</code>.<br>
+                                3. <code>UpdatePatientView</code> uses this <code>pk</code> to fetch the patient object
+                                with this primary
                                 key.<br>
-                                4. UpdatePatientView creates a PatientForm for a patient and fills in the form with the
+                                4. <code>UpdatePatientView</code> creates a <code>PatientForm</code> and fills in the
+                                form with the
                                 patient's information.<br>
-                                5. UpdatePatientView renders this form in the template.<br>
+                                5. <code>UpdatePatientView</code> renders this form in the template
+                                (<code>update_patient.html</code>).<br>
                             </p>
                             <pre class="text-left"><code class="language-python">
                                 class UpdatePatientView(UserView):
@@ -627,10 +662,10 @@
                             <strong> Post Method </strong>
                             <p> If the user is posting to the update patient page the functionality works as
                                 follows.<br><br>
-                                1. UpdatePatientView receives the form and checks if it is valid using
+                                1. <code>UpdatePatientView</code> receives the form and checks if it is valid using
                                 <code>.is_valid()</code><br>
                                 2. If it is valid then the form is saved to the database and the user gets
-                                redirected<br>
+                                redirected to <code>/wait_list.html</code>.<br>
                                 3. Else, the user cant submit the form and an error message will explain what is wrong
                                 with the form.<br>
 
@@ -656,53 +691,61 @@
 
                         <section>
                             <h4 class="section-title text-gradient">Update Appointment</h4><br>
-                            <p>This section describes how updating an appointment works. Updating an appointment is very
-                                similar to updating a patient. Please fully read 'Update Patient' before reading this
-                                section.</p>
+                            <p>This section describes how updating an appointment works is implemented on
+                                <code>update_appointment.html</code>.<br><br>
+
+                                Updating an appointment is very similar to updating a patient. Please fully read the
+                                '<span class='text-gradient'>Update Patient</span>' section before reading this
+                                section.<br><br>
+
+                                Updating an appointment is handled by <code>UpdateAppointmentView</code> in
+                                <code>UpdateAppointmentView.py</code></p>
                             <strong> Clean Functions </strong>
                             <p>
                                 It is necessary to understand how the clean functions work
                                 to understand this section along
-                                with 'Add Appointment'.<br><br>
+                                with the '<span class='text-gradient'>Add Appointment</span>' section.<br><br>
                                 Clean functions are used by <code>.is_valid()</code> to check the data. If a clean
-                                function isn't defined, for example in a patient form, then <code>.is_valid()</code>
-                                works as described in Update Patient. However, when we are updating appointments we want
-                                to check for appointment clashes so we define a clean function that performs the checks
-                                that are performed by the default
-                                <code>is_valid()</code> function and also checks for appointment clashes. <br><br>
+                                function isn't defined, for example in our implementation of a patient form, then <code>.is_valid()</code>
+                                works as described in the '<span class='text-gradient'>Update Patient</span>' section. However, when we are updating appointments we want
+                                to also check for appointment clashes so we define a clean function that performs the checks
+                                that are performed by the default.
+                                <code>is_valid()</code> function and also checks for appointment clashes.<br><br>
+                                
+                                Effectively, we define our own way to check if a form is valid or not.<br><br>
 
                                 This function raises validation errors if there are any problems with the inputs.
                                 These validation errors will be displayed to the user if they cant submit
                                 the form. <br><br>
 
-                                *This code snippet is quite large, but it can be found in forms.py
+                                *This code snippet is quite large, however, it can be found in <code>forms.py</code>.
                             </p>
 
                             <strong> Get Method </strong>
                             <p> If the user is getting the update appointment page, the functionality works as
                                 follows:<br><br>
                                 1. User clicks update appointment button which brings them to the URL,
-                                /update_appointment/pk.<br>
-                                2. urls.py sends the user to UpdateAppointmenttView.<br>
-                                3. UpdateAppointmentView uses this pk to fetch the appointment object with this primary
+                                <code>/update_appointment/pk</code>.<br>
+                                2. <code>urls.py</code> sends the user to <code>UpdateAppointmentView</code>.<br>
+                                3. <code>UpdateAppointmentView</code> uses this <code>pk</code> to fetch the appointment object with this primary
                                 key.<br>
-                                4. UpdateAppointmentView creates an AppointmentForm for an appointment and fills in the
+                                4. <code>UpdateAppointmentView</code> creates an <code>AppointmentForm</code> for an appointment and fills in the
                                 form with the
                                 appointment's information.<br>
-                                5. UpdateAppointmentView renders this form in the template.<br><br>
+                                5. <code>UpdateAppointmentView</code> renders this form in the template.<br><br>
 
-                                *This works identically to updating a patient
+                                *This works identically to updating a patient.
                             </p>
 
                             <strong> Post Method </strong>
                             <p> If the user is posting to the update appointment page the functionality works as
                                 follows.<br><br>
-                                1. UpdateAppointmentView receives the form and checks if it is valid using
+
+                                1. <code>UpdateAppointmentView</code> receives the form and checks if it is valid using
                                 <code>.is_valid()</code>, this <code>is_valid()</code> function uses the clean function
                                 that we defined. So it also checks for appointment clashes.<br>
                                 2. If it is valid then the end time is calculated, the form is saved to the database and
-                                the user gets
-                                redirected<br>
+                                the user gets redirected to <code>appointments.html</code><br>
                                 3. Else, the user cant submit the form and an error message will explain what is wrong
                                 with the form.<br>
                             </p>
@@ -735,27 +778,30 @@
 
                         <section>
                             <h4 class="section-title text-gradient">Add Patient</h4><br>
-                            <p>This section describes how adding a patient works. Updating a patient is very similar to
-                                this process, please read 'Update Patient' before reading this section.</p>
+                            <p> This section describes how adding a patient is implemented on <code>add_patient.html</code>.<br><br>
+                                
+                                Updating a patient's record is very similar to this process, please read the '<span class='text-gradient'>Update Patient</span>' section before reading this section.<br><br>
+                            
+                                Adding a patient is handled by <code>AddPatientView</code> in <code>AddPatientView.py</code>.</p>
 
                             <strong> Get Method </strong>
                             <p>If the user is getting the update patient page, the functionality works as
                                 follows:<br><br>
                                 1. User clicks update patient button which brings them to the URL,
-                                /add_patient<br>
-                                2. urls.py sends the user to AddPatientView.<br>
-                                3. AddPatientView creates an empty PatientForm.<br>
-                                4. UpdatePatientView renders this form in the template.<br>
+                                <code>/add_patient</code>.<br>
+                                2. <code>urls.py</code> sends the user to <code>AddPatientView</code>.<br>
+                                3. <code>AddPatientView</code> creates an empty <code>PatientForm</code>.<br>
+                                4. <code>AddPatientView</code> renders this form in the template (<code>add_patient.html</code>).<br>
                             </p>
 
                             <strong> Post Method </strong>
                             <p> If the user is posting to the add patient page the functionality works as
                                 follows.<br><br>
-                                1. AddPatientView recieves the form and checks if it is vaild using
-                                <code>.is_valid()</code>. <code>.is_valid()</code> works as described in 'Update
-                                Patient'.<br>
+                                1. <code>AddPatientView</code> recieves the form and checks if it is vaild using
+                                <code>.is_valid()</code>. <code>.is_valid()</code> works as described in the <span class='text-gradient'>Update
+                                Patient</span>' section.<br>
                                 2. If it is valid then the form is saved to the database and the user gets
-                                redirected<br>
+                                redirected to <code>appointments.html</code>.<br>
                                 3. Else, the user cant submit the form and an error message will explain what is wrong
                                 with the form.<br>
 
