@@ -1,148 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Implementation</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <style>
-            h2 {text-align: center;}
-            p {
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Implementation</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        p {
             text-align: left;
         }
-        </style>
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">IXN Team 19</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="requirements.html">Requirements</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System Design</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="implementation.html">Implementation</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
-                    </ul>
-                </div>
+    </style>
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">IXN Team 19</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="requirements.html">Requirements</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System
+                            Design</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="implementation.html">Implementation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
+                </ul>
             </div>
-        </nav>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/gradient.png')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>Implementation</h1>
-                        </div>
+        </div>
+    </nav>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/gradient.png')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Implementation</h1>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- Main Content-->
-        <main class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col text-center">
-                        <h1 class="section-title text-gradient header-underline">Main Tools</h1>
-                        <div class="card-deck">
-                            <div class="card border-light mb-3">
-                                <img class="card-img-top " src="assets/img/pythonlogo.png" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text">Python is our main programming language.Python is a high level programming language with excellent readability</p>
-                                </div>
+        </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col text-center">
+                    <h1 class="section-title text-gradient header-underline">Main Tools</h1>
+                    <div class="card-deck">
+                        <div class="card border-light mb-3">
+                            <img class="card-img-top " src="assets/img/pythonlogo.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Python is our main programming language.Python is a high level
+                                    programming language with excellent readability</p>
                             </div>
- 
-                            <div class="card border-light mb-3">
-                                <img class="card-img-top" src="assets/img/djangologo.png" alt="Card image cap">
-                                <div class="card-body">
+                        </div>
+
+                        <div class="card border-light mb-3">
+                            <img class="card-img-top" src="assets/img/djangologo.png" alt="Card image cap">
+                            <div class="card-body">
                                 <p class="card-text">Django framework follows a model-views-templates design pattern.
-                                    We used its build in methods to implement our application including its authentication system and admin site
-  
+                                    We used its build in methods to implement our application including its
+                                    authentication system and admin site
+
                                 </p>
-                                </div>
                             </div>
-                            <div class="card border-light mb-3">
-                                <img class="card-img-top" src="assets/img/bootstrap.png" alt="Card image cap">
-                                <div class="card-body">
-                                <p class="card-text">Bootstrap is a CSS framework containing HTML and CSS base design templates.
+                        </div>
+                        <div class="card border-light mb-3">
+                            <img class="card-img-top" src="assets/img/bootstrap.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Bootstrap is a CSS framework containing HTML and CSS base design
+                                    templates.
                                     It is used for front-end development.
                                 </p>
-                                </div>
-                            </div>
-                            <div class="card border-light mb-3">
-                                <img class="card-img-top" src="assets/img/SQLite.png" alt="Card image cap">
-                                <div class="card-body">
-                                <p class="card-text">SQLite is used as our embedded database.</p>
-                                </div>
                             </div>
                         </div>
-                        <h1 class="section-title text-gradient header-underline">Implementation overview</h1><br>
+                        <div class="card border-light mb-3">
+                            <img class="card-img-top" src="assets/img/SQLite.png" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">SQLite is used as our embedded database.</p>
+                            </div>
+                        </div>
                     </div>
-                    <br>
-                    <div class="col-10">
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Authentication and Admin site</h4><br>
-                            <p>
-                                Django <code>LoginRequiredMixin</code> is a inheritance class which only allows requests to View class from logged in users. Any unauthorised user will be redirected to log in page.
-                                We implemented a User view class which inherit <code>LoginRequiredMixin</code>. All other view classes extend User view so that all HTTP requests to our application requires login.<br>
-                                The django build in admin site allows managing users as well as user group.
-                                At admin.py, <code>admin.site.register(models)</code> functions are used to register data models to admin site so that data models can be easily modified in admin site.<br>
-                                <img class="img" style="height:400px" alight="right" src="assets/img/admin_1.png" alt="Card image cap">
+                    <h1 class="section-title text-gradient header-underline">Implementation overview</h1><br>
+                </div>
+                <br>
+                <div class="col-10">
+                    <br><br>
+                    <h4 class="section-title text-gradient header-underline">Authentication and Admin site</h4><br>
+                    <p>
+                        Django <code>LoginRequiredMixin</code> is a inheritance class which only allows requests to View
+                        class from logged in users. Any unauthorised user will be redirected to log in page.
+                        We implemented a User view class which inherit <code>LoginRequiredMixin</code>. All other view
+                        classes extend User view so that all HTTP requests to our application requires login.<br>
+                        The django build in admin site allows managing users as well as user group.
+                        At admin.py, <code>admin.site.register(models)</code> functions are used to register data models
+                        to admin site so that data models can be easily modified in admin site.<br>
+                        <img class="img" style="height:400px" alight="right" src="assets/img/admin_1.png"
+                            alt="Card image cap">
 
-                            </p>
-                            <br>
-                            <br>
-                        <h4 class="section-title text-gradient header-underline">Database connection</h4><br>
-                            <p>We used SQLite as our database.
-                               Django has a built-in ORM system which database tables are directly mapped to Data Model classes while a instance represents a particular record in the database.
-                               
-                            </p>
-                            <br>
-                            <br>
-                        <h4 class="section-title text-gradient header-underline">Display timetable</h4><br><br>
-                        <strong>1.Identify logged in user</strong><br>
-                        <p>
-                            The <code>UserView class</code> has a <code>fetch_details(self,request)</code> function which automatically fetches username and firstname for logged in users.
-                            It is a base class and is extended by Rota View and TeamRota View.
-                            At Rota View and Team Rota view,user object for logged in users can be identified by comparing fetched usernames.
-                        </p>
-                        <br>
-                         <strong>2.Identify required Date </strong><br>
-                        
-                         <p>
-                             A datetime picker is implemented using django widget library-django-bootstrap-datepicker-plus 4.0.0, jquery and django forms
-                             for users to select a particular date or weekly view to display.
-                             We use <code>selected_date </code>and <code>weekly_view </code>variables to store user inputs.
-                             The timetable display current day by default therefore selected_date is set to current date.
-                             weekly_view variable is set to false. For team rota page,we display rota of a specific team member using similar methods.
-                         </p>
-                         <br>
-                         <pre class="text-left"><code class="language-python">
+                    </p>
+                    <br>
+                    <br>
+                    <h4 class="section-title text-gradient header-underline">Database connection</h4><br>
+                    <p>We used SQLite as our database.
+                        Django has a built-in ORM system which database tables are directly mapped to Data Model classes
+                        while a instance represents a particular record in the database.
+
+                    </p>
+                    <br>
+                    <br>
+                    <h4 class="section-title text-gradient header-underline">Display timetable</h4><br><br>
+                    <strong>1.Identify logged in user</strong><br>
+                    <p>
+                        The <code>UserView class</code> has a <code>fetch_details(self,request)</code> function which
+                        automatically fetches username and firstname for logged in users.
+                        It is a base class and is extended by Rota View and TeamRota View.
+                        At Rota View and Team Rota view,user object for logged in users can be identified by comparing
+                        fetched usernames.
+                    </p>
+                    <br>
+                    <strong>2.Identify required Date </strong><br>
+
+                    <p>
+                        A datetime picker is implemented using django widget library-django-bootstrap-datepicker-plus
+                        4.0.0, jquery and django forms
+                        for users to select a particular date or weekly view to display.
+                        We use <code>selected_date </code>and <code>weekly_view </code>variables to store user inputs.
+                        The timetable display current day by default therefore selected_date is set to current date.
+                        weekly_view variable is set to false. For team rota page,we display rota of a specific team
+                        member using similar methods.
+                    </p>
+                    <br>
+                    <pre class="text-left"><code class="language-python">
                             <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
                                 super().fetch_details(request)
                                 <span style='color:green'>form </span>= MyRotaDateForm(request.GET)
@@ -157,17 +190,22 @@
                                 ...
                          </code>
                          </pre>
-                         <br>
-                         <strong>3.Generating Dynamic Data  </strong>
-                         <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
-                             When requested,firstly the <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all appointment objects and use django build in object.all().filter() method to get a list of 
-                             all appointments belonging to logged in users and booked at selected date. Appointments that has been canceled are excluded.
-                             Then the <code>generate_day_rota(rota_appointments_ordered, tmp_rota)</code> function is called to  matche appointment types and assign each appointment different amount of slots.
-                             It then generate a dictionary with static time slot as keys and its corresponding appointment object as values.
-                             The view class then renders templates and return responses.
-                         </p>
-                         <br>
-                         <pre class="text-left"><code class="language-python">
+                    <br>
+                    <strong>3.Generating Dynamic Data </strong>
+                    <p> Both Rota and TeamRota viewclass uses HTTP GET requests.
+                        When requested,firstly the
+                        <code>generate_rota_appointments_ordered(selected_date,user) </code>function will fetche all
+                        appointment objects and use django build in object.all().filter() method to get a list of
+                        all appointments belonging to logged in users and booked at selected date. Appointments that has
+                        been canceled are excluded.
+                        Then the <code>generate_day_rota(rota_appointments_ordered, tmp_rota)</code> function is called
+                        to matche appointment types and assign each appointment different amount of slots.
+                        It then generate a dictionary with static time slot as keys and its corresponding appointment
+                        object as values.
+                        The view class then renders templates and return responses.
+                    </p>
+                    <br>
+                    <pre class="text-left"><code class="language-python">
                             <span style='color:orange'>def </span><span style='color:blue'>get</span> (self, request,  <span style='color:green'>selected_date </span> = None, <span style='color:green'>weekly_view </span> = False):
                                 ...
                                 tmp_rota = DAY_ROTA.copy()
@@ -190,51 +228,65 @@
 
                              </code>
                          </pre>
-                         <br>
-                         <strong>4.Display</strong>
-                         <p>
-                             Boostrap table is used to build html templates.
-                             The template recieves static time slots and rota data from a view class ,it then uses nested if statements and for loops to fill in informations for timetable.
-                             The timetable presents different colours for empty slots and booked slots by using bootstrap contextual classes to color table rows.
-                             Add new appointment function is implementated using a button with link to add new appointment forms.
-                             The patient name and ID are stored in timetable as a link to another templates showing more details. 
-                             <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png" alt="Card image cap">
-                         </p>
+                    <br>
+                    <strong>4.Display</strong>
+                    <p>
+                        Boostrap table is used to build html templates.
+                        The template recieves static time slots and rota data from a view class ,it then uses nested if
+                        statements and for loops to fill in informations for timetable.
+                        The timetable presents different colours for empty slots and booked slots by using bootstrap
+                        contextual classes to color table rows.
+                        Add new appointment function is implementated using a button with link to add new appointment
+                        forms.
+                        The patient name and ID are stored in timetable as a link to another templates showing more
+                        details.
+                        <img class="img" style="height:400px" alight="right" src="assets/img/myrotaview.png"
+                            alt="Card image cap">
+                    </p>
 
-                         <br><br>
-                        <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4><br>
-                        <strong>1.Categorize data</strong>
-                        <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting Patients using <code>Patient.objects.all().filter() </code>function<br>
-                            In AppointmentView class, appointment objects are categorized to Upcoming appointments, Cancelled appointments and Past appointments using similar methods.
-                            Both classes use HTTP GET request to perform above functions.
-                            Templates are rendered after this.
-                        </p>
-                        <br>
-                        <strong>2.Display </strong>
-                        <p>Bootstrap Cards are used as content containers in html templates.
-                            We For loops to dynamically fill in patient's and appointment's data to corresponding cards
-                        </p>
+                    <br><br>
+                    <h4 class="section-title text-gradient header-underline">Display patient/appointment list</h4><br>
+                    <strong>1.Categorize data</strong>
+                    <p>In WaitingList View class,patient objects are categorized to Booked Patients and Waiting Patients
+                        using <code>Patient.objects.all().filter() </code>function<br>
+                        In AppointmentView class, appointment objects are categorized to Upcoming appointments,
+                        Cancelled appointments and Past appointments using similar methods.
+                        Both classes use HTTP GET request to perform above functions.
+                        Templates are rendered after this.
+                    </p>
+                    <br>
+                    <strong>2.Display </strong>
+                    <p>Bootstrap Cards are used as content containers in html templates.
+                        We For loops to dynamically fill in patient's and appointment's data to corresponding cards
+                    </p>
 
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or patients</h4><br>
-                        <br>
-                        <strong>Forms</strong>
-                        <p>
-                            Users make changes to appointments or patients data through django model forms.
-                            All of the django forms are written in form.py. They are then imported by View classes and sent to be rendered in templates.
-                            User's input to the form will be stored in form attribute <code>clean()</code>.
-                            At view class Model Form <code>save()</code>method is call to creates and saves a database object or update a current data object from the data recieved in form.
-                        </p>
-                        <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data format and raise validationError otherwise.
-                            It also calculate start time and end time for user input appointment and check if it clashes with existing appointment.
-                        </p>
-                        <br>
-                        <strong>Modifying</strong>
-                        <p>To update a existing appointment or patients, the pk value from URLs are used to identify objects at view class.
-                            Below is a example of update patient view class.
-                            The parameter<code>(instance=patient)</code> tells the form the modify existing object patient.<br>
-                        </p>
-                        <pre class="text-left"><code class="language-python">
+                    <br><br>
+                    <h4 class="section-title text-gradient header-underline">Update/ Add new appointments or patients
+                    </h4><br>
+                    <br>
+                    <strong>Forms</strong>
+                    <p>
+                        Users make changes to appointments or patients data through django model forms.
+                        All of the django forms are written in form.py. They are then imported by View classes and sent
+                        to be rendered in templates.
+                        User's input to the form will be stored in form attribute <code>clean()</code>.
+                        At view class Model Form <code>save()</code>method is call to creates and saves a database
+                        object or update a current data object from the data recieved in form.
+                    </p>
+                    <p>Appointment Model form's method <code>clean()</code> checks if User inputs correct data format
+                        and raise validationError otherwise.
+                        It also calculate start time and end time for user input appointment and check if it clashes
+                        with existing appointment.
+                    </p>
+                    <br>
+                    <strong>Modifying</strong>
+                    <p>To update a existing appointment or patients, the pk value from URLs are used to identify objects
+                        at view class.
+                        Below is a example of update patient view class.
+                        The parameter<code>(instance=patient)</code> tells the form the modify existing object
+                        patient.<br>
+                    </p>
+                    <pre class="text-left"><code class="language-python">
                         <span style="color:orange;">Class </span><span style="color:blue;">UpdatePatientView</span>(UserView):
                             <span style="color:orange;">def</span> <span style="color:blue;">get</span>(self,request,patient_id):
                                 super().fetch_details(request)
@@ -258,23 +310,27 @@
                                                 {'patient': <span style='color:green;'>patient</span>, 'form': <span style='color:green;'>form</span>
                                                 'first_name': self.first_name})
                         </code></pre>
-                        <strong>Cancelling</strong><br>
-                        <p>When CancelAppointmentView is requested, appointment object is identified using pk(appointment_id)from URLs.
-                            The appointment status of this appointment object is then set to cancelled.
-                            Then the viewclass will redo the appointment categorize process and render the appointments.html with new data set.
-                            It will calculate if appointment is canceled within 2 days and send notitification if so.<br>
-                            Delete patient functionality is implementated in similar methods.
-                        </p>
-                        <br><br>
-                        <h4 class="section-title text-gradient header-underline">Filters</h4>
-                        <p>Filter functionality for Appointment page and Patient page are implementated using django form as well.
-                            User inputs to the forms are used to filter objects using<code>processQuery()</code> function.
-                            Below is a section of code for filtering appointments at appointment View.
-                            The parameter dic is defined by <code> dic = form.cleaned_data</code>, It stores userinputs.
-                            If userinput in the dic for a attribute is not none, appointment objects are filtered to find the particular appointments that match requirements.
-                            These appointment are then used to render templates.
-                        </p>
-                        <pre class="text-left"><code class="language-python">
+                    <strong>Cancelling</strong><br>
+                    <p>When CancelAppointmentView is requested, appointment object is identified using
+                        pk(appointment_id)from URLs.
+                        The appointment status of this appointment object is then set to cancelled.
+                        Then the viewclass will redo the appointment categorize process and render the appointments.html
+                        with new data set.
+                        It will calculate if appointment is canceled within 2 days and send notitification if so.<br>
+                        Delete patient functionality is implementated in similar methods.
+                    </p>
+                    <br><br>
+                    <h4 class="section-title text-gradient header-underline">Filters</h4>
+                    <p>Filter functionality for Appointment page and Patient page are implementated using django form as
+                        well.
+                        User inputs to the forms are used to filter objects using<code>processQuery()</code> function.
+                        Below is a section of code for filtering appointments at appointment View.
+                        The parameter dic is defined by <code> dic = form.cleaned_data</code>, It stores userinputs.
+                        If userinput in the dic for a attribute is not none, appointment objects are filtered to find
+                        the particular appointments that match requirements.
+                        These appointment are then used to render templates.
+                    </p>
+                    <pre class="text-left"><code class="language-python">
                             <span style="color:orange;">def </span><span style="color:blue">processQuery</span>(self,dic,appointments):
                                 <span style="color:green;">appointment_ID</span>= dic['appointment_ID']
                                 <span style="color:green;">PAS_number</span>=dic['PAS_number']
@@ -288,60 +344,62 @@
                                 ...
                                 return <span style="color:green">appointments</span>
                         </code>
-                        </pre>                                         
-                    </div>
+                        </pre>
                 </div>
             </div>
-        </main>
-        <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <ul class="list-inline text-center">
-                            <li class="list-inline-item">
-                                <a href="https://twitter.com/uclcs?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://www.facebook.com/UCLCS.Home/">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://github.com/ArslanAftab/ucl-ixn-team19">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="small text-center text-muted fst-italic">
-                            <p>Copyright © 2021 - 2022 
+        </div>
+    </main>
+    <!-- Footer-->
+    <footer class="border-top">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/uclcs?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/UCLCS.Home/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://github.com/ArslanAftab/ucl-ixn-team19">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="small text-center text-muted fst-italic">
+                        <p>Copyright © 2021 - 2022
                             <a href="!#">Moorfields Hospital</a>
                             ,
-                            <a href="!#">Arslan Aftab</a>
+                            <a href="https://www.linkedin.com/in/arslan-aftab-472425198/">Arslan Aftab</a>
                             ,
                             <a href="!#">Yue He</a>
                             ,
                             <a href="https://www.linkedin.com/in/kamil-ebanks/">Kamil Ebanks</a>
-                            - All rights reserved. 
-                        </p> </div>
+                            - All rights reserved.
+                        </p>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
 </html>
