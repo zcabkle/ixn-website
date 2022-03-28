@@ -113,11 +113,11 @@
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Testing Strategy</h1>
                         <p>
-                            As this proof-of-concept is a client side application, it was nessecary to perform thorough
+                            As this proof-of-concept is a client-side application, it was necessary to perform thorough
                             automated
                             testing on it to ensure it acts as we would like and the functionality meets the
                             requirements that were agreed upon in
-                            out MoSCoW list. We extentensively covered our code, reaching a code coverage of <span
+                            our MoSCoW list. We extensively covered our code, reaching a code coverage of <span
                                 class="excellent"><strong>97%</strong></span>.<br><br>
 
                             We also conducted user acceptance tests to find potential improvements and general feedback.
@@ -137,23 +137,23 @@
                         <p>
                             For all automated testing, both unit tests and integration tests, we used the Django
                             "TestCase" module. This module inherits from the commonly used "unittest" module. For the
-                            integration tests we used the Client class from the Django testing tools. This class allowed
+                            integration tests, we used the Client class from the Django testing tools. This class allowed
                             us to
-                            generate HTTP requests and from this we could ensure that the views and templates integrate
+                            generate HTTP requests and from this, we could ensure that the views and templates integrate
                             correctly.<br><br>
 
                             We created a class called "Builder" for automated tests. This class defines the setUp and
-                            tearDown functions. In these functions a database is created and populated with data also a
+                            tearDown functions. In these functions, a database is created and populated with data also a
                             user is created and logged in. This makes the test results predictable. Once the test has
-                            been done on the database, it's contents are deleted.<br><br>
+                            been done on the database, its contents are deleted.<br><br>
 
-                            The Python "coverage" module was used to conduct analysis of the code coverage of these
+                            The Python "coverage" module was used to analyse the code coverage of these
                             tests. This helped us to conclude whether we had sufficiently tested the code.<br><br>
                         </p>
                         <h2 class="section-title text-gradient">Unit Testing</h2> <br>
-                        <p> We used unit-testing to test functionality of individual functions and classes such as the
+                        <p> We used unit-testing to test the functionality of individual functions and classes such as the
                             functions that clean the form's input data.
-                            With unit-tests we verified whether the functions in the models and the
+                            With unit tests we verified whether the functions in the models and the
                             form validation operated as we expected.
                         </p>
                         <pre class="text-left"><code class="language-python">
@@ -172,18 +172,18 @@
                                 self.assertFalse(form.is_valid())
                         </code></pre>
 
-                        <p> In the above code snippet is an example of a unit-test on a form. In this case we test
+                        <p> In the above code snippet is an example of a unit test on a form. In this case, we test
                             whether the form accepts an appointment that currently clashes with another, this is
-                            something that we don't want to happen. In this case it clashes with the only other
+                            something that we don't want to happen. In this case, it clashes with the only other
                             appointment in the database.
                             The data gets passed to the form and then we assert that the form is not valid. This test
                             returns False which is what we would expect. </p>
 
                         <h2 class="section-title text-gradient">Integration Testing</h2>
-                        <p> We used intergration testing to test whether different parts of the code integrate correctly
+                        <p> We used integration testing to test whether different parts of the code integrate correctly
                             and produce the expected output with a given input.
-                            With our integration tests we verified whether views and templates integrated correctly.
-                            We used client to make a request then we checked things such as: <br>
+                            With our integration tests, we verified whether views and templates were integrated correctly.
+                            We used Client to make a request then we checked things such as: <br>
                             • Whether we get redirected.<br>
                             • Where we redirect to.<br>
                             • What the status code is.<br>
@@ -214,12 +214,12 @@
                                 self.assertEqual(<span class='purple'>len</span>(Patient.objects.all()), 2)
                         </code></pre>
 
-                        <p>In the above code snippet we submit a valid form to add a patient. We test the status code,
+                        <p>In the above code snippet, we submit a valid form to add a patient. We test the status code,
                             template used and whether the patient was successfully added to the database. This test
                             passes and provides the output and behaviour that we expect.</p>
 
-                        <p> The unit-tests and integration tests all exist together in the tests folder. Through the use
-                            of integration tests and unit-tests we measured a code coverage of
+                        <p> The unit tests and integration tests all exist together in the tests folder. Through the use
+                            of integration tests and unit tests we measured a code coverage of
                             <span class="excellent"><strong>97%</strong></span> which can be seen in the report below.
                             After this analysis of our testing practices, we believe that we have
                             covered a sufficient amount of our code and the code operates as we would expect. We can
