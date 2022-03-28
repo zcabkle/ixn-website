@@ -305,7 +305,7 @@
                                 rota_appointments_ordered.sort(
                                     key=lambda x: (x.appointment_start_time))
 
-                                    <span style='color:purple;'>return</span> rota_appointments_ordered
+                                <span style='color:purple;'>return</span> rota_appointments_ordered
                             </code></pre>
                             <strong>4. Generate rota</strong>
                             <p>
@@ -329,18 +329,18 @@
                             </p>
                             <pre class="text-left"><code class="language-python">
                                 <span style="color:orange">def</span> <span style="color:blue">generate_day_rota</span>(self, appointments, tmp_rota):
-                                <span style="color:orange">for</span> appointment in appointments:
-                                        appointment_code = (
-                                            appointment.appointment_code.appointment_description)
-                                        appointment_length = SLOTS[appointment_code]
-                                        start_time = str(appointment.appointment_start_time)[:5]
-                                        start_index = DAY_ROTA_KEYS.index(start_time)
+                                    <span style="color:orange">for</span> appointment <span style="color:orange">in</span> appointments:
+                                            appointment_code = (
+                                                appointment.appointment_code.appointment_description)
+                                            appointment_length = SLOTS[appointment_code]
+                                            start_time = <span style="color:purple">str</span>(appointment.appointment_start_time)[:5]
+                                            start_index = DAY_ROTA_KEYS.index(start_time)
 
-                                        <span style="color:orange">for</span> i <span style="color:orange">in</span> range(start_index, start_index + appointment_length):
-                                            key = DAY_ROTA_KEYS[i]
-                                            tmp_rota[key] = appointment
+                                            <span style="color:orange">for</span> i <span style="color:orange">in</span> range(start_index, start_index + appointment_length):
+                                                key = DAY_ROTA_KEYS[i]
+                                                tmp_rota[key] = appointment
 
-                                            <span style="color:purple">return tmp_rota
+                                    <span style="color:purple">return</span> tmp_rota
                             </code></pre>
                             <strong>5. Display</strong>
                             <p>
@@ -405,22 +405,22 @@
                                 by <code>generate_weekly_rota(self, weekly_rota, dates, user)</code>.
 
                             <pre class="text-left"><code class="language-python">
-                            def generate_weekly_rota(self, weekly_rota, dates, user):
+                            <span style='color:orange;'>def</span> <span style='color:blue;'>generate_weekly_rota</span>(self, weekly_rota, dates, user):
                                 cancelled = AppointmentStatus.objects.all().filter(
-                                    status='Cancelled')[0]
-                                for d in dates:
+                                    status=<span style='color:green;'>'Cancelled'</span>)[0]
+                                <span style='color:orange;'>for</span> d <span style='color:orange;'>in</span> dates:
                                     rota_appointments_ordered = list(Appointment.objects.all().filter(
                                         appointment_date=d, team_member=user).exclude(
                                             appointment_status=cancelled))
                                     rota_appointments_ordered.sort(
-                                        key=lambda x: (x.appointment_start_time))
+                                        key=<span style='color:orange;'>lambda</span> x: (x.appointment_start_time))
                                     tmp_rota = DAY_ROTA.copy()
                                     rota = self.generate_day_rota(rota_appointments_ordered, tmp_rota)
                                     date_rota_tuple = (d, rota)
 
                                     weekly_rota.append(date_rota_tuple)
 
-                                return weekly_rota
+                                <span style='color:purple;'>return</span> weekly_rota
                             </code></pre>
 
                             <p><code>RotaView</code> passes this <code>weekly_rota</code> to the template
@@ -491,10 +491,10 @@
                                         appointment_status=cancelled)
                                     appointments = []
                                     past = []
-                                    for appointment in temporaryAppointments:
-                                        if appointment.appointment_date < today:
+                                    <span style='color:orange;'>for</span> appointment <span style='color:orange;'>in</span> temporaryAppointments:
+                                        <span style='color:orange;'>if</span> appointment.appointment_date < today:
                                             past.append(appointment)
-                                        else:
+                                        <span style='color:orange;'>else</span>:
                                             appointments.append(appointment)
                                     </code></pre>
 
@@ -538,17 +538,17 @@
                                 database and returned to the template (<code>checklist.html</code>) in the response.
 
                             <pre class="text-left"><code class="language-python">
-                            def get(self, request):
+                            <span style='color:orange;'>def</span> <span style='color:blue;'>get</span>(self, request):
                                 super().fetch_details(request)
                                 appointmentsn = Appointment.objects.filter(
-                                    status_confirmed_on_pas='n')
+                                    status_confirmed_on_pas=<span style='color:green;'>'n'</span>)
                                 appointmentsN = Appointment.objects.filter(
-                                    status_confirmed_on_pas='N')
+                                    status_confirmed_on_pas=<span style='color:green;'>'N'</span>)
                         
                                 appointments = appointmentsn | appointmentsN
-                                return render(request, 'website/checklist.html',
-                                                {'appointments': appointments,
-                                                'first_name': self.first_name})
+                                <span style='color:purple;'>return</span>(request, <span style='color:green;'>'website/checklist.html'</span>,
+                                                {<span style='color:green;'>'appointments'</span> appointments,
+                                                '<span style='color:green;'>first_name'</span> self.first_name})
                         
                             </code></pre>
                             <strong>Display Appointments</strong>
@@ -602,18 +602,18 @@
                                 illustrates how the code is laid out.
                             </p>
                             <pre class="text-left"><code class="language-python">
-                                    class PatientForm(ModelForm):
-                                        class Meta:
-                                            model = Patient
-                                            fields = ('PAS_number', 'first_name', 'middle_name',
-                                                    'surname', 'DOB', 'priority_code',
-                                                    'patient_information', 'patient_status')
+                                <span style='color:orange;'>class</span> <span style='color:blue;'>PatientForm</span>(ModelForm):
+                                    <span style='color:orange;'>class</span> <span style='color:blue;'>Meta</span>
+                                        model = Patient
+                                        fields = (<span style='color:green;'>'PAS_number'</span>, <span style='color:green;'>'first_name'</span>, <span style='color:green;'>'middle_name'</span>,
+                                                <span style='color:green;'>'surname'</span>, <span style='color:green;'>'DOB'</span>, <span style='color:green;'>'priority_code'</span>,
+                                                <span style='color:green;'>'patient_information'</span>, <span style='color:green;'>'patient_status'</span>)
 
-                                            widgets = {
-                                                'PAS_number': forms.NumberInput(
-                                                    attrs={'class': 'form-control'})
-                                                    ...
-                                            }
+                                        widgets = {
+                                            <span style='color:green;'>'PAS_number'</span>: forms.NumberInput(
+                                                attrs={<span style='color:green;'>'class'</span>: 'form-control'})
+                                                ...
+                                        }
                                 </code></pre>
                             <br>
                             <strong> is_valid() </strong>
@@ -650,14 +650,14 @@
                                 (<code>update_patient.html</code>).<br>
                             </p>
                             <pre class="text-left"><code class="language-python">
-                                class UpdatePatientView(UserView):
-                                    def get(self, request, patient_id):
+                                <span style='color:orange;'>class</span> <span style='color:blue;'>UpdatePatientView</span>(UserView):
+                                    <span style='color:orange;'>def</span> <span style='color:blue;'>get</span>(self, request, patient_id):
                                         super().fetch_details(request)
                                         patient = Patient.objects.get(pk=patient_id)
                                         form = PatientForm(request.POST or None, instance=patient)
-                                        return render(request, 'website/update_patient.html',
-                                                    {'patient': patient, 'form': form,
-                                                    'first_name': self.first_name})
+                                        <span style='color:purple;'>return</span> render(request, <span style='color:green;'>'website/update_patient.html'</span>,
+                                                    {<span style='color:green;'>'patient'</span> patient, <span style='color:green;'>'form'</span> form,
+                                                    <span style='color:green;'>'first_name'</span> self.first_name})
 
                                 </code></pre>
 
@@ -673,19 +673,19 @@
                                 with the form.<br>
 
                             <pre class="text-left"><code class="language-python">
-                                    class UpdatePatientView(UserView):
-                                        ...
+                                <span style='color:orange;'>class</span> <span style='color:blue;'>UpdatePatientView</span>(UserView):
+                                    ...
 
-                                        def post(self, request, patient_id):
-                                            super().fetch_details(request)
-                                            patient = Patient.objects.get(pk=patient_id)
-                                            form = PatientForm(request.POST or None, instance=patient)
-                                            if form.is_valid():
-                                                form.save()
-                                                return redirect('/wait_list')
-                                            return render(request, 'website/update_patient.html',
-                                                        {'patient': patient, 'form': form,
-                                                        'first_name': self.first_name})
+                                    <span style='color:orange;'>def</span> <span style='color:blue;'>post</span>(self, request, patient_id):
+                                        super().fetch_details(request)
+                                        patient = Patient.objects.get(pk=patient_id)
+                                        form = PatientForm(request.POST or None, instance=patient)
+                                        <span style='color:orange;'>if </span>form.is_valid():
+                                            form.save()
+                                            <span style='color:purple;'>return</span> redirect(<span style='color:green;'>'/wait_list'</span>)
+                                        <span style='color:purple;'>return</span> render(request, <span style='color:green;'>'website/update_patient.html'</span>,
+                                                    {<span style='color:green;'>'patient'</span> patient, <span style='color:green;'>'form'</span> form,
+                                                     <span style='color:green;'>'first_name'</span> self.first_name})
     
                                     </code></pre>
 
@@ -762,26 +762,26 @@
                             </p>
 
                             <pre class="text-left"><code class="language-python">
-                            def post(self, request, appointment_id):
+                            <span style='color:orange;'>def</span> <span style='color:blue;'>post</span>(self, request, appointment_id):
                                 super().fetch_details(request)
                                 appointment = Appointment.objects.get(appointment_ID=appointment_id)
                                 form = AppointmentForm(request.POST or None, instance=appointment)
                         
-                                if form.is_valid():
-                                    start_time = form.cleaned_data['appointment_start_time']
-                                    appointment_code_obj = form.cleaned_data['appointment_code']
+                                <span style='color:orange;'>if</span> form.is_valid():
+                                    start_time = form.cleaned_data[<span style='color:green;'>'appointment_start_time'</span>]
+                                    appointment_code_obj = form.cleaned_data[<span style='color:green;'>'appointment_code'</span>]
                                     appointment_type = appointment_code_obj.appointment_description
                                     timing = APPOINTMENT_TIMING[appointment_type]
                                     end_time = datetime.combine(date.today(), start_time) + timing
                         
                                     form.instance.appointment_end_time = end_time
-                                    form.instance.status_confirmed_on_pas = 'N'
+                                    form.instance.status_confirmed_on_pas = <span style='color:green;'>'N'</span>
                                     form.save()
                         
-                                    return HttpResponseRedirect('/appointments')
-                                return render(request, 'website/update_appointment.html',
-                                            {'appointment': appointment, 'form': form,
-                                            'first_name': self.first_name})
+                                    <span style='color:purple;'>return</span> HttpResponseRedirect(<span style='color:green;'>'/appointments'</span>)
+                                <span style='color:purple;'>return</span> render(request, <span style='color:green;'>'website/update_appointment.html'</span>,
+                                            {<span style='color:green;'>'appointment'</span> appointment, <span style='color:green;'>'form'</span> form,
+                                            <span style='color:green;'>'first_name'</span> self.first_name})
                                     </code></pre>
 
 
@@ -946,7 +946,7 @@
                             </p>
 
                             <pre class="text-left"><code class="language-python">
-                                <span style="color:orange;">class</span> SearchAppointmentForm(forms.Form):
+                                <span style="color:orange;">class</span> <span style='color:blue;'>SearchAppointmentForm</span>(forms.Form):
                                     appointment_ID = forms.CharField(
                                         label=<span style="color:green;">'Search by ID'</span>,
                                         max_length=100, required=False)
