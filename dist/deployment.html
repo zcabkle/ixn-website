@@ -37,15 +37,18 @@
         p {
             text-align: left;
         }
+
         .indent-4 {
             margin-left: 5%;
         }
+
         .indent-8 {
             margin-left: 10%;
-        }  
+        }
+
         .indent-12 {
             margin-left: 15%;
-        }       
+        }
     </style>
     <link rel="shortcut icon" type="image/ico" href="/UCLfavicon.ico" />
 </head>
@@ -102,12 +105,12 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Deployment</h1> <br>
-                        <p> This section aims to describe the process of deploying this project to the Azure cloud as 
+                        <p> This section aims to describe the process of deploying this project to the Azure cloud as
                             a Docker container, as well as how to automate the process. The benefit of automating this
                             procedure not only saves time but allows constant feedback from the client as soon as
                             any changes are implemented. </br></br>
 
-                            Automating deployment is not an essential part of deploying the project, 
+                            Automating deployment is not an essential part of deploying the project,
                             but it will save a lot of time having to manually update the builds on the cloud
                             service you decide to use, and to then reinstate the running project to the updated builds
                         </p>
@@ -115,43 +118,48 @@
                         <p>
                             <strong> 1. An Existing Project
                             </strong><br>
-                            The Django files for the project must have existed prior to deployment, with the bare minimum 
-                            of being able to run <code>python manage.py runserver</code> without it erroring. Of course you 
+                            The Django files for the project must have existed prior to deployment, with the bare
+                            minimum
+                            of being able to run <code>python manage.py runserver</code> without it erroring. Of course
+                            you
                             could <i>try</i> to dockerise and deploy a non functional codebase, but why would you?
                         </p>
                         <p>
                             <strong> 2. Git (and access to the repository)
                             </strong><br>
-                            You may install git <a href="https://git-scm.com/downloads">here</a>. You will need git installed 
+                            You may install git <a href="https://git-scm.com/downloads">here</a>. You will need git
+                            installed
                             on the system for version control.
                             <br><br>
-                            You also need a GitHub account, you can create an account from 
-                            <a href="https://github.com/">GitHub</a>.  
-                            You require access to the respository so that you have push/pull rights to the codebase, 
+                            You also need a GitHub account, you can create an account from
+                            <a href="https://github.com/">GitHub</a>.
+                            You require access to the respository so that you have push/pull rights to the codebase,
                             which is a GitHub repository.
 
                         </p>
                         <p>
                             <strong> 3. Azure CLI
                             </strong><br>
-                            You will need the Azure Cloud Shell or some installation of the Azure CLI to complete some of 
-                            the steps necessary for <i> automated deployment</i>. You can install Azure CLI 
+                            You will need the Azure Cloud Shell or some installation of the Azure CLI to complete some
+                            of
+                            the steps necessary for <i> automated deployment</i>. You can install Azure CLI
                             <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">from here</a>
                         </p>
                         <p>
                             <strong> 4. Azure Container Registry
                             </strong><br>
-                            You need this registry to contain your Docker image. It will hold your Docker image in the 
+                            You need this registry to contain your Docker image. It will hold your Docker image in the
                             Azure cloud, as well as all previous builds. It acts like a repository for Docker images!
                             <br><br>
-                            You can create one using <a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal">
-                            this</a> guide. Remember what resource group is used for deployment as this is used when 
-                            you automate the deployment using GitHub workflows. 
+                            You can create one using <a
+                                href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal">
+                                this</a> guide. Remember what resource group is used for deployment as this is used when
+                            you automate the deployment using GitHub workflows.
                         </p>
                         <p>
                             <strong> 5. Docker
                             </strong><br>
-                            You need docker to build an image from your codebase, you can install it 
+                            You need docker to build an image from your codebase, you can install it
                             <a href="https://docs.docker.com/get-docker/"> here</a>
                         </p>
                         <br>
@@ -160,8 +168,8 @@
                             <strong> Keep in mind
                             </strong><br>
                             You will need to ensure that 'Actions' is enabled for your repository.
-                            You can make sure this is the case by going to <strong>Settings</strong> 
-                            > <strong>Actions</strong> > <strong>Actions permissions</strong>, and select 
+                            You can make sure this is the case by going to <strong>Settings</strong>
+                            > <strong>Actions</strong> > <strong>Actions permissions</strong>, and select
                             <strong>'Allow all actions'</strong>
                         </p>
                     </div>
@@ -175,25 +183,25 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Dockerizing</h1> <br>
-                        <p> Turning the project into a Docker image is not an essential part of the 
-                            project, but it does offer a level of safety and encapsulation from the 
+                        <p> Turning the project into a Docker image is not an essential part of the
+                            project, but it does offer a level of safety and encapsulation from the
                             base system. This eliminates the cursed <i>"it works on my machine" </i>
                             fallacy.</br></br>
 
                             The Docker container will provide its own environment for the project to
                             run inside without the overhead of a virtual machine. <br><br>
 
-                            This only serves as a <i>very</i> brief description of Docker. There 
-                            are countless reasons for using Docker in the deployment of this 
+                            This only serves as a <i>very</i> brief description of Docker. There
+                            are countless reasons for using Docker in the deployment of this
                             project and you can read more about them <a href="https://www.docker.com/why-docker/">
-                            here
+                                here
                             </a>.
                         </p><br>
                         <h4 class="section-title text-gradient header-underline">Setting up Docker</h4><br>
                         <p>
                             <strong>Setup
                             </strong><br>
-                            Before being able to create a Docker container for your project, 
+                            Before being able to create a Docker container for your project,
                             you will need to have Docker installed locally. </br></br>
 
                             Please choose the correct installation guide for your machine from
@@ -205,8 +213,8 @@
                             </strong><br>
                             Here's the Dockerfile that you can use to setup the container... </br></br>
 
-                            Docker will use this file as guidance on how to build a container for our 
-                            project. We need to place it at the root of the project directory, with the 
+                            Docker will use this file as guidance on how to build a container for our
+                            project. We need to place it at the root of the project directory, with the
                             name <code>Dockerfile</code>. <br><br>
                             <samp>ucl-ixn-team19/</samp><br>
                             <samp class="indent-4">.gitignore</samp><br>
@@ -236,32 +244,56 @@
 
                         </p>
                         <p>
-                            <strong>Contents of the Dockerfile
+                            <strong>Contents of the Dockerfile:
                             </strong><br>
 
                             <samp><code>FROM</code> python:3.8.3-alpine<samp><br><br>
-                                <samp># set work directory<samp><br>
-                                
-                                <samp><code>WORKDIR</code> /usr/src/app<samp><br><br>
-                                
-                                <samp># set environment variables<samp><br>
-                                <samp><code>ENV</code> PYTHONDONTWRITEBYTECODE 1<samp><br>
-                                <samp><code>ENV</code> PYTHONUNBUFFERED 1<samp><br><br>
-                                
-                                <samp># copy project<samp><br>
-                                <samp><code>COPY</code> . /usr/src/app<samp><br><br>
-                                
-                                <samp># install dependencies<samp><br>
-                                <samp><code>RUN</code> python -m pip install -r requirements.txt<samp><br>
-                                
-                                <samp><code>EXPOSE</code> 8000<samp><br><br>
+                                    <samp># set work directory<samp><br>
 
-                                <samp># commands issued to container<samp><br>
+                                            <samp><code>WORKDIR</code> /usr/src/app<samp><br><br>
 
-                                <samp><code>RUN</code> python myvenv/manage.py clearsessions<samp><br>
-                                <samp><code>RUN</code> python myvenv/manage.py makemigrations<samp><br>
-                                <samp><code>RUN</code> python myvenv/manage.py migrate<samp><br>
-                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:80"]<samp><br>
+                                                    <samp># set environment variables<samp><br>
+                                                            <samp><code>ENV</code> PYTHONDONTWRITEBYTECODE 1<samp><br>
+                                                                    <samp><code>ENV</code> PYTHONUNBUFFERED
+                                                                        1<samp><br><br>
+
+                                                                            <samp># copy project<samp><br>
+                                                                                    <samp><code>COPY</code> .
+                                                                                        /usr/src/app<samp><br><br>
+
+                                                                                            <samp># install
+                                                                                                dependencies<samp><br>
+                                                                                                    <samp><code>RUN</code>
+                                                                                                        python -m pip
+                                                                                                        install -r
+                                                                                                        requirements.txt<samp><br>
+
+                                                                                                            <samp><code>EXPOSE</code>
+                                                                                                                8000<samp><br><br>
+
+                                                                                                                    <samp>#
+                                                                                                                        commands
+                                                                                                                        issued
+                                                                                                                        to
+                                                                                                                        container<samp><br>
+
+                                                                                                                            <samp><code>RUN</code>
+                                                                                                                                python
+                                                                                                                                myvenv/manage.py
+                                                                                                                                clearsessions<samp><br>
+                                                                                                                                    <samp><code>RUN</code>
+                                                                                                                                        python
+                                                                                                                                        myvenv/manage.py
+                                                                                                                                        makemigrations<samp><br>
+                                                                                                                                            <samp><code>RUN</code>
+                                                                                                                                                python
+                                                                                                                                                myvenv/manage.py
+                                                                                                                                                migrate<samp><br>
+                                                                                                                                                    <samp><code>CMD</code>
+                                                                                                                                                        ["python",
+                                                                                                                                                        "myvenv/manage.py",
+                                                                                                                                                        "runserver",
+                                                                                                                                                        "0.0.0.0:80"]<samp><br>
                         </p>
                     </div>
                 </div>
@@ -306,7 +338,7 @@
                         <p>Copyright © 2021 - 2022
                             <a href="https://www.moorfields.nhs.uk/">Moorfields Hospital</a>
                             ,
-                            <a href="https://www.linkedin.com/in/arslan-aftab-472425198/">Arslan Aftab</a>
+                            <a href="https://www.arslemon.com">Arslan Aftab</a>
                             ,
                             <a href="mailto:yue.he.work@gmail.com">Yue He</a>
                             ,
