@@ -176,16 +176,16 @@
                                 require the user to be logged in.<br>
 
                             <pre class="text-left"><code class="language-python">
-                                    class UserView(LoginRequiredMixin, View):
-                                    '''A base class for the rest of the views
+                                <span style="color:orange">class</span> <span style="color:blue">UserView</span>(LoginRequiredMixin, View):
+                                    <span style="color:green">'''A base class for the rest of the views
                                         to extend and utilise, automatically fetches
                                         username and firstname for logged in user
-                                        N.B. restrict what is returned to the webpage'''
+                                        N.B. restrict what is returned to the webpage'''</span>
                                 
                                     username = None
                                     first_name = None
                                 
-                                    def fetch_details(self, request):
+                                    <span style="color:orange">def</span> <span style="color:blue">fetch_details</span>(self, request):
                                         self.first_name = request.user.get_short_name()
                                         self.username = request.user.username
                                     
@@ -231,9 +231,9 @@
 
                             <pre class="text-left"><code class="language-python">
                                 DATABASES = {
-                                    'default': {
-                                        'ENGINE': 'django.db.backends.sqlite3',
-                                        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                                    <span style="color:green">'default'</span> {
+                                        <span style="color:green">'ENGINE'</span>: <span style="color:green">'django.db.backends.sqlite3'</span>,
+                                            <span style="color:green">'NAME'</span>: os.path.join(BASE_DIR, <span style="color:green">'db.sqlite3'</span>),
                                     }
                                 }
                             </code></pre>
@@ -296,16 +296,16 @@
                                 <code>.exclude()</code> functions are used to query the database.
                             </p>
                             <pre class="text-left"><code class="language-python">
-                            def generate_rota_appointments_ordered(self, selected_date, user):
+                            <span style='color:orange;'>def</span> <span style='color:blue;'>generate_rota_appointments_ordered</span>(self, selected_date, user):
                                 cancelled = AppointmentStatus.objects.all().filter(
-                                    status='Cancelled')[0]
+                                    status=<span style='color:green;'>'Cancelled'</span>)[0]
                                 rota_appointments_ordered = list(Appointment.objects.all().filter(
                                     appointment_date=selected_date, team_member=user).exclude(
                                         appointment_status=cancelled))
                                 rota_appointments_ordered.sort(
                                     key=lambda x: (x.appointment_start_time))
 
-                                return rota_appointments_ordered
+                                    <span style='color:purple;'>return</span> rota_appointments_ordered
                             </code></pre>
                             <strong>4. Generate rota</strong>
                             <p>
@@ -328,19 +328,19 @@
                                 this filled in rota in the response.
                             </p>
                             <pre class="text-left"><code class="language-python">
-                                def generate_day_rota(self, appointments, tmp_rota):
-                                    for appointment in appointments:
+                                <span style="color:orange">def</span> <span style="color:blue">generate_day_rota</span>(self, appointments, tmp_rota):
+                                <span style="color:orange">for</span> appointment in appointments:
                                         appointment_code = (
                                             appointment.appointment_code.appointment_description)
                                         appointment_length = SLOTS[appointment_code]
                                         start_time = str(appointment.appointment_start_time)[:5]
                                         start_index = DAY_ROTA_KEYS.index(start_time)
 
-                                        for i in range(start_index, start_index + appointment_length):
+                                        <span style="color:orange">for</span> i <span style="color:orange">in</span> range(start_index, start_index + appointment_length):
                                             key = DAY_ROTA_KEYS[i]
                                             tmp_rota[key] = appointment
 
-                                    return tmp_rota
+                                            <span style="color:purple">return tmp_rota
                             </code></pre>
                             <strong>5. Display</strong>
                             <p>
@@ -762,7 +762,7 @@
                             </p>
 
                             <pre class="text-left"><code class="language-python">
-                                def post(self, request, appointment_id):
+                            def post(self, request, appointment_id):
                                 super().fetch_details(request)
                                 appointment = Appointment.objects.get(appointment_ID=appointment_id)
                                 form = AppointmentForm(request.POST or None, instance=appointment)
@@ -780,8 +780,8 @@
                         
                                     return HttpResponseRedirect('/appointments')
                                 return render(request, 'website/update_appointment.html',
-                                              {'appointment': appointment, 'form': form,
-                                               'first_name': self.first_name})
+                                            {'appointment': appointment, 'form': form,
+                                            'first_name': self.first_name})
                                     </code></pre>
 
 
@@ -946,9 +946,9 @@
                             </p>
 
                             <pre class="text-left"><code class="language-python">
-                                class SearchAppointmentForm(forms.Form):
+                                <span style="color:orange;">class</span> SearchAppointmentForm(forms.Form):
                                     appointment_ID = forms.CharField(
-                                        label='Search by ID',
+                                        label=<span style="color:green;">'Search by ID'</span>,
                                         max_length=100, required=False)
                                     ...
                                 </code></pre>
@@ -966,17 +966,17 @@
                             </p>
                             <pre class="text-left"><code class="language-python">
                                 <span style="color:orange;">def </span><span style="color:blue">processQuery</span>(self, dic, appointments):
-                                    <span style="color:green;">appointment_ID</span> = dic['appointment_ID']
-                                    <span style="color:green;">PAS_number</span> = dic['PAS_number']
+                                    appointment_ID = dic[<span style="color:green;">'appointment_ID'</span>]
+                                    PAS_number = dic[<span style="color:green;">'PAS_number'</span>]
                                     ...
-                                    <span style="color:red;">if </span><span style="color:green;">appointment_ID</span>:
-                                        <span style="color:green;">appointments</span> = <span style="color:green;">appointments</span>.filter
-                                            (appointment_ID=<span style="color:green;">appointment_ID</span>)
-                                    <span style="color:red;">if </span><span style="color:green;">PAS_number</span>:
-                                        <span style="color:green;">appointments</span> = <span style="color:green;">appointments</span>.filter
-                                            (PAS_number=<span style="color:green;">PAS_number</span>)
+                                    <span style="color:orange;">if </span>appointment_ID:
+                                        appointments = appointments.filter
+                                            (appointment_ID=appointment_ID)
+                                    <span style="color:orange;">if </span>PAS_number:
+                                       appointments = appointments.filter
+                                            (PAS_number=PAS_number)
                                     ...
-                                    return <span style="color:green">appointments</span>
+                                    <span style="color:purple;">return</span> appointments
                             </code>
                             </pre>
                         </section>
