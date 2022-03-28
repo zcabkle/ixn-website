@@ -53,14 +53,20 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="requirements.html">Requirements</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="requirements.html">Requirements</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="research.html">Research</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System Design</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="implementation.html">Implementation</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="ui-design.html">UI Design</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="system-design.html">System
+                            Design</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                            href="implementation.html">Implementation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="deployment.html">Deployment</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="testing.html">Testing</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="evaluation.html">Evaluation</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="appendix.html">Appendix</a></li>
                 </ul>
             </div>
@@ -101,7 +107,7 @@
                             We looked at features that Outlook Calendar and Google Calendar provide that could be
                             beneficial to Moorfields in the proof-of-concept that we were developing.
                             Most features were too complex to completely implement in the given timeframe. In these
-                            cases we didn't
+                            cases, we didn't
                             consider implementing it or we aimed to implement a variation of it.<br><br>
 
                             Below are some examples of features in Outlook Calendar and Google Calendar that we took
@@ -121,9 +127,9 @@
                         <h1 class="section-title text-gradient header-underline">Technology Research</h1><br>
 
                         <h2 class="section-title text-gradient">Python vs. Java</h2>
-                        <p> First of all we decided on the language that we would use to implement this webapp. We
+                        <p> First of all, we decided on the language that we would use to implement this web app. We
                             narrowed the choice down to two of the most suitable languages based on implementing
-                            webapps [1], [2]. We all have experience in both languages. After analysis of their
+                            web apps [1], [2]. We all have experience in both languages. After an analysis of their
                             advantages and disadvantages, we decided to choose Python. <br><br> The most notable
                             advantages of
                             Python over Java are as follows:<br><br>
@@ -153,7 +159,7 @@
                             We narrowed it down to two of the most popular Python frameworks [6], Django and Flask.
                             <br><br>
 
-                            After analysis of their advantages and disadvantages, we decided to choose Django as our web
+                            After an analysis of their advantages and disadvantages, we decided to choose Django as our web
                             development framework. Overall, the main reasons for doing so are because Django is more of
                             a heavy-weight framework, there are more features included in the framework that are
                             directly relevant to us. Think of Flask as a hammer and Django as a toolbox which happens
@@ -162,19 +168,20 @@
 
                             ☑ Django comes with user authentication [7] and permissions [7], which is something we would
                             like,
-                            particularly for seperating the ocularists and admin staff at Moorfields.
+                            particularly for separating the ocularists and admin staff at Moorfields.
                             Flask does not come with this functionality.<br><br>
 
                             ☑ Django comes with an admin framework [8], this is important for the longevity of the
                             project.
                             Users and groups can easily be edited from the admin page. This makes future admin tasks
-                            such as editing passwords very easy to do and neither us, nor future developers, will need
-                            to spend time developing this functionality.<br><br>
+                            such as editing passwords very easy to do and neither we, nor future developers, will have to
+                            spend time developing this functionality.<br><br>
 
                             ☑ Django has a built-in Object-Relational Mapper [9] which means two things. Firstly, we
                             don't have to write
                             long SQL queries as database tables get directly mapped to Python classes
-                            instead we can 'query' the database with readable python code [10]. Secondly, we have freedom
+                            instead we can 'query' the database with readable Python code [10]. Secondly, we have the
+                            freedom
                             to
                             choose which database to use [11], this gives us and future developers extra
                             flexibility.<br><br>
@@ -190,10 +197,10 @@
                         <h2 class="section-title text-gradient">Bootstrap vs. React
                         </h2>
                         <p>
-                            We had to decide what tool we would use to style the webapp. We
+                            We had to decide what tool we would use to style the web app. We
                             narrowed the choice down to two popular tools used for frontend design,
                             Bootstrap
-                            and React which are both used to style web pages. After analysis of their
+                            and React which are both used to style web pages. After an analysis of their
                             pros and cons, we decided to choose Bootstrap. <br><br> The most important
                             advantages of
                             Bootstrap over React are as follows:<br><br>
@@ -213,24 +220,26 @@
                             the time constraints for the project. All of the team know HTML and CSS syntax so using
                             Bootstrap will make collaboration and implementation smoother.<br><br>
 
-                            ☑ Bootstrap provides components which can be incredibly useful us and for future developers.
+                            ☑ Bootstrap provides components that can be incredibly useful to us and for future developers.
                             Components such as
-                            carousels, accordians, buttons and custom search bars [16] can help give the ocularist power
-                            regarding the information they are accesesing. <br><br>
+                            carousels, accordions, buttons and custom search bars [16] can help give the ocularist power
+                            regarding the information they are accessing. <br><br>
                         </p>
 
                         <h2 class="section-title text-gradient">Deployment Tools</h2>
-                        <p> For deployment we decided to use a Docker container and host it on Azure.<br><br>
+                        <p> For deployment, we decided to use a Docker container and host it on Azure.<br><br>
 
                             Docker containers and virtual machines have similar uses though we decided to use Docker as
                             it is more suited to our use case.<br><br>
 
                             Docker allows us to package the application
-                            in an isolated predictable enviroment called a container [17], a virtual machine on the other
+                            in an isolated predictable environment called a container [17], a virtual machine on the
+                            other
                             hand boots up a whole guest operating system to run the application on [18]. This is more
-                            resource heavy [18]. The more lightweight option of Docker containers is more suitable for us
+                            resource-heavy [18]. The more lightweight option of Docker containers is more suitable for
+                            us
                             developing at this stage as we are only developing one application. In further iterations of
-                            this project it may be nessecary to
+                            this project, it may be necessary to
                             switch to hosting on a virtual machine. An example would be if multiple systems were to be
                             integrated such as synchronising our workflow management app with PAS, this would be a
                             relatively large
@@ -244,13 +253,14 @@
                             Azure offers 'tight integration between Docker Desktop and Microsoft Azure' [19]. This fact
                             is
                             useful
-                            to us and to future developers. Both offer a near identical service to eachother. If real
+                            to us and to future developers. Both offer a near-identical service to each other. If real
                             data were to be used on the application we would have thoroughly looked at the security
                             implications of using
                             these services.
                             This meant that the main consideration for us was the price and it was cheaper to go with
                             Azure since UCL
-                            provided us with credits. Docker provides great support for AWS and other cloud services [19]
+                            provided us with credits. Docker provides great support for AWS and other cloud services
+                            [19]
                             so future developers will
                             have an easy time switching service if they deem nessecary.
                         </p>
@@ -400,11 +410,11 @@
                     </ul>
                     <div class="small text-center text-muted fst-italic">
                         <p>Copyright © 2021 - 2022
-                            <a href="!#">Moorfields Hospital</a>
+                            <a href="https://www.moorfields.nhs.uk/">Moorfields Hospital</a>
                             ,
-                            <a href="!#">Arslan Aftab</a>
+                            <a href="https://www.linkedin.com/in/arslan-aftab-472425198/">Arslan Aftab</a>
                             ,
-                            <a href="!#">Yue He</a>
+                            <a href="mailto:yue.he.work@gmail.com">Yue He</a>
                             ,
                             <a href="https://www.linkedin.com/in/kamil-ebanks/">Kamil Ebanks</a>
                             - All rights reserved.

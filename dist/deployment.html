@@ -37,6 +37,15 @@
         p {
             text-align: left;
         }
+        .indent-4 {
+            margin-left: 5%;
+        }
+        .indent-8 {
+            margin-left: 10%;
+        }  
+        .indent-12 {
+            margin-left: 15%;
+        }       
     </style>
     <link rel="shortcut icon" type="image/ico" href="/UCLfavicon.ico" />
 </head>
@@ -97,6 +106,10 @@
                             a Docker container, as well as how to automate the process. The benefit of automating this
                             procedure not only saves time but allows constant feedback from the client as soon as
                             any changes are implemented. </br></br>
+
+                            Automating deployment is not an essential part of deploying the project, 
+                            but it will save a lot of time having to manually update the builds on the cloud
+                            service you decide to use, and to then reinstate the running project to the updated builds
                         </p>
                         <h4 class="section-title text-gradient header-underline">Pre Requisites</h4><br>
                         <p>
@@ -162,10 +175,93 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center" id='background-text'>
                         <h1 class="section-title text-gradient header-underline">Dockerizing</h1> <br>
-                        <p> This section aims to describe the process of deploying this project to the Azure cloud as 
-                            a Docker container, as well as how to automate the process. The benefit of automating this
-                            procedure not only saves time but allows constant feedback from the client as soon as
-                            any changes are implemented. </br></br>
+                        <p> Turning the project into a Docker image is not an essential part of the 
+                            project, but it does offer a level of safety and encapsulation from the 
+                            base system. This eliminates the cursed <i>"it works on my machine" </i>
+                            fallacy.</br></br>
+
+                            The Docker container will provide its own environment for the project to
+                            run inside without the overhead of a virtual machine. <br><br>
+
+                            This only serves as a <i>very</i> brief description of Docker. There 
+                            are countless reasons for using Docker in the deployment of this 
+                            project and you can read more about them <a href="https://www.docker.com/why-docker/">
+                            here
+                            </a>.
+                        </p><br>
+                        <h4 class="section-title text-gradient header-underline">Setting up Docker</h4><br>
+                        <p>
+                            <strong>Setup
+                            </strong><br>
+                            Before being able to create a Docker container for your project, 
+                            you will need to have Docker installed locally. </br></br>
+
+                            Please choose the correct installation guide for your machine from
+                            <a href="https://docs.docker.com/get-docker/"> here</a>.
+                        </p><br>
+                        <h4 class="section-title text-gradient header-underline">Making the Dockerfile</h4><br>
+                        <p>
+                            <strong>Here's the Dockerfile
+                            </strong><br>
+                            Here's the Dockerfile that you can use to setup the container... </br></br>
+
+                            Docker will use this file as guidance on how to build a container for our 
+                            project. We need to place it at the root of the project directory, with the 
+                            name <code>Dockerfile</code>. <br><br>
+                            <samp>ucl-ixn-team19/</samp><br>
+                            <samp class="indent-4">.gitignore</samp><br>
+                            <code class="indent-4">Dockerfile</code><br>
+                            <samp class="indent-4">README.md</samp><br>
+                            <samp class="indent-4">requirements.txt</samp><br>
+                            <samp class="indent-4">myvenv/</samp><br>
+                            <samp class="indent-8">manage.py</samp><br>
+                            <samp class="indent-8">lib/..</samp><br>
+                            <samp class="indent-8">bin/..</samp><br>
+                            <samp class="indent-8">mysite/</samp><br>
+                            <samp class="indent-12">__init__.py</samp><br>
+                            <samp class="indent-12">settings.py</samp><br>
+                            <samp class="indent-12">urls.py</samp><br>
+                            <samp class="indent-12">wsgi.py</samp><br>
+                            <samp class="indent-8">website/</samp><br>
+                            <samp class="indent-12">__init__.py</samp><br>
+                            <samp class="indent-12">admin.py</samp><br>
+                            <samp class="indent-12">apps.py</samp><br>
+                            <samp class="indent-12">constants.py</samp><br>
+                            <samp class="indent-12">forms.py</samp><br>
+                            <samp class="indent-12">template_filter.py</samp><br>
+                            <samp class="indent-12">urls.py</samp><br>
+                            <samp class="indent-12">migrations/..</samp><br>
+                            <samp class="indent-12">templates/..</samp><br>
+                            <samp class="indent-12">tests/..</samp><br>
+
+                        </p>
+                        <p>
+                            <strong>Contents of the Dockerfile
+                            </strong><br>
+
+                            <samp><code>FROM</code> python:3.8.3-alpine<samp><br><br>
+                                <samp># set work directory<samp><br>
+                                
+                                <samp><code>WORKDIR</code> /usr/src/app<samp><br><br>
+                                
+                                <samp># set environment variables<samp><br>
+                                <samp><code>ENV</code> PYTHONDONTWRITEBYTECODE 1<samp><br>
+                                <samp><code>ENV</code> PYTHONUNBUFFERED 1<samp><br><br>
+                                
+                                <samp># copy project<samp><br>
+                                <samp><code>COPY</code> . /usr/src/app<samp><br><br>
+                                
+                                <samp># install dependencies<samp><br>
+                                <samp><code>RUN</code> python -m pip install -r requirements.txt<samp><br>
+                                
+                                <samp><code>EXPOSE</code> 8000<samp><br><br>
+
+                                <samp># commands issued to container<samp><br>
+
+                                <samp><code>RUN</code> python myvenv/manage.py clearsessions<samp><br>
+                                <samp><code>RUN</code> python myvenv/manage.py makemigrations<samp><br>
+                                <samp><code>RUN</code> python myvenv/manage.py migrate<samp><br>
+                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:80"]<samp><br>
                         </p>
                     </div>
                 </div>
@@ -208,11 +304,11 @@
                     </ul>
                     <div class="small text-center text-muted fst-italic">
                         <p>Copyright © 2021 - 2022
-                            <a href="!#">Moorfields Hospital</a>
+                            <a href="https://www.moorfields.nhs.uk/">Moorfields Hospital</a>
                             ,
-                            <a href="!#">Arslan Aftab</a>
+                            <a href="https://www.linkedin.com/in/arslan-aftab-472425198/">Arslan Aftab</a>
                             ,
-                            <a href="!#">Yue He</a>
+                            <a href="mailto:yue.he.work@gmail.com">Yue He</a>
                             ,
                             <a href="https://www.linkedin.com/in/kamil-ebanks/">Kamil Ebanks</a>
                             - All rights reserved.
