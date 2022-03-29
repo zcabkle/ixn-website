@@ -261,7 +261,7 @@
                                 <samp><code>RUN</code> python myvenv/manage.py clearsessions</samp><br>
                                 <samp><code>RUN</code> python myvenv/manage.py makemigrations</samp><br>
                                 <samp><code>RUN</code> python myvenv/manage.py migrate</samp><br>
-                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:80"]</samp><br>
+                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:8000"]</samp><br>
                         </p>
                         <p>
                             <strong>What does any of this mean?...
@@ -289,7 +289,7 @@
                             any errors due to changes in the codebase 
                         </p>
 
-                        <!-- <h4 class="section-title text-gradient header-underline">Running the project as a container</h4><br>
+                        <h4 class="section-title text-gradient header-underline">Running the project as a container</h4><br>
                         <p>
                             <strong>Building the Docker image
                             </strong><br>
@@ -297,8 +297,8 @@
                              image from the project files<br><br>
                             <samp><code>docker</code> build . -t &lt;image-name&gt;:latest</samp><br>
                             See documentation <a href="https://docs.docker.com/engine/reference/commandline/build/#description">
-                            here
-                            </a><br><br> -->
+                            here</a>, remember to replace <code>&lt;image-name&gt;</code>
+                            <br><br>
                     </div>
                 </div>
             </div>
