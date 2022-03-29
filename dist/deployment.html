@@ -371,7 +371,7 @@
                             
                             Likewise keep in mind that we have already looked at how to run the 
                             project as a container locally, so there is nothing to stop you form
-                            running it on premises!<br>
+                            running it on premises!<br><br>
                         </p>
 
                         <h4 class="section-title text-gradient header-underline">Notice</h4><br>
@@ -402,7 +402,33 @@
                             Would change to<br>
                             <samp>...<br><code>CMD</code> ["python", "myvenv/manage.py", "runserver", <i>"your-endpoint-ip:port"</i>]</samp><br><br>
 
-                            With this, you now have the potential to deploy your application <strong>anywhere</strong>!
+                            With this, you now have the potential to deploy your application <strong>anywhere</strong>!<br><br>
+                        </p>
+
+                        <h4 class="section-title text-gradient header-underline">Automating the deployment</h4><br>
+                        <p>
+                            <strong> Credentials for the GitHub repo
+                            </strong><br>
+                            
+                            We need the following credentials noted down somewhere in order for our deployment to work:<br>
+                        </p>
+                        <p>
+                            1. <samp>AZURE_CREDENTIALS</samp><br>
+                            2. <samp>REGISTRY_LOGIN_SERVER</samp><br>
+                            3. <samp>REGISTRY_USERNAME	</samp><br>
+                            4. <samp>REGISTRY_PASSWORD</samp><br>
+                            5. <samp>RESOURCE_GROUP</samp><br><br>
+
+                            We will add them to our repository <i>secrets</i>.<br><br>
+
+                            We can save these credentials in GitHub secrets by selecting <strong>Settings</strong> 
+                            > <strong>Secrets</strong> > <strong>Actions</strong>, and choosing 
+                            <strong>'New Repository Secret'</strong>
+                        </p>
+                        <p>
+                            Keep in mind that our method of authenticating access to our Azure resources is through
+                            a <i>service principal</i> which is stored as a secret in our GitHub repository.
+                            It is documented <a href="https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret">here</a>.
                         </p>
                     </div>
                 </div>
