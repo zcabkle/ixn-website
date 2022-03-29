@@ -351,23 +351,63 @@
                             In order to stop <i>that</i> running container, see documentation 
                             <a href="https://docs.docker.com/engine/reference/commandline/kill/"> here</a>.<br>
                         </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End of Dockerizing section -->
-        <!-- Start of Deployment-Intro section -->
-        <section class="Deployment">
-            <div class="container px-4 px-lg-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 text-center" id='background-text'>
-                        <h1 class="section-title text-gradient header-underline">Deploying to Azure</h1> <br>
                         
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End of Deployment-Intro section -->
+        <!-- End of Dockerizing section -->
+        <!-- Start of Deployment-Azure section -->
+        <section class="Deployment-Azure">
+            <div class="container px-4 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center" id='background-text'>
+                        <h1 class="section-title text-gradient header-underline">Deploying to Azure</h1> <br>
+                        <p>
+                            This guide will describe the process of deploying the application
+                            to Azure using github actions. We have chosen to deploy the application
+                            to Azure, however a Docker container is portable and may be run at 
+                            any endpoint! <i>So feel free to deploy anywhere you see fit!</i><br><br>
+                            
+                            Likewise keep in mind that we have already looked at how to run the 
+                            project as a container locally, so there is nothing to stop you form
+                            running it on premises!<br>
+                        </p>
+
+                        <h4 class="section-title text-gradient header-underline">Notice</h4><br>
+                        <p>
+                            <strong> Keep in mind
+                            </strong><br>
+                            You will have to adjust the endpoint permissions for the application...<br><br>
+
+                            This involves adjusting the allowed hosts in <samp>myvenv/mysite/settings.py</samp>
+                            and also changing the final directive in the <samp>Dockerfile</samp><br><br>
+
+                            <strong> <samp>settings.py</samp>    
+                            </strong><br>
+
+                            <samp>
+                                ALLOWED_HOSTS = ['127.0.0.1', 'localhost']<br><br>
+                            </samp>
+                            Would become<br>
+                            <samp>
+                                ALLOWED_HOSTS = ['127.0.0.1', 'localhost', <i>'your-endpoint-ip'</i>]
+                            </samp><br><br>
+                            
+                            <strong> <samp>Dockerfile</samp>    
+                            </strong><br>
+
+                            <samp>...<br><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:8000"]</samp><br><br>
+
+                            Would change to<br>
+                            <samp>...<br><code>CMD</code> ["python", "myvenv/manage.py", "runserver", <i>"your-endpoint-ip:port"</i>]</samp><br><br>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of Deployment-Azure section -->
     </main>
     <!-- Footer-->
     <footer class="border-top">
