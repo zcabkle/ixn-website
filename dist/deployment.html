@@ -407,6 +407,44 @@
 
                         <h4 class="section-title text-gradient header-underline">Automating the deployment</h4><br>
                         <p>
+                            <strong> Updating Dockerfile
+                            </strong><br>
+                            
+                            We need to make a small change to our <code>Dockerfile</code><br><br>
+                            <strong> <samp>Dockerfile</samp>    
+                            </strong><br>
+
+                            <samp>...<br><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:8000"]</samp><br><br>
+
+                            Would change to<br>
+                            <samp>...<br><code>CMD</code> ["python", "myvenv/manage.py", "runserver", <i>"0.0.0.0:80"</i>]</samp><br><br>
+
+                            I.e our final <code>Dockerfile</code> is:<br>
+                            <samp><code>FROM</code> python:3.8.3-alpine</samp><br><br>
+                            <samp># set work directory<samp><br>
+                            
+                            <samp><code>WORKDIR</code> /usr/src/app</samp><br><br>
+                            
+                            <samp># set environment variables</samp><br>
+                            <samp><code>ENV</code> PYTHONDONTWRITEBYTECODE 1</samp><br>
+                            <samp><code>ENV</code> PYTHONUNBUFFERED 1</samp><br><br>
+                            
+                            <samp># copy project</samp><br>
+                            <samp><code>COPY</code> . /usr/src/app</samp><br><br>
+                            
+                            <samp># install dependencies</samp><br>
+                            <samp><code>RUN</code> python -m pip install -r requirements.txt</samp><br>
+                            
+                            <samp><code>EXPOSE</code> 8000</samp><br><br>
+
+                            <samp># commands issued to container</samp><br>
+
+                            <samp><code>RUN</code> python myvenv/manage.py clearsessions</samp><br>
+                            <samp><code>RUN</code> python myvenv/manage.py makemigrations</samp><br>
+                            <samp><code>RUN</code> python myvenv/manage.py migrate</samp><br>
+                            <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:80"]</samp><br>
+                        </p>
+                        <p>
                             <strong> Credentials for the GitHub repo
                             </strong><br>
                             
@@ -609,7 +647,10 @@
                             </samp><br>
                             
                             Pushes the freshly built Docker image to <strong>container registry</strong> from where 
-                            the <i>latest</i> image replaces the running container instance!<br>
+                            the <i>latest</i> image replaces the running container instance!<br><br>
+
+                            This is how it keeps the application at the endpoint, namely the public IP address of the 
+                            container instance, up to date with the latest changes!<br>
                         </p>
                     </div>
                 </div>
