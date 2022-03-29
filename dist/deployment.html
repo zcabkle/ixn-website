@@ -330,17 +330,25 @@
                             <strong>Killing the container
                             </strong><br>
                             In order to pause the application, <i>remember that it was running
-                            in the background</i>, we issue the following commands.<br><br>
+                            in the background</i>, we issue the following command.<br><br>
 
 
-                            <samp><code>docker</code> ps</samp>
-                            <br>In order to list all running containers, see documentation 
+                            <samp><code>docker</code> ps</samp><br>
+                            In order to list all running containers, see documentation 
                             <a href="https://docs.docker.com/engine/reference/commandline/ps/"> here</a>.<br><br>
                             
                             This would produce something like...<br>
                             <pre><samp>CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS         PORTS                    NAMES<br>841d06f865bc   testing:latest   "python myvenv/manag…"   9 minutes ago   Up 9 minutes   0.0.0.0:8000->8000/tcp   testing
                             </samp></pre>
                             
+                        </p>
+                        <p>
+                            Remember to select the <samp>CONTAINER ID</samp>, in this case <code>841d06f865bc</code>. <br><br>
+
+                            And then issue:<br>
+                            <samp><code>docker</code> kill &lt;container-id&gt; </samp><br>
+                            In order to stop that running containers, see documentation 
+                            <a href="https://docs.docker.com/engine/reference/commandline/kill/"> here</a>.<br><br>
                         </p>
                     </div>
                 </div>
