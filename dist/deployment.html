@@ -430,6 +430,41 @@
                             a <i>service principal</i> which is stored as a secret in our GitHub repository.
                             It is documented <a href="https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#use-the-azure-login-action-with-a-service-principal-secret">here</a>.
                         </p>
+                        <p>
+                            <strong> Collecting credentials
+                            </strong><br>
+                            
+                            Using the Azure CLI, we will create a <i>service principal</i> to authenticate Azure actions<br>
+                        </p>
+                        <p>
+                            1. Get the <samp>GROUP_ID</samp><br>
+                            <samp><code>az</code> group show --name &lt;resource-group&gt; --query id --output tsv
+                            </samp><br>
+                            We <strong>do not</strong> need to save this in github actions, however it is needed 
+                            for the following steps so it is wise to keep it safe. 
+                        </p>
+                        <p>
+                            2. Create the service principal<br>
+                            <samp><code>az</code> ad sp create-for-rbac --scope &lt;GROUP_ID&gt; --role Contributor --sdk-auth
+                            </samp><br>
+                            Which will result in  a JSON output similiar to: <br><br>
+                            <samp>
+                                {<br>
+                                    <code>"clientId"</code>: "xxxx6ddc-xxxx-xxxx-xxx-ef78a99dxxxx",<br>
+                                    <code>"clientSecret"</code>: "xxxx79dc-xxxx-xxxx-xxxx-aaaaaec5xxxx",<br>
+                                    <code>"subscriptionId"</code>: "xxxx251c-xxxx-xxxx-xxxx-bf99a306xxxx",<br>
+                                    <code>"tenantId"</code>: "xxxx88bf-xxxx-xxxx-xxxx-2d7cd011xxxx",<br>
+                                    <code>"activeDirectoryEndpointUrl"</code>: "https://login.microsoftonline.com",<br>
+                                    <code>"resourceManagerEndpointUrl"</code>: "https://management.azure.com/",<br>
+                                    <code>"activeDirectoryGraphResourceId"</code>: "https://graph.windows.net/",<br>
+                                    <code>"sqlManagementEndpointUrl"</code>: "https://management.core.windows.net:8443/",<br>
+                                    <code>"galleryEndpointUrl"</code>: "https://gallery.azure.com/",<br>
+                                    <code>"managementEndpointUrl"</code>: "https://management.core.windows.net/"<br>
+                                  }
+                            </samp><br><br>
+                            
+                            We need to save <strong>all</strong> of this JSON output for the later steps.<br>
+                        </p>
                     </div>
                 </div>
             </div>
