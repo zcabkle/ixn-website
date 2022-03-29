@@ -261,7 +261,7 @@
                                 <samp><code>RUN</code> python myvenv/manage.py clearsessions</samp><br>
                                 <samp><code>RUN</code> python myvenv/manage.py makemigrations</samp><br>
                                 <samp><code>RUN</code> python myvenv/manage.py migrate</samp><br>
-                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:80"]</samp><br>
+                                <samp><code>CMD</code> ["python", "myvenv/manage.py", "runserver", "0.0.0.0:8000"]</samp><br>
                         </p>
                         <p>
                             <strong>What does any of this mean?...
@@ -289,16 +289,67 @@
                             any errors due to changes in the codebase 
                         </p>
 
-                        <!-- <h4 class="section-title text-gradient header-underline">Running the project as a container</h4><br>
+                        <h4 class="section-title text-gradient header-underline">Running the project as a container</h4><br>
                         <p>
                             <strong>Building the Docker image
                             </strong><br>
                             Use this command, <i>from the root of the project directory</i>, in order to build an
                              image from the project files<br><br>
                             <samp><code>docker</code> build . -t &lt;image-name&gt;:latest</samp><br>
-                            See documentation <a href="https://docs.docker.com/engine/reference/commandline/build/#description">
-                            here
-                            </a><br><br> -->
+                            See documentation <a href="https://docs.docker.com/engine/reference/commandline/build/">
+                            here</a>, remember to replace <code>&lt;image-name&gt;</code><br><br>
+
+                            <code>-t</code> sets the tag for the image to <samp>latest</samp><br><br>
+                        </p>
+                        <p>
+                            <strong>Running the Docker image
+                            </strong><br>
+                            Use this command in order to run a container based on the image we created<br><br>
+                            <samp><code>docker</code> run --name &lt;image-name&gt; -d -p 8000:8000 &lt;image-name&gt;:latest
+                            </samp><br>
+                            See documentation <a href="https://docs.docker.com/engine/reference/commandline/run/">
+                            here</a>
+                            <br><br>
+
+                            <code>-name</code> selects the name of the Docker container<br>
+                            <code>-d</code> makes the image run in detached mode, i.e. the background<br>
+                            <code>-p 8000:8000</code> maps port 8000 from the container to port 8000 of 
+                            <samp>localhost</samp><br><br>
+
+                            Now go to <samp>localhost:8000</samp> in your browser where the application
+                            is running!<br><br>
+                        </p>
+
+                        <p>
+                            <strong>Congratulations!!</strong><br>
+                            You have sucessfully set configured the application to run its own isolated 
+                            Docker container! 
+                        </p>
+
+                        <p>
+                            <strong>Killing the container
+                            </strong><br>
+                            In order to pause the application, <i>remember that it was running
+                            in the background</i>, we issue the following command.<br><br>
+
+
+                            <samp><code>docker</code> ps</samp><br>
+                            In order to list all running containers, see documentation 
+                            <a href="https://docs.docker.com/engine/reference/commandline/ps/"> here</a>.<br><br>
+                            
+                            This would produce something like...<br>
+                            <pre><samp>CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS         PORTS                    NAMES<br>841d06f865bc   testing:latest   "python myvenv/manag…"   9 minutes ago   Up 9 minutes   0.0.0.0:8000->8000/tcp   testing
+                            </samp></pre>
+                            
+                        </p>
+                        <p>
+                            Remember to select the <samp>CONTAINER ID</samp>, in this case <code>841d06f865bc</code>. <br><br>
+
+                            And then issue:<br>
+                            <samp><code>docker</code> kill &lt;container-id&gt; </samp><br>
+                            In order to stop that running containers, see documentation 
+                            <a href="https://docs.docker.com/engine/reference/commandline/kill/"> here</a>.<br><br>
+                        </p>
                     </div>
                 </div>
             </div>
