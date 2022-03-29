@@ -296,9 +296,21 @@
                             Use this command, <i>from the root of the project directory</i>, in order to build an
                              image from the project files<br><br>
                             <samp><code>docker</code> build . -t &lt;image-name&gt;:latest</samp><br>
-                            See documentation <a href="https://docs.docker.com/engine/reference/commandline/build/#description">
+                            See documentation <a href="https://docs.docker.com/engine/reference/commandline/build/">
                             here</a>, remember to replace <code>&lt;image-name&gt;</code>
                             <br><br>
+                        </p>
+                        <p>
+                            <strong>Running the Docker image
+                            </strong><br>
+                            Use this command in order to run a container based on the image we created<br><br>
+                            <samp><code>docker</code> run --name &lt;image-name&gt; -d -p 8000:8000 &lt;image-name&gt;:latest
+                            </samp><br>
+                            See documentation <a href="https://docs.docker.com/engine/reference/commandline/run/">
+                            here</a>
+                            <br><br>
+                        </p>
+                                
                     </div>
                 </div>
             </div>
