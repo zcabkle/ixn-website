@@ -421,9 +421,6 @@
 
                             We will add them to our repository <i>secrets</i>.<br><br>
 
-                            We can save these credentials in GitHub secrets by selecting <strong>Settings</strong> 
-                            > <strong>Secrets</strong> > <strong>Actions</strong>, and choosing 
-                            <strong>'New Repository Secret'</strong>
                         </p>
                         <p>
                             Keep in mind that our method of authenticating access to our Azure resources is through
@@ -437,14 +434,14 @@
                             Using the Azure CLI, we will create a <i>service principal</i> to authenticate Azure actions<br>
                         </p>
                         <p>
-                            1. Get the <samp>GROUP_ID</samp><br>
-                            <samp><code>az</code> group show --name &lt;resource-group&gt; --query id --output tsv
+                            1. Get the <samp>GROUP_ID</samp> of the resource group using the name of the group<br>
+                            <samp><code>az</code> group show --name &lt;resource-group-name&gt; --query id --output tsv
                             </samp><br>
                             We <strong>do not</strong> need to save the output of  this in github actions, however it is needed 
                             for the following steps so it is wise to keep it safe. 
                         </p>
                         <p>
-                            2. Create the service principal using the <samp>GROUP_ID</samp> <br>  
+                            2. Create the service principal using the <samp>GROUP_ID</samp> from the previous step<br>  
                             <samp><code>az</code> ad sp create-for-rbac --scope &lt;GROUP_ID&gt; --role Contributor --sdk-auth
                             </samp><br>
                             Which will result in  a JSON output similiar to: <br><br>
@@ -464,6 +461,64 @@
                             </samp><br><br>
                             
                             We need to save <strong>all</strong> of this JSON output for the later steps.<br>
+                            We also need to note down the <code>clientId</code> which we need in the upcoming steps<br>
+                        </p>
+                        <p>
+                            3. Get the <samp>REGISTRY_ID</samp> for the container registry by querying the registry name<br>
+                            <samp><code>az</code> acr show --name &lt;registry-name&gt; --query id --output tsv
+                            </samp><br>
+                            We <strong>do not</strong> need to save the output of  this in github actions, however it is needed 
+                            for the following steps so it is wise to keep it safe. Keep in mind this step assumes <i>you already
+                            set up</i> a container registry as per the pre requisites.<br>
+                        </p>
+                        <p>
+                            4. Assign the AcrPush role for the container registry using <samp>REGISTRY_ID</samp> and
+                            <code>clientId</code> from the JSON output<br>  
+                            <samp><code>az</code> role assignment create --assignee &lt;ClientId&gt; --scope &lt;registryId&gt; --role AcrPush
+                            </samp><br>
+                        </p>
+                        <p>
+                            <strong> Storing credentials
+                            </strong><br>
+                            
+                            Using the Azure CLI, we have collected all the information needed for the automation to work!<br><br>
+                            
+                            We can save these credentials in GitHub secrets by selecting <strong>Settings</strong> 
+                            > <strong>Secrets</strong> > <strong>Actions</strong>, and choosing 
+                            <strong>'New Repository Secret'</strong><br><br>
+
+                            We can now populate our GitHub repository secrets as such:
+                            <table class="table text-left table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Secret</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="rol">AZURE_CREDENTIALS</th>
+                                        <td>The entire JSON output from when we create service principal</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="rol">REGISTRY_LOGIN_SERVER</th>
+                                        <td>The name of the login server for the registry,<i> in lowercase</i><br>
+                                        Such as: <i>moorfieldsapp.azurecr.io</i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="rol">REGISTRY_USERNAME</th>
+                                        <td>The <code>clientId</code> from the JSON output</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="rol">REGISTRY_PASSWORD</th>
+                                        <td>The <code>clientSecret</code> from the JSON output</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="rol">RESOURCE_GROUP</th>
+                                        <td>The name of the resource group that we used to create the service principal</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </p>
                     </div>
                 </div>
