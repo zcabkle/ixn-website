@@ -440,11 +440,11 @@
                             1. Get the <samp>GROUP_ID</samp><br>
                             <samp><code>az</code> group show --name &lt;resource-group&gt; --query id --output tsv
                             </samp><br>
-                            We <strong>do not</strong> need to save this in github actions, however it is needed 
+                            We <strong>do not</strong> need to save the output of  this in github actions, however it is needed 
                             for the following steps so it is wise to keep it safe. 
                         </p>
                         <p>
-                            2. Create the service principal<br>
+                            2. Create the service principal using the <samp>GROUP_ID</samp> <br>  
                             <samp><code>az</code> ad sp create-for-rbac --scope &lt;GROUP_ID&gt; --role Contributor --sdk-auth
                             </samp><br>
                             Which will result in  a JSON output similiar to: <br><br>
