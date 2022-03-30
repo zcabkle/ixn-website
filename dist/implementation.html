@@ -328,19 +328,19 @@
                                 this filled in rota in the response.
                             </p>
                             <pre class="text-left"><code class="language-python">
-                                <span style="color:orange">def</span> <span style="color:blue">generate_day_rota</span>(self, appointments, tmp_rota):
-                                    <span style="color:orange">for</span> appointment <span style="color:orange">in</span> appointments:
-                                            appointment_code = (
-                                                appointment.appointment_code.appointment_description)
-                                            appointment_length = SLOTS[appointment_code]
-                                            start_time = <span style="color:purple">str</span>(appointment.appointment_start_time)[:5]
-                                            start_index = DAY_ROTA_KEYS.index(start_time)
+                            <span style="color:orange">def</span> <span style="color:blue">generate_day_rota</span>(self, appointments, tmp_rota):
+                                <span style="color:orange">for</span> appointment <span style="color:orange">in</span> appointments:
+                                        appointment_code = (
+                                            appointment.appointment_code.appointment_description)
+                                        appointment_length = SLOTS[appointment_code]
+                                        start_time = <span style="color:purple">str</span>(appointment.appointment_start_time)[:5]
+                                        start_index = DAY_ROTA_KEYS.index(start_time)
 
-                                            <span style="color:orange">for</span> i <span style="color:orange">in</span> range(start_index, start_index + appointment_length):
-                                                key = DAY_ROTA_KEYS[i]
-                                                tmp_rota[key] = appointment
+                                        <span style="color:orange">for</span> i <span style="color:orange">in</span> range(start_index, start_index + appointment_length):
+                                            key = DAY_ROTA_KEYS[i]
+                                            tmp_rota[key] = appointment
 
-                                    <span style="color:purple">return</span> tmp_rota
+                                <span style="color:purple">return</span> tmp_rota
                             </code></pre>
                             <strong>5. Display</strong>
                             <p>
@@ -373,7 +373,7 @@
                                     Rota</span>' section. Please read '<span class='text-gradient'>Daily
                                     Rota</span>' section before reading this section.<br><br>
                                 Displaying the
-                                daily rota is handled by <code>RotaView</code> in <code>RotaView.py</code>.</p>
+                                weekly rota is handled by <code>RotaView</code> in <code>RotaView.py</code>.</p>
                             <br>
                             <strong>1. Identify logged in user</strong><br>
                             <p>
@@ -425,6 +425,83 @@
 
                             <p><code>RotaView</code> passes this <code>weekly_rota</code> to the template
                                 (<code>my_rota.html</code>) in the
+                                response.
+                            </p>
+                            <br>
+                            <strong>4. Display</strong><br>
+                            <p> Step 4 is very similar to above in the '<span class='text-gradient'>Daily Rota</span>'
+                                section. Instead, the array of rotas is looped through and each one is displayed
+                                side by side. Each rota is displayed in an identical fashion as described in the '<span
+                                    class='text-gradient'>Daily Rota</span>' section.
+                            </p>
+                        </section>
+                        <br><br>
+                        <section>
+                            <h4 class="section-title text-gradient">Display Team Rota</h4><br>
+                            <p> This section explains how the team rota is displayed. This process is nearly identical
+                                to displaying a daily rota as above in the '<span class='text-gradient'>Daily
+                                    Rota</span>' section. Please read the '<span class='text-gradient'>Daily
+                                    Rota</span>' section before reading this section.<br><br>
+                                Displaying the
+                                team rota is handled by <code>TeamView</code> in <code>TeamView.py</code>.</p>
+                            <br>
+                            <strong>1. Identify selected users</strong><br>
+                            <p>
+                                Users are stored in the database as models. Users selected in the form (stored in
+                                <code>members_selected</code>) are saved to a
+                                variable called <code>team_members</code> this is done with the following lines of code.
+                                We are left with an array of user objects.</p>
+                            <pre class="text-left"><code class="language-python">
+                            <span style='color:orange;'>if</span> <span style='color:purple;'>len</span>(members_selected) == 0:
+                                team_members = list(User.objects.filter(
+                                    groups__name=<span style='color:green;'>'Ocularist'</span>))
+                            <span style='color:orange;'>else</span>:
+                                team_members = []
+                                <span style='color:orange;'>for</span> member_key <span style='color:orange;'>in</span> members_selected:
+                                    team_members.append(User.objects.get(
+                                        pk=int(member_key)))
+                            </code></pre>
+                            <br>
+                            <strong>2. Identify required date</strong><br>
+
+                            <p>
+                                Similar to above, in the '<span class='text-gradient'>Daily Rota</span>' section, the
+                                user
+                                selects a date manually or through the GUI.<br><br>
+
+                                Their choice is stored under the <code>selected_date</code> variable.
+                            </p>
+                            <br>
+
+                            <strong>3. Generate rotas</strong><br>
+                            <p> Step 3 is very similar to above in the '<span class='text-gradient'>Daily Rota</span>'
+                                section. Instead,
+                                <code>generate_rota()</code> is called for
+                                each user and it stores these rotas in an array, called <code>team_rota</code>. This
+                                behaviour is
+                                handled
+                                by <code>generate_team_rota(self, selected_date, team_rota, team_members)</code>.
+
+                            <pre class="text-left"><code class="language-python">
+                            <span style='color:orange;'>def</span> <span style='color:blue;'>generate_team_rota</span>(self, selected_date, team_rota, team_members):
+                                cancelled = AppointmentStatus.objects.all().filter(
+                                    status=<span style='color:green;'>'Cancelled'</span>)[0]
+                                <span style='color:orange;'>for</span> user <span style='color:orange;'>in</span> team_members:
+                                    rota_appointments_ordered = list(Appointment.objects.all().filter(
+                                        appointment_date=selected_date, team_member=user).exclude(
+                                            appointment_status=cancelled))
+                                    rota_appointments_ordered.<span style='color:purple;'>sort</span>(
+                                        key=lambda x: (x.appointment_start_time))
+                                    tmp_rota = DAY_ROTA.copy()
+                                    rota = self.generate_rota(rota_appointments_ordered, tmp_rota)
+                                    name_rota_tuple = (user.first_name +  <span style='color:green;'>' '</span> + user.last_name, rota)
+                                    team_rota.append(name_rota_tuple)
+
+                                <span style='color:purple;'>return</span> team_rota
+                            </code></pre>
+
+                            <p><code>TeamView</code> passes this <code>team_rota</code> to the template
+                                (<code>team_rota.html</code>) in the
                                 response.
                             </p>
                             <br>
@@ -797,7 +874,8 @@
                                 section.<br><br>
 
                                 Adding a patient is handled by <code>AddPatientView</code> in
-                                <code>AddPatientView.py</code>.</p>
+                                <code>AddPatientView.py</code>.
+                            </p>
 
                             <br>
                             <strong> Get Method </strong>
@@ -835,7 +913,8 @@
                                 section.<br><br>
 
                                 Adding an appointment is handled by <code>AddAppointmentView</code> in
-                                <code>AddAppointmenttView.py</code>.</p><br>
+                                <code>AddAppointmenttView.py</code>.
+                            </p><br>
 
                             <strong> Get Method </strong>
                             <p> If the user is getting the add appointment page, the functionality works as
@@ -903,7 +982,8 @@
                             <p> This section explains how cancelling an appointment is implemented.<br><br>
 
                                 Cancelling an appointments is handled by <code>CancelAppointmentView</code> in
-                                <code>CancelAppointmentView.py</code>.</p><br>
+                                <code>CancelAppointmentView.py</code>.
+                            </p><br>
                             <strong> Get Method </strong><br>
                             <strong> 1. Cancel the Appointment</strong>
                             <p>
@@ -928,20 +1008,24 @@
                         <br>
                         <section>
                             <h4 class="section-title text-gradient">Filtering</h4>
-                            <p> This section explains how filtering is implemented on the <code>appointments.html</code> and
+                            <p> This section explains how filtering is implemented on the <code>appointments.html</code>
+                                and
                                 <code>wait_list.html</code> pages.
                                 This functionality is implemented with <code>AppointmentView</code> and
                                 <code>WaitingListView</code> respectively.<br><br>
 
 
                                 *filter functionality for appointments and patients is implemented identically. for
-                                simplicity's sake, this document will only discuss appointment filtering.</p>
+                                simplicity's sake, this document will only discuss appointment filtering.
+                            </p>
 
                             <strong> Forms </strong>
                             <p> Filter functionality for the appointment page is implemented using a Django
-                                form. This is a form but <strong>it is not a model form</strong>. The form used is called
+                                form. This is a form but <strong>it is not a model form</strong>. The form used is
+                                called
                                 <code>SearchAppointmentForm</code> in <code>forms.py</code>.
-                                It is a series of search bars with a single submit button. The below code snippet shows one
+                                It is a series of search bars with a single submit button. The below code snippet shows
+                                one
                                 of the search bars on the form.
                             </p>
 
@@ -983,7 +1067,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
     </main>
     <!-- Footer-->
     <footer class="border-top">
