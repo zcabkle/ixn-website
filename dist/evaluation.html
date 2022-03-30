@@ -507,6 +507,7 @@
                             <tr>
                                 <th scope="col">Bug Description</th>
                                 <th scope="col">Severity</th>
+                                <th scope="col">Solution</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -517,6 +518,15 @@
                                         appointment to replace the cancelled one.</p>
                                 </td>
                                 <td><span class="good"><strong>Medium</strong></span></td>
+                                <td>
+                                    <p> Add tighter validation to <samp>UpdateAppointmentView.py</samp> to remove the 
+                                        option to adjust the appointment status<br><br>
+                                    
+                                        The user may only change an appointment from <i>booked </i>to <i>cancelled</i>,
+                                        and never the other way around. This functionality is available from the 
+                                        appointment list already.
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -525,6 +535,14 @@
                                         be able to cancel an already cancelled appointment.</p>
                                 </td>
                                 <td><span class="good"><strong>Medium</strong></span></td>
+                                <td>
+                                    <p>The methods used to fetch appointments in <samp>AppointmentView.py</samp>
+                                        is mismatched to the one that is called when searching for an appointment.<br><br>
+                                    
+                                        i.e. the <samp>get</samp> method for this class correctly applies and returns the tags
+                                        for appointment status, however <samp>post</samp> has not been updated to do the same! 
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -533,6 +551,18 @@
 
                                 </td>
                                 <td><span class="excellent"><strong>Low</strong></span></td>
+                                <td>
+                                    <p> The <samp>Appointment</samp> model currently stores <i>
+                                        AppointmentCode</i> as <samp>appointment_code = models.ForeignKey(
+                                            AppointmentCode, ...)</samp>.<br><br>
+                                        
+                                        I.e. it saves the entire AppointmentCode <strong>object</strong>
+                                        as the status, we need to replace it with
+                                        <samp>appointment_code = models.ForeignKey(
+                                            AppointmentCode.appointment_code, ...)</samp> </p>   
+                                </td>
+
+                            </td>
                             </tr>
 
                         </tbody>
