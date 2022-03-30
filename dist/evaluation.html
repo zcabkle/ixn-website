@@ -868,8 +868,13 @@
                         to make a mistake.<br><br>
 
                         10. Everytime that we Dockerise and deploy the application to Azure, the local database is 
-                        used to create the Docker image. As such, all remote data, <i>i.e. on Azure</i> is lost. Though 
-                        this is fine for a proof of concept, 
+                        used to create the Docker image. As such, all remote data, <i>i.e. on Azure</i> is lost and 
+                        overwritten by the local copy of the database. Though this is fine for a proof of concept, 
+                        we should have the backend database mounted as a persistent file storage to our container 
+                        registry or container instance. There already exist solutions to this, and it would be natural during
+                        real world use to want to maintain the information located in the database. 
+                        <a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files">
+                        Here</a> is what a quick search reveals about this!
                     </p>
                 </div>
             </div>
