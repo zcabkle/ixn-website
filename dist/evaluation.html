@@ -507,6 +507,7 @@
                             <tr>
                                 <th scope="col">Bug Description</th>
                                 <th scope="col">Severity</th>
+                                <th scope="col">Solution</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -517,6 +518,15 @@
                                         appointment to replace the cancelled one.</p>
                                 </td>
                                 <td><span class="good"><strong>Medium</strong></span></td>
+                                <td>
+                                    <p> Add tighter validation to <samp>UpdateAppointmentView.py</samp> to remove the 
+                                        option to adjust the appointment status<br><br>
+                                    
+                                        The user may only change an appointment from <i>booked </i>to <i>cancelled</i>,
+                                        and never the other way around. This functionality is available from the 
+                                        appointment list already.
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -525,6 +535,14 @@
                                         be able to cancel an already cancelled appointment.</p>
                                 </td>
                                 <td><span class="good"><strong>Medium</strong></span></td>
+                                <td>
+                                    <p>The methods used to fetch appointments in <samp>AppointmentView.py</samp>
+                                        is mismatched to the one that is called when searching for an appointment.<br><br>
+                                    
+                                        i.e. the <samp>get</samp> method for this class correctly applies and returns the tags
+                                        for appointment status, however <samp>post</samp> has not been updated to do the same! 
+                                    </p>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
@@ -533,6 +551,18 @@
 
                                 </td>
                                 <td><span class="excellent"><strong>Low</strong></span></td>
+                                <td>
+                                    <p> The <samp>Appointment</samp> model currently stores <i>
+                                        AppointmentCode</i> as <samp>appointment_code = models.ForeignKey(
+                                            AppointmentCode, ...)</samp>.<br><br>
+                                        
+                                        I.e. it saves the entire AppointmentCode <strong>object</strong>
+                                        as the status, we need to replace it with
+                                        <samp>appointment_code = models.ForeignKey(
+                                            AppointmentCode.appointment_code, ...)</samp> </p>   
+                                </td>
+
+                            </td>
                             </tr>
 
                         </tbody>
@@ -815,8 +845,36 @@
                         project however we decided to
                         narrow the scope and not implement this in our system. Once our system is polished it could
                         be useful for Moorfields to track which
-                        materials were used for which prosthetic.<br>
+                        materials were used for which prosthetic.<br><br>
 
+                        7. Given more time, we would love to further refactor our codebase
+                        to make things even more modular. A lot of our functionality refreshes the webpage
+                        the user was currently on, which means that we duplicate sections of code in a lot of places.
+                        For example, at many points we have to fetch the list of appointments, and we in fact have 
+                        a known bug where sometimes the list of appointments is not tagged properly! This can be all
+                        solved by introducing a base method that returns the information needed to populate the template, 
+                        and then overriding some of the other functionality, to differentiate the operations.<br><br>
+
+                        8. Currently, we have tested the system for simultaneous use; and it works! The backend model on the 
+                        server will track changes in real time and prevent overwriting of data. However the visuals on screen
+                        are not always seen in real time, you have to infact refresh to see the changes to the rota or appointment 
+                        list. Given the time and resources, we would like to implement a solution that uses <samp>AJAX</samp> in 
+                        order to automatically refresh the template whenever the backend Model changes.<br><br>
+
+                        9. We have set user groups and permissions seperately for admin staff and ocularist staff, and 
+                        given then time it would be natural to retrict their permissions when using the app. This way
+                        the PAS checklist can only be confirmed by a member of the admin users group. Features like This
+                        would make the system more reflective of who has what work to do, and decreases the chance for someone 
+                        to make a mistake.<br><br>
+
+                        10. Everytime that we Dockerise and deploy the application to Azure, the local database is 
+                        used to create the Docker image. As such, all remote data, <i>i.e. on Azure</i> is lost and 
+                        overwritten by the local copy of the database. Though this is fine for a proof of concept, 
+                        we should have the backend database mounted as a persistent file storage to our container 
+                        registry or container instance. There already exist solutions to this, and it would be natural during
+                        real world use to want to maintain the information located in the database. 
+                        <a href="https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files">
+                        Here</a> is what a quick search reveals about this!
                     </p>
                 </div>
             </div>
