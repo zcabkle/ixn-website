@@ -845,8 +845,31 @@
                         project however we decided to
                         narrow the scope and not implement this in our system. Once our system is polished it could
                         be useful for Moorfields to track which
-                        materials were used for which prosthetic.<br>
+                        materials were used for which prosthetic.<br><br>
 
+                        7. Given more time, we would love to further refactor our codebase
+                        to make things even more modular. A lot of our functionality refreshes the webpage
+                        the user was currently on, which means that we duplicate sections of code in a lot of places.
+                        For example, at many points we have to fetch the list of appointments, and we in fact have 
+                        a known bug where sometimes the list of appointments is not tagged properly! This can be all
+                        solved by introducing a base method that returns the information needed to populate the template, 
+                        and then overriding some of the other functionality, to differentiate the operations.<br><br>
+
+                        8. Currently, we have tested the system for simultaneous use; and it works! The backend model on the 
+                        server will track changes in real time and prevent overwriting of data. However the visuals on screen
+                        are not always seen in real time, you have to infact refresh to see the changes to the rota or appointment 
+                        list. Given the time and resources, we would like to implement a solution that uses <samp>AJAX</samp> in 
+                        order to automatically refresh the template whenever the backend Model changes.<br><br>
+
+                        9. We have set user groups and permissions seperately for admin staff and ocularist staff, and 
+                        given then time it would be natural to retrict their permissions when using the app. This way
+                        the PAS checklist can only be confirmed by a member of the admin users group. Features like This
+                        would make the system more reflective of who has what work to do, and decreases the chance for someone 
+                        to make a mistake.<br><br>
+
+                        10. Everytime that we Dockerise and deploy the application to Azure, the local database is 
+                        used to create the Docker image. As such, all remote data, <i>i.e. on Azure</i> is lost. Though 
+                        this is fine for a proof of concept, 
                     </p>
                 </div>
             </div>
